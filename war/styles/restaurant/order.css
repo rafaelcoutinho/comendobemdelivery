@@ -1,0 +1,62 @@
+@CHARSET "UTF-8";
+
+/* ------------ TAGs --------------------- */
+div.fundoCinza {
+	padding: 3px 7px;
+}
+
+table {
+	margin-right: auto;
+	margin-left: auto;	
+	padding: 0px;
+	border-collapse: collapse;
+}
+
+table th {
+	font-weight: normal;
+	font-size: 0.8em;
+	padding: 4px 5px;
+}
+
+tbody td {
+	text-align: center;
+	padding: 0;
+	background: rgb(222, 222, 222);
+	border-bottom: 10px solid white;
+}
+
+tbody td img {
+	height: 37px;
+}
+
+tbody tr:hover td {
+	background: rgb(200, 200, 200);
+}
+
+tbody td a, tbody td a:visited {
+	color: rgb(96, 93, 93);
+	text-decoration: underline;
+}
+
+/* ------------ IDs --------------------- */
+#barraWelcome h2, #barraWelcome p {
+	margin: 0px;
+	padding: 2px;
+}
+
+#mensagem span {
+	font-size: 1.2em;
+	color: rgb(235, 125, 75);
+}
+
+#filtro {
+	background: rgb(222, 222, 222);
+	padding: 5px;
+	height: 28px;
+}
+
+/* ------------ Classes --------------------- */
+.status {
+	color: white; 
+	width: 150px;
+}

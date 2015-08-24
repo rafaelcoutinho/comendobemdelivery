@@ -1,0 +1,29 @@
+<div id="pedidoWrapper" style="right: 0px;">
+
+<div class="canto cantoSupEsq"></div>
+<div class="canto cantoInfEsq"></div>
+
+<h2>Seu Pedido</h2>
+
+<ul class="orderList">	
+</ul>
+<form action="/placeOrder.do" method="post" dojoType="dijit.form.Form" class="orderForm">
+<input type="hidden" class="orderData" name="orderData" dojoType="dijit.form.TextBox"/>
+</form>
+<p>Prato:<br />
+<span class="itemSelecionado">&nbsp;</span><br />
+Custo: <span class="valorUnitario"> 0,00</span><br />
+
+</p>
+<hr />
+<p><div class="dropdownButtonContainer" style="background: #C8C8C8 none repeat scroll 0 0;margin-top:2px;margin-bottom:2px;margin-left:3px;margin-right:3px; font-size:x-small;">
+</div>
+	<br/>
+Total de Pratos: <span class="totalPratos">0</span><br />
+Sub-Total: <br /><span class="subTotal">0,00</span><br />
+</p>
+
+<div class="confirmarPedido" > <img alt="Confirmar Pedido" style="cursor: pointer;" alt="Confirmar Pedido"
+	src="/resources/img/btConfirmar.png" dojoAttachEvent="onclick:confirmOrder"/> </div>
+
+</div>

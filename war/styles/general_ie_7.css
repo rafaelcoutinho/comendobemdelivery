@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+span.required {
+	margin-left: -4px;
+}
+
+.roundedInputDojo input {
+	background: transparent;
+	border: none;
+	position: relative;
+	top:-22px;
+	left:0px;
+}

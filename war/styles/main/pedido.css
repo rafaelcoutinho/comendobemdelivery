@@ -1,0 +1,104 @@
+@CHARSET "UTF-8";
+
+#acompanhamentosEObservacoes {
+	border : 1px solid rgb(150, 150, 150);
+	color: inherit;
+	background: rgb(200, 200, 200);
+	margin: 5px;
+}
+
+#acompanhamentosEObservacoes.desligado {
+	border : 1px solid rgb(180, 180, 180);
+	color: rgb(200, 200, 200);
+	background: rgb(220, 220, 220);
+}
+
+#confirmarPedido img {
+	margin-bottom: -40px
+}
+
+#pedido {
+	position: absolute;
+	right: 0px;
+	width: 150px;
+	top: 30px;
+	height: 500px;
+	overflow: hidden;
+}
+
+#pedidoWrapper {
+	position: absolute;
+	width: 125px;
+	padding: 5px;
+	text-align: center;
+	background: rgb(222, 222, 222);
+	right: 0px;
+}
+
+#pedido h2 {
+	margin: 2px;
+	padding: 0;
+}
+
+#pedido hr {
+	border-top: 1px solid white;
+	margin: -5px 0;
+}
+
+#pedido p {
+	font-size: 0.8em;
+	font-weight: bold;
+}
+
+#pedido p span, #pedido p input {
+	font-size: 1em;
+	font-weight: normal;
+	text-align: center;
+}
+
+#pedido ul {
+	background: white;
+	border: 1px solid rgb(180, 177, 177);
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-align: left;
+	height: 100px;
+	overflow: auto;
+}
+
+#pedido ul li {
+	font-size: 0.8em;
+	position: relative;
+	margin: 2px 0px;
+	cursor: pointer;
+}
+
+#pedido ul li.sobre {
+	background: rgb(220, 220, 220);	
+}
+
+#pedido ul li.selecionado {
+	background: rgb(200, 200, 200);
+}
+
+#pedido ul li span {
+	color: rgb(235, 125, 75);
+	font-weight: bold;
+	position: absolute;
+	right: 2px;
+}
+
+#pedido .valor  {
+	background: white;
+	border: 1px solid rgb(180, 177, 177);
+}
+
+.quantidade {
+	cursor: pointer;
+}
+
+#quantidadeWrap {
+	position: relative;
+	top: 2px;
+}

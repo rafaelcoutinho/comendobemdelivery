@@ -1,0 +1,30 @@
+<div ><img id="filtrosBuscaImg"
+	src="/resources/img/opt/filtrosDeBusca.png" alt="Filtros de Busca" /> <img
+	id="cantoFormularioImg" src="/resources/img/opt/bordaFormulario.png" />
+
+
+<div dojoType="dijit.form.Form" class="buscaForm" jsId="busca"
+	id="searchForm" action="" method=""
+	style="position: absolute; margin-left: 45px; margin-top: 10px; top: 50px;">
+	
+ <label for="city" 
+	style="color: #605D5D; font-family: verdana, arial, sans-serif; font-size: small; padding: 5px 2px;">Cidade</label><br><img alt="Sua localização atual" src="/resources/img/locPin.png" id="autoLocImg" style="display: none"><span style="margin-left:5px;font-weight:bold; width: 175px;margin-bottom:5px;margin-top: 5px;" id="cityName">${selectedCity.name}</span><span style="cursor: pointer;" id="changeCity" dojoAttachEvent="onclick:changeCity"> trocar...<br/></span>
+	 <select dojoType="dijit.form.FilteringSelect" id="citySelection" dojoAttachPoint="citySelection"
+		 name="criteria.city"  autoComplete="true" style="background-color: white;width: 175px;margin-bottom:5px;margin-top: 5px; display:none;"
+		invalidMessage="Cidade inv&aacute;lida"></select>
+<label for="neighbor"
+	style="color: #605D5D; font-family: verdana, arial, sans-serif; font-size: small; padding: 5px 2px;">Bairro</label><br>
+	 <select dojoType="dijit.form.FilteringSelect" id="neighSelection" 
+		name="criteria.neighbor" autoComplete="false" selectOnClick="true" hasDownArrow="false"
+		invalidMessage="Bairro inv&aacute;lido" promptMessage="Digite o nome de seu bairro" style="background-color: white;width: 175px;margin-bottom:5px;margin-top: 5px;"></select>
+		<div style="text-align: right;"><a style="font-size: xx-small; font-family: verdana,arial,sans-serif; text-decoration: underline;" href="/sugerirBairro.do">Outro bairro?</a></div>
+
+	<br/>
+<input id="openStatus" name="criteria.openStatus" dojoType="dijit.form.CheckBox" type="checkbox" checked="false"  style="filter:none"><label
+	for="onlyOpen"> S&oacute; abertos </label>
+<button dojoType="dijit.form.Button" baseClass="orangeButton" id="searchBtn">
+            Buscar
+</button>
+
+</div>
+</div>

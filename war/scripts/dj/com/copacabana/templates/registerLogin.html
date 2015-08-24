@@ -1,0 +1,31 @@
+<div id="login" >
+<form dojoType="dijit.form.Form" id="loginForm" action="/authenticateNoSSL.do" method="post" style="margin-bottom: 5px;" onsubmit="return false;">
+<input  type="hidden" class="passwordHidden" name="password" dojoType="dijit.form.TextBox"  />
+<input  type="hidden" class="usernameHidden" name="login" dojoType="dijit.form.TextBox"  /> 
+<input  type="hidden" name="isMD5" value="true" />
+</form>
+E-mail: <input type="text" id="username" class="username mandatory" required="true" name="login" selectOnClick="true" dojoType="dijit.form.ValidationTextBox" style="width: 200px;margin-left: 1px;" /><br />
+<div style="margin-top: 3px;">
+Senha: <input type="password" id="passwordFake" class="password mandatory" required="true" name="passwordfake" selectOnClick="true" dojoType="dijit.form.ValidationTextBox"  style="width: 140px;" /> 
+<button dojoType="dijit.form.Button" type="button"  baseClass="orangeButton" id="loginbtn">Enviar</button>
+</div>
+<div dojoType="dijit.form.DropDownButton"  baseClass="rememberButton" style="margin-top: 5px;">
+    <span>
+        Esqueci minha senha.
+    </span>
+    <div dojoType="dijit.TooltipDialog" id="lembrete" dojoAttachEvent="onExecute:executeReminder,onexecute:executeReminder">
+    	<p>Insira seu e-mail cadastrado e lhe enviaremos sua senha.</p>
+        <label for="name2">
+            E-mail cadastrado:
+        </label>
+        <form action="/lembreteSenha.do" method="post" id="lembreteForm" dojoType="dijit.form.Form">        
+        <input dojoType="dijit.form.TextBox" id="email" name="email" type="text" selectOnClick="true"/>
+        </form>
+        <br>        
+        <button dojoType="dijit.form.Button" type="submit" baseClass="orangeButton">
+            Enviar senha
+        </button>
+    </div>
+</div><br/>
+<div class="loginMsgs" style="color: red;float: right;"></div>
+</div>

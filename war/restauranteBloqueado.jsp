@@ -1,0 +1,1 @@
+Seu restaurante está bloqueado. Contacte o suporte do site para mais esclarecimentos. contato@comendobem.com.br

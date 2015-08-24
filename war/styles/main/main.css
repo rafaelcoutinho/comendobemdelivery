@@ -1,0 +1,206 @@
+@CHARSET "UTF-8";
+
+/* ------------ IDs --------------------- */
+#homeLeft {
+	position: relative;
+	
+}
+
+#homeRight {
+	position: absolute;
+	top: 15px;
+	right: 0px;
+}
+
+#login p {
+	margin: 3px;
+}
+
+#btLoginWrap {
+	margin-left: -10px;
+}
+
+#mensagem {
+	margin: 0px;	
+	color: rgb(235, 125, 75);
+}
+
+#homeCenter {
+	position: absolute;
+	top: 15px;
+	right: 270px;
+}
+
+#paginacao {
+	text-align: center;
+	position: relative;
+	height: 2.5em;
+	width: 250px;
+	margin-left: 25%;
+}
+
+#paginacao span {
+	font-size: 0.8em;
+}
+
+#paginacao .avancar {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
+
+#paginacao .voltar {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
+
+#paginacao .selecionado {
+	font-weight: bold;	
+}
+
+#password {
+	z-index: 999;
+}
+
+/* ------------ Classes --------------------- */
+.conteudo {
+	overflow: hidden;
+}
+
+.conteudo .descricao {
+	position: relative;
+	background: rgb(252, 247, 243);
+	height: 20px;
+	opacity: 0.8;
+	width: 200px;
+	padding: 5px;
+	top: -60px;
+}
+
+.conteudo .imagem {
+	width: 240px;
+	height: 205px;
+}
+
+.conteudo .loader {
+	margin: 30px;
+}
+
+.quadrado {
+	padding: 10px;
+	width: 240px;
+	height: 240px;
+	background: rgb(238, 238, 238);
+	margin-bottom: 30px;
+}
+
+.quadrado h2 {
+	margin: 5px;
+}
+
+.roundedInput  {
+	margin-top: 2px;
+	top: -2px;
+}
+.restItem {
+	background: white none repeat scroll 0% 0%;
+	-moz-background-clip: -moz-initial;
+	-moz-background-origin: -moz-initial;
+	-moz-background-inline-policy: -moz-initial;
+	height: 25px;
+	opacity: 0.75;
+	filter: alpha(opacity = 75);
+	font-weight: bold;
+	padding-top: 6px;
+	padding-left: 3px;
+	width: 200px;
+	margin-left: 25px;
+	cursor: pointer;
+	margin-bottom: 2px;;
+	background-color: white;
+}
+
+.restItem:hover {
+	background: white none repeat scroll 0% 0%;
+	-moz-background-clip: -moz-initial;
+	-moz-background-origin: -moz-initial;
+	-moz-background-inline-policy: -moz-initial;
+	height: 25px;
+	opacity: 0.9;
+	filter: alpha(opacity = 90);
+	font-weight: bold;
+	padding-top: 6px;
+	padding-left: 3px;
+	width: 200px;
+	margin-left: 25px;
+	cursor: pointer;
+}
+
+.aberto {
+	background: rgb(133, 194, 38);
+	position: absolute;
+	right: 30px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 3px;
+	padding-right: 3px;
+	font-size: x-small;
+	width: 45px;
+	text-align: center;
+	filter: alpha(opacity = 100);
+	color:white;
+}
+
+.fechado {
+	background: rgb(217, 38, 28);
+	position: absolute;
+	right: 30px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 3px;
+	padding-right: 3px;
+	font-size: x-small;
+	width: 45px;
+	text-align: center;
+	filter: alpha(opacity = 100);
+	color:white;
+}
+
+.notActive {
+	background: #EB7D4B;
+	position: absolute;
+	right: 30px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 3px;
+	padding-right: 3px;
+	font-size: x-small;
+	width: 45px;
+	text-align: center;
+	filter: alpha(opacity = 100);
+	color:white;
+}
+
+.restSuggestions {
+	filter: alpha(opacity = 70);
+}
+
+#hto {
+	padding: 0px;	
+	
+}
+
+#hto ul {
+	
+}
+
+#hto ul li {
+	
+	cursor:help;
+	list-style-image: url("/resources/img/sssforko.png");
+	
+			
+}
+
+

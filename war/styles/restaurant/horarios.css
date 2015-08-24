@@ -1,0 +1,44 @@
+@CHARSET "UTF-8";
+
+#funcionalidade p.horarios {
+	text-align: right;
+	margin: 0;
+	padding: 0 40px 0 0;
+}
+
+.timeSelect {
+	height: 3em;
+	display: inline-block;
+	
+	position: relative;
+}
+
+.timeSelect .background {
+	position: absolute;
+	left: 0px;
+	background: rgb(222,222,222);
+	height: 1em;
+	top: 1em;
+	width: 100%;
+}
+
+.timeSelect .selection {
+	top: 1em;
+	height: 1em;
+	position: absolute;
+	background: rgb(232, 120, 23);
+}
+
+.timeSelect .interval {
+	position: absolute;
+	line-height: 1em;
+	font-size: 0.8em;
+	top: 0.2em;
+	height: 1em;
+	padding: 0 0 0 2px;
+	border-left: 1px solid;
+}
+
+.timeSelect .end {
+	top: 2.5em;
+}

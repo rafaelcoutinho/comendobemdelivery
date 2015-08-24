@@ -1,0 +1,1 @@
+({"label_WEDNESDAY":"Quarta","label_TUESDAY":"Terça","label_MONDAY":"Segunda","label_SATURDAY":"Sábado","label_HOLIDAYS":"Feriados","label_SUNDAY":"Domingo","label_THURSDAY":"Quinta","label_FRIDAY":"Sexta"})

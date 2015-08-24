@@ -1,0 +1,7 @@
+<tr class="" >
+	<td><a href="#" dojoAttachEvent="onclick:viewOrderDetails" >${order.idXlated}</a></td>	
+	<td>${order.orderedTimeString}</td>
+	<td>${order.lastStatusUpdateTimeString}<span class="msgPlace" style="height:20px;"></span></td>	
+	<td class="helptext" dojoAttachPoint="statusSec"><span dojoAttachPoint="statusXlated">&nbsp;</span><div dojoAttachPoint="timerPlace">&nbsp;</div></td>
+	<td><a href="/?showRestaurant=true&restaurantId=${order.restaurant}&rName=${order.restaurantName}">${order.restaurantName}</a></td>	
+</tr>

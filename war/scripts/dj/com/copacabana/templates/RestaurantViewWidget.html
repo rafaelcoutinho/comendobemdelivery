@@ -1,0 +1,39 @@
+<div style="font-family: Arial,sans-serif;font-size: 62.5%;color: #555;">
+<div class="restaurantinfo" style="background: #F7F7F7;padding: 10px 10px 22px 10px;margin-bottom: 1em;border: 1px solid #DDD;">
+<div class="ratingbox" dojoAttachPoint="facebookDom"></div>
+<h1 class="consumer">
+		<a class="VendorName" dojoAttachPoint="restName">
+		    </a>&nbsp;<span class="priceRating"></span></h1>
+		<div style="float:right;" dojoAttachPoint="logoNode"></div>
+	    <p style="margin:2px;max-height: 105px;">
+		<span dojoAttachPoint="restDescription"></span><br/>
+		<span dojoAttachPoint="restAddress" style="clear:both;"></span>
+		</p>
+		<div dojoAttachPoint="openStatus"></div>
+	    <div class="restaurantdetails">
+	    <p class="paymenttype">
+		   Aceita <strong dojoAttachPoint="paymentTypes"></strong>. 
+		</p>
+		<p class="info" style="display:none;" dojoAttachPoint="neighSelected">
+		    Taxa de entrega <strong dojoAttachPoint="delCost"><img src="/resources/img/loading.gif"></strong> <span dojoAttachPoint="minSection"></span><br> para o bairro <span dojoAttachPoint="destNeigh" title="Clique para trocar o bairro" style="cursor: pointer; text-decoration: underline; font-weight: bold;"></span> (<a class="tooltip-header" dojoAttachPoint="infoSectionDelivery">mais informa&ccedil;&otilde;es</a>) 
+		</p>
+		<p class="info" style="display:none;" dojoAttachPoint="entireCity">
+		    Taxa de entrega <strong dojoAttachPoint="delCostCity"><img src="/resources/img/loading.gif"></strong> <span dojoAttachPoint="minSectionCity"></span><br> para todos os bairros de <span dojoAttachPoint="cityName"></span> (<a class="tooltip-header" dojoAttachPoint="infoSectionCity">mais informa&ccedil;&otilde;es</a>) 
+		</p>
+		<p class="info" style="display:none;" dojoAttachPoint="neighNotSelected">
+		     Selecione um bairro da &aacute;rea de entrega: <select dojoType="dijit.form.FilteringSelect" class="nSelection"
+		      autoComplete="false" selectOnClick="true" hasDownArrow="false" invalidMessage="Bairro fora da &aacute;rea do restaurante" promptMessage="Digite o bairro"  style="background-color: white;width: 150px;margin-bottom:0px;margin-top: 0px;" ></select>
+		</p>
+		
+		<p class="readytime">
+		    Prazo de entrega estimado <strong dojoAttachPoint="estimateForecast">30 min</strong> (<a class="tooltip-header" dojoAttachPoint="alertaEntrega" >mais informa&ccedil;&otilde;es</a>).
+		</p>
+		
+	    </div>
+	</div>
+<div id="pedido" class="pedidoWidget" style="float:right;position:relative;top:0px;"></div>
+<div style="width: 650px;">
+<div  class="cardapioPanel" dojoAttachPoint="cardapioDomNode"></div>
+</div>
+
+</div>

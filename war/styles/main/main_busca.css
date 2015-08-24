@@ -1,0 +1,59 @@
+@CHARSET "UTF-8";
+
+/* ------------ IDs --------------------- */
+#conteudo_busca {
+	margin-bottom: 25px;
+	width: 705px;
+}
+
+#itensBusca {
+	width: 660px;
+}
+
+#topoResultado {
+	background: rgb(222, 222, 222);
+	margin: 5px 50px 5px 0px;
+	position: relative;	
+	padding: 2px;
+}
+
+#topoResultado h2, #topoResultado p {
+	margin: 0px;
+	padding: 2px;
+}
+
+/* ------------ Classes --------------------- */
+.item {
+	position: relative;
+	height: 45px;
+	margin: 10px 5px;
+}
+
+.item .quantidade {
+	font-size: 0.8em;
+	position: absolute;
+	bottom: 0px;
+	left: 10px;
+}
+
+
+
+
+.item .status {
+	position: absolute;
+	top: 10px;
+	right: 5px;
+	width: 95%;
+	font-size: 0.9em;
+	text-align: right;
+	background: rgb(240, 237, 237);
+}
+
+.item .titulo {
+	color: rgb(217, 38, 28);
+	background: white;
+	padding: 2px 10px;
+	font-size: 1.5em;
+	font-weight: normal;
+	position: absolute;
+}

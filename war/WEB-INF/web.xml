@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/applicationContext.xml
+		</param-value>
+	</context-param>
+	<context-param>
+		<description>Imagem de fundo para campos maiores que 150px</description>
+		<param-name>texto250</param-name>
+		<param-value>../../resources/img/campo250px.png</param-value>
+	</context-param>
+	<context-param>
+		<description>Imagem de fundo para campos maiores que 100px</description>
+		<param-name>texto150</param-name>
+		<param-value>../../resources/img/campo150px.png</param-value>
+
+	</context-param>
+	<context-param>
+		<description>Imagem de fundo para campos maiores que 100px</description>
+		<param-name>texto100</param-name>
+		<param-value>../../resources/img/campo100px.png</param-value>
+
+	</context-param>
+	<context-param>
+		<description>Imagem de fundo para campos até 50px</description>
+		<param-name>texto50</param-name>
+		<param-value>../../resources/img/campo50px.png</param-value>
+
+	</context-param>
+
+	<context-param>
+		<description>Imagem de fundo para botões maiores que 150px</description>
+		<param-name>botao250</param-name>
+		<param-value>../../resources/img/botao250px.png</param-value>
+
+	</context-param>
+	<context-param>
+		<description>Imagem de fundo para botões maiores que 100px</description>
+		<param-name>botao150</param-name>
+		<param-value>../../resources/img/botao150px.png</param-value>
+
+	</context-param>
+	<context-param>
+		<description>Imagem de fundo para botões maiores que 50px</description>
+		<param-name>botao100</param-name>
+		<param-value>../../resources/img/botao100px.png</param-value>
+
+	</context-param>
+	<context-param>
+		<description>Imagem de fundo para botões até que 50px</description>
+		<param-name>botao50</param-name>
+		<param-value>../../resources/img/botao50px.png</param-value>
+
+	</context-param>
+
+
+	<context-param>
+		<description>URL para executar o login.</description>
+		<param-name>loginUrl</param-name>
+		<param-value>https://localhost:8443/ComendoBem/login.do</param-value>
+
+	</context-param>
+
+	<context-param>
+		<description>URL para criar um usuário.</description>
+		<param-name>criaUsuario</param-name>
+		<param-value>https://localhost:8443/ComendoBem/createUser.do</param-value>
+
+	</context-param>
+
+	<context-param>
+		<description>URL para criar um usuário.</description>
+		<param-name>salvaUsuario</param-name>
+		<param-value>https://localhost:8443/ComendoBem/saveUsuario.do</param-value>
+
+	</context-param>
+
+	<filter>
+		<filter-name>charsetFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>persistenceFilter</filter-name>
+		<filter-class>br.copacabana.filter.PersistenceFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>persistenceRawFilter</filter-name>
+		<filter-class>br.copacabana.raw.filter.PersistenceManagerFilter</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>directAccessFilter</filter-name>
+		<filter-class>br.com.copacabana.web.UniqueUrlFilter</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>WarnMessage</filter-name>
+		<filter-class>br.copacabana.filter.UserMsgWarnerFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>FaceBookAuth</filter-name>
+		<filter-class>br.copacabana.spring.security.FacebookAuth</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>FaceBookAuth</filter-name>
+		<url-pattern>/home.do</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>WarnMessage</filter-name>
+		<url-pattern>/home.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>WarnMessage</filter-name>
+		<url-pattern>/pedidos.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>WarnMessage</filter-name>
+		<url-pattern>/dados.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>WarnMessage</filter-name>
+		<url-pattern>/meusPedidos.do</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>WarnMessage</filter-name>
+		<url-pattern>/meusDados.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>persistenceRawFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>persistenceRawFilter</filter-name>
+		<url-pattern>/apagaEndereco.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>persistenceRawFilter</filter-name>
+		<url-pattern>/enderecos.do</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>persistenceFilter</filter-name>
+		<url-pattern>/*.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>charsetFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>directAccessFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>br.copacabana.usecase.SessionMonitor</listener-class>
+	</listener>
+	<!-- Servlets -->
+
+
+
+	<servlet>
+		<servlet-name>main</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>auth1</servlet-name>
+		<servlet-class>br.copacabana.AuthServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UploadImage</servlet-name>
+		<servlet-class>br.copacabana.usecase.UploadImage</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UploadRestaurantImage</servlet-name>
+		<servlet-class>br.copacabana.usecase.UploadRestaurantImage</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UploadCentralImage</servlet-name>
+		<servlet-class>br.copacabana.spring.central.web.UploadCentralImage</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ShowCategory</servlet-name>
+		<servlet-class>br.copacabana.usecase.LoadCategory</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UploadPlateImage</servlet-name>
+		<servlet-class>br.copacabana.usecase.UploadPlateImage</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>DeletePlateImage</servlet-name>
+		<servlet-class>br.copacabana.usecase.DeletePlateImage</servlet-class>
+	</servlet>
+
+
+	<servlet>
+		<servlet-name>ServePicture</servlet-name>
+		<servlet-class>br.copacabana.usecase.ServePicture</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ServeImage</servlet-name>
+		<servlet-class>br.copacabana.usecase.ServeImage</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ServerMonitors</servlet-name>
+		<servlet-class>br.copacabana.usecase.ServerClientMonitors</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>SiteMap</servlet-name>
+		<servlet-class>br.com.copacabana.web.SiteXML</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Ror</servlet-name>
+		<servlet-class>br.com.copacabana.web.RorXML</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UrlList</servlet-name>
+		<servlet-class>br.com.copacabana.web.UrlList</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AtomXML</servlet-name>
+		<servlet-class>br.com.copacabana.web.AtomXML</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>MsgRead</servlet-name>
+		<servlet-class>br.com.copacabana.web.MsgRead</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SendXMPPInvite</servlet-name>
+		<servlet-class>br.copacabana.xmpp.SendInvitation</servlet-class>
+	</servlet>
+
+
+	<servlet>
+		<servlet-name>GAE_RemoteAPI</servlet-name>
+		<servlet-class>com.google.apphosting.utils.remoteapi.RemoteApiServlet</servlet-class>
+	</servlet>
+
+
+
+	<servlet>
+		<servlet-name>SendXMPPMsg</servlet-name>
+		<servlet-class>br.copacabana.xmpp.SendMsg</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>xmppreceiver</servlet-name>
+		<servlet-class>br.copacabana.xmpp.XMPPReceiverServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>tictac</servlet-name>
+		<servlet-class>br.copacabana.lab.TicTacToeServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>tictacPost</servlet-name>
+		<servlet-class>br.copacabana.lab.TicTacPost</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>channelKeyProvider</servlet-name>
+		<servlet-class>br.copacabana.lab.GetChannelKey</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>channelMsgSender</servlet-name>
+		<servlet-class>br.copacabana.lab.NotifyUser</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>hubEntrance</servlet-name>
+		<servlet-class>br.com.copacabana.web.hub.ReferralServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>pingAllXmppClients</servlet-name>
+		<servlet-class>br.copacabana.xmpp.PingAllXmppUsers</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>updateClientAddress</servlet-name>
+		<servlet-class>br.copacabana.raw.servlet.UpdateClientAddress</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>myAddresses</servlet-name>
+		<servlet-class>br.copacabana.raw.servlet.LoadClientAddresses</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>deleteMyAddress</servlet-name>
+		<servlet-class>br.copacabana.raw.servlet.DeleteClientAddress</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>sendInvitation</servlet-name>
+		<servlet-class>br.copacabana.usecase.invitation.SendInvitation</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>sendMailTask</servlet-name>
+		<servlet-class>br.copacabana.tasks.MailSenderTask</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>runCategoriesSwitcher</servlet-name>
+		<servlet-class>br.copacabana.cron.SwitcherCron</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>plateStateSwitcher</servlet-name>
+		<servlet-class>br.copacabana.tasks.SwitchCategories</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>viewAllMyInvitations</servlet-name>
+		<servlet-class>br.copacabana.usecase.invitation.ViewAllMyInvitations</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>confirmingInvitation</servlet-name>
+		<servlet-class>br.copacabana.usecase.invitation.ConfirmInvitation</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>removeFromNewsletter</servlet-name>
+		<servlet-class>br.copacabana.usecase.invitation.RemoveFromNewsletter</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>myPoints</servlet-name>
+		<servlet-class>br.copacabana.usecase.loyalty.MyPoints</servlet-class>
+		<init-param>
+			<param-name>jspPage</param-name>
+			<param-value>/WEB-INF/jsp/user/myPoints.jsp</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet>
+		<servlet-name>updateLoyalty</servlet-name>
+		<servlet-class>br.copacabana.tasks.UpdateLoyaltyPoints</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>saveMonitorLogs</servlet-name>
+		<servlet-class>br.copacabana.tasks.SaveLogs</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>discountChecker</servlet-name>
+		<servlet-class>br.copacabana.usecase.discount.DiscountChecker</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>printOrder</servlet-name>
+		<servlet-class>br.copacabana.usecase.PrintOrder</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>logUserActions</servlet-name>
+		<servlet-class>br.copacabana.usecase.control.UserActionRegister</servlet-class>
+	</servlet>
+	<servlet>
+  <servlet-name>mailhandler</servlet-name>
+  <servlet-class>br.copacabana.MailHandlerServlet</servlet-class>
+</servlet>
+	<servlet>
+		<servlet-name>FromSource</servlet-name>
+		<servlet-class>br.copacabana.usecase.control.FromSource</servlet-class>
+	</servlet>
+	<servlet-mapping>
+  <servlet-name>FromSource</servlet-name>
+  	<url-pattern>/fe</url-pattern>
+  </servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>mailhandler</servlet-name>
+  <url-pattern>/_ah/mail/*</url-pattern>
+</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>logUserActions</servlet-name>
+		<url-pattern>/tasks/registerAction</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>printOrder</servlet-name>
+		<url-pattern>/imprime/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>printOrder</servlet-name>
+		<url-pattern>/printOrderTxt.txt</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>printOrder</servlet-name>
+		<url-pattern>/printOrder</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>discountChecker</servlet-name>
+		<url-pattern>/isCupomValid.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>updateLoyalty</servlet-name>
+		<url-pattern>/task/updateLoyaltyPoints.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>saveMonitorLogs</servlet-name>
+		<url-pattern>/submitLogs.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>myPoints</servlet-name>
+		<url-pattern>/meusPontos</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>removeFromNewsletter</servlet-name>
+		<url-pattern>/removeEmail</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>confirmingInvitation</servlet-name>
+		<url-pattern>/convite/confirma/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>viewAllMyInvitations</servlet-name>
+		<url-pattern>/meusConvidados</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>plateStateSwitcher</servlet-name>
+		<url-pattern>/task/switchPlateState</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>viewAllMyInvitations</servlet-name>
+		<url-pattern>/meusConvidados</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet-mapping>
+		<servlet-name>sendInvitation</servlet-name>
+		<url-pattern>/convidar.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>sendMailTask</servlet-name>
+		<url-pattern>/task/sendMail</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>deleteMyAddress</servlet-name>
+		<url-pattern>/apagaEndereco.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>updateClientAddress</servlet-name>
+		<url-pattern>/editaEndereco.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>myAddresses</servlet-name>
+		<url-pattern>/enderecos.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>runCategoriesSwitcher</servlet-name>
+		<url-pattern>/cron/runCategoriesSwitcher</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>pingAllXmppClients</servlet-name>
+		<url-pattern>/cron/pingXmppClient</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>hubEntrance</servlet-name>
+		<url-pattern>/compreonline</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>channelKeyProvider</servlet-name>
+		<url-pattern>/lab/getKey</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>channelMsgSender</servlet-name>
+		<url-pattern>/lab/notifyUser</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>tictacPost</servlet-name>
+		<url-pattern>/lab/tictacpost</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>tictacPost</servlet-name>
+		<url-pattern>/lab/tictacpost</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>tictac</servlet-name>
+		<url-pattern>/lab/tictac</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GAE_RemoteAPI</servlet-name>
+		<url-pattern>/_ah/remote_api</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ShowCategory</servlet-name>
+		<url-pattern>/mostraCategorias/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>xmppreceiver</servlet-name>
+		<url-pattern>/_ah/xmpp/message/chat/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SendXMPPMsg</servlet-name>
+		<url-pattern>/admin/sendXMPPMsg.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>SendXMPPInvite</servlet-name>
+		<url-pattern>/admin/sendInvitation.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>MsgRead</servlet-name>
+		<url-pattern>/msgRead.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AtomXML</servlet-name>
+		<url-pattern>/atom.xml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UrlList</servlet-name>
+		<url-pattern>/urllist.txt</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Ror</servlet-name>
+		<url-pattern>/ror.xml</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>SiteMap</servlet-name>
+		<url-pattern>/sitemap.xml</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet-mapping>
+		<servlet-name>ServerMonitors</servlet-name>
+		<url-pattern>/serverMonitors</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>UploadCentralImage</servlet-name>
+		<url-pattern>/central/uploadImage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UploadRestaurantImage</servlet-name>
+		<url-pattern>/uploadImage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UploadPlateImage</servlet-name>
+		<url-pattern>/uploadPlateImage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeletePlateImage</servlet-name>
+		<url-pattern>/deletePlateImage</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet-mapping>
+		<servlet-name>UploadImage</servlet-name>
+		<url-pattern>/upload</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet-mapping>
+		<servlet-name>ServePicture</servlet-name>
+		<url-pattern>/image/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>main</servlet-name>
+		<url-pattern>/central/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ServePicture</servlet-name>
+		<url-pattern>/image/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ServePicture</servlet-name>
+		<url-pattern>/prato/img/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ServePicture</servlet-name>
+		<url-pattern>/delivery/img/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ServeImage</servlet-name>
+		<url-pattern>/img</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>main</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>main</servlet-name>
+		<url-pattern>*.restaurante</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>main</servlet-name>
+		<url-pattern>/campinas/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>main</servlet-name>
+		<url-pattern>*.central</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>main</servlet-name>
+		<url-pattern>*.delivery</url-pattern>
+	</servlet-mapping>
+	<session-config>
+		<session-timeout>20</session-timeout>
+	</session-config>
+	
+	<mime-mapping>
+  	   <extension>manifest</extension>
+    	<mime-type>text/cache-manifest</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+  	   <extension>manifest</extension>
+    	<mime-type>text/cache-manifest</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+           <extension>js</extension>
+           <mime-type>application/x-javascript</mime-type>
+     </mime-mapping>
+    <mime-mapping>
+         <extension>png</extension>
+         <mime-type>image/png</mime-type>
+ 	 </mime-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>home.do</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<error-page>
+		<error-code>403</error-code>
+		<location>/loginRegistro.do</location>
+	</error-page>
+	<error-page>
+		<exception-type>br.copacabana.spring.JsonException</exception-type>
+		<location>/erroJson.do</location>
+	</error-page>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/jsp/pageNotFound.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/jsp/defaultError.jsp</location>
+	</error-page>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>backofficesjsps</web-resource-name>
+			<description></description>
+			<url-pattern>/backoffice/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>adminjsps</web-resource-name>
+			<description></description>
+			<url-pattern>/admin/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>monitor section</web-resource-name>
+			<description></description>
+			<url-pattern>/monitor/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>appstats section</web-resource-name>
+			<description></description>
+			<url-pattern>/appstats/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>tasks section</web-resource-name>
+			<url-pattern>/tasks/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<!-- THIS DOESNT WORK USING www.comendobem.com.br ->http://googleappengine.blogspot.com/2008/10/announcing-https-support-for-appspotcom.html 
+		<security-constraint> <web-resource-collection> <web-resource-name>securePages</web-resource-name> 
+		<description></description> <url-pattern>/changePwd.do*</url-pattern> <url-pattern>/jsp/restaurant/changePwd.jsp*</url-pattern> 
+		<url-pattern>/jsp/user/registro.jsp*</url-pattern> </web-resource-collection> 
+		<user-data-constraint> <transport-guarantee>CONFIDENTIAL</transport-guarantee> 
+		</user-data-constraint> </security-constraint> -->
+
+</web-app>

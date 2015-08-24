@@ -1,0 +1,28 @@
+CACHE MANIFEST
+
+# Build 38431
+
+CACHE:
+/scripts/h5utils.js
+/scripts/jquery-1.4.4.min.js
+/styles/jquery-ui-1.8.10.custom.css
+/scripts/jquery-ui-1.8.10.custom.min.js
+/styles/labstyle.css
+/styles/tableSortable.css
+/styles/images/ui-bg_inset-hard_100_fcfdfd_1x100.png
+/styles/images/ui-icons_469bdd_256x240.png
+
+
+FALLBACK:
+/styles/online.css /styles/offline.css
+
+NETWORK:
+/scripts/controle.js
+/lab/search4client.jsp
+/lab/listClients.jsp
+/lab/listClientAddresses.jsp
+/lab/listRestaurantPlates.jsp 
+/lab/listDeliveryRange.jsp
+/scripts/offlineERP.js
+/lab/getRestaurantData.jsp
+/lab/listNeighborhoods.jsp

@@ -1,0 +1,17 @@
+<script>
+var loadServerData=function(data){
+	var client = new XMLHttpRequest();
+	client.onreadystatechange = function()
+	  {
+		  if (client.readyState==4)
+		    {
+		    document.getElementById("resultSection").innerHTML=client.responseText;
+		    }
+		  };
+	//client.onerror = function(err){console.error("err",err)};
+	client.open("GET", "../../listClients.jsp",true);
+	
+	client.send();
+}
+</script>
+<button onclick="loadServerData()">Carregar</button>

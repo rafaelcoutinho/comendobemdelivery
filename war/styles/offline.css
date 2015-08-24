@@ -1,0 +1,8 @@
+#online-status {
+	background-color: red;	
+	float:right;
+	padding:3px;
+	color:white;
+	font-weight:bold;
+	top: 0;	
+}

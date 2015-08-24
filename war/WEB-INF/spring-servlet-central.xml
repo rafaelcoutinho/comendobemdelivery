@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- -->
+	<!-- Url Mapping For Clients -->
+	<!-- -->
+
+
+	<bean id="urlMapper.central"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="alwaysUseFullPath" value="true" />
+		<property name="mappings">
+			<props>
+				<!-- Client mappings -->
+				<prop key="/central/monitorar.do">manageCentralOrders</prop>
+				<prop key="/central/listCurrOrders.do">listRestaurantCurrentOrderList</prop>
+				<prop key="/central/meusRestaurantes.do">myRestaurants</prop>
+				<prop key="/central/gerenciarRestaurante.do">manageMyRestaurant</prop>
+				<prop key="/central/profile.do">manageCentralData</prop>
+				<prop key="/central/trocarSenha.do">changeCentralPwdForm</prop>
+				<prop key="/central/fechamento.do">consolidateCentralReport</prop>
+				<prop key="/central/configuracoes.do">configurations</prop>
+				<prop key="/central/verDetalhesPedido.do">loadCentralsOrderDetails</prop>
+							
+				<!-- END client mappings -->
+			</props>
+		</property>
+		<property name="interceptors">
+			<list>
+				<bean class="br.copacabana.spring.security.CentralProtected">
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- -->
+	<!-- Web Controllers -->
+	<!-- -->
+
+	<bean id="listRestaurantCurrentOrderList" class="br.copacabana.JsonViewController">	
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.spring.central.GetCentralCurrRestaurantOrders" />
+		<property name="manager" ref="orderManager" />
+	</bean>		
+	
+	<bean id="myRestaurants" parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.central.LoadMyRestaurantsCommand" />
+		<property name="viewName" value="central/manageMyRestaurants" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+	<bean id="manageCentralOrders" parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.central.CentralMonitorCommand" />
+		<property name="viewName" value="central/manageOrders" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+	<bean id="consolidateCentralReport" parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.central.ConsolidateBillCommand" />
+		<property name="viewName" value="central/fechamento" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+	
+	
+	<bean id="manageMyRestaurant" parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.central.LoginAsRestaurantCommand" />
+		<property name="viewName" value="redirect:/pedidos.do" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+	
+	<bean id="manageCentralData" class="br.copacabana.FormController">		
+		
+		<property name="manager" ref="centralManager" />
+		<property name="successView" value="redirect:profile.do" />
+		<property name="formView" value="central/profile" />
+		<property name="commandClass" value="br.copacabana.spring.central.SaveCentralProfile" />
+	</bean>
+	<bean id="changeCentralPwdForm" class="br.copacabana.ForwardController">
+		<property name="viewName" value="central/changePwd" />
+	</bean>
+	
+	
+	<bean id="configurations" parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.central.LoadCentralCommand" />
+		<property name="viewName" value="central/picture" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+	
+	<bean id="loadCentralsOrderDetails" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ViewOrderByCentral" />
+		<property name="classname" value="br.com.copacabana.cb.entities.MealOrder" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+
+</beans>

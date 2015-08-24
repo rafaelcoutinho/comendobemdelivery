@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: http://www.comendobem.com.br/sitemap.xml
+Sitemap: http://www.comendobem.com.br/ror.xml
+Sitemap: http://www.comendobem.com.br/atom.xml
+Sitemap: http://www.comendobem.com.br/urllist.txt

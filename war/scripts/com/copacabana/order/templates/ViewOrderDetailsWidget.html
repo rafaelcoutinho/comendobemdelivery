@@ -1,0 +1,122 @@
+<div>
+<style>
+.qtyColumn{
+width:30px;
+}
+.nameColumn{
+ 	font-size: large;
+    text-align: left;
+    width: 150px;
+}
+.codeColumn{
+font-size: x-small;
+}
+.mytable {
+    margin-right: 0px;
+    margin-left: 0px;;
+    margin-bottom: 5px;
+    width:80%;
+    padding: 0px;
+    border-collapse: collapse;
+}
+
+.mytable th {
+    font-weight: normal;
+    font-size: 0.8em;
+    padding: 4px 5px;
+}
+
+.mytable tbody td {
+    text-align: center;
+    padding: 0;
+    background: inherit;
+    border-bottom: 1px solid gray;
+}
+</style>
+<div
+	style="float: left; width: 180px; margin-right: 10px; border-right: 1px solid black; height: 425px;overflow: auto;">
+<div class="errorMsgPlace" style="visibility: hidden;"></div>
+<div style="text-align:center;">Pedido No:<br><img src="/resources/img/loader.gif" class="loadingSection" style="width:15px;"/><b
+	style="font-size: large; font-weight: bold;" class="orderNum"></b><br/>
+<br/>
+<div style="text-align: center; width: inherit;">Tempo decorrido</div>
+<div style="text-align: center; width: inherit;"><b
+	style="font-size: medium;" class="elapsedTimePlace">??:??</b> H:M</div>
+<br/>
+<div style="text-align: center; width: inherit;">Status atual: <b
+	style="font-size: medium;" class="statusPlace"></b></div>
+<br/>
+</div>
+<hr></hr>
+<div style="margin: 5px;overflow: auto;">Cliente:<br/>
+<b style="font-size: medium;" class="clientNamePlace"></b><br>
+Ranking <span class="rankingSummary"></span> <span class="toogleRanking expand" dojoAttachEvent="onclick:toogleRankingDetails">+</span>
+<div class="rankingDetails"><span class="rankingSite"></span><br />
+<span class="rankingRest"></span><br />
+</div>
+Telefone:<br/>
+<b style="font-size: medium;" class="clientTelPlace"></b><br />
+<br />
+
+<span class="addressLabel">Endere&ccedil;o de entrega:</span><br/>
+<span style="font-size: small;" class="addressPlace"></span><br />
+<span style="font-size: medium;" class="telAddressPlace"></span><br />
+<br />
+Pagamento:<br/>
+<b style="font-size: small;" class="paymentPlace"><br/>
+</b><br />
+<div class="cpfPlace"></div>
+<br />
+</div>
+</div>
+<div
+	style="margin-left: 5px; height: 375px; overflow: auto; border-bottom: 1px solid black;">
+	<div style="float: right;display:none;" class="printerSection"><button baseClass="orangeButton" dojoType="dijit.form.Button"
+		class="printOrder"><img
+		src="/resources/img/printer.png"></img> Imprimir</button></div>
+<div class="Items"><span dojoAttachPoint="totalItems"></span> itens: <br/>
+
+</div>
+
+Custo Entrega: <span class="deliveryCost"></span><br/>
+<div style="display:none" class="discountCost"></div>
+<div style="display:none" class="convenienceCost"></div>
+Custo total: <span class="totalCost"></span><br/>
+Observa&ccedil;&otilde;es:
+<div class="observations"
+	style="border-style: solid; border-width: 1px; border-color:gray; height: 80px; width: 320px; overflow: auto"></div>
+<br/>
+
+<span dojoAttachPoint="prepareForeCast" style="display:none"></span><br/>
+<span class="cancellationReason" style="display:none"></span>
+<span dojoAttachPoint="askId" style="display:none;font-weight: bold;text-decoration: underline;">Pe&ccedil;a um documento de identidade e assinatura na comanda no mesmo nome do cliente.</span><br/>
+</div>
+<div class="actionButtons"
+	style="position: absolute; right: 6px; bottom: 8px;width:395px">
+<div>
+<table border="0" style="margin-bottom: 0px;margin-right: inherit;">
+	<tr>
+		<td style="background: white;padding-left: 15px;">
+		<button class="closeWindow" dojoType="dijit.form.Button"  baseClass="orangeButton" >
+            Fechar
+        </button>
+		</td>
+		<td  style="background: white;padding-left: 15px;">
+		<button class="changeToNextStatus" dojoType="dijit.form.Button"  baseClass="orangeButton"></button>
+		</td>
+		<td style="background: white;padding-left: 15px;">
+		<button class="cancelOrder" style="display: none;" dojoType="dijit.form.Button" baseClass="orangeButton">
+		Cancelar
+		</button>
+		</td>		
+	</tr>
+</table>
+<form class="updateOrderForm" style="display: none;" method="post" dojoType="dijit.form.Form"
+	action="/changeOrderStatus.do"></form>
+<form class="printOrderForm" style="display: none;" method="post" dojoType="dijit.form.Form"
+	action="/printOrder" target="printOrder">
+	
+	
+	</form>
+</div></div>
+</div>

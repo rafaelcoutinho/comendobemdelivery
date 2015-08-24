@@ -1,0 +1,103 @@
+body{
+font-family:verdana;
+margin: 0px;
+}
+#logo {
+    margin: 0 auto;
+    min-height: 35px;
+    //padding: 1.5em 10px 0 0;
+    padding-bottom:5px;
+    position: relative;
+    width: 950px;
+    z-index: 3;
+    color:white;
+    font-weight: bold;
+    vertical-align: text-top;
+}
+.headerImage {
+    //background: url("/resources/img/logo.png") repeat scroll 0 0 transparent;
+    //height: 28px;
+    width: 360px;
+    font-size: large;
+}
+#header{
+	font-size: x-large;
+	color: #992211;
+}
+.header{
+	font-size: x-large;
+	color: #992211;
+}
+#mainnav {
+    margin: 10px auto 0;
+    width: 960px;
+}
+ul#orderprogress {
+    font-size: 11px;
+    list-style: none outside none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+ul#orderprogress li.current {
+    color: #FFFFFF;
+    cursor: default;
+    font-weight: bold;
+}
+
+ul#orderprogress li {
+	
+    background: url("/resources/img/step2.png") no-repeat scroll -410px 0 transparent;
+    border: medium none;
+    color: #E8928B;
+    display: block;
+    float: left;
+    line-height: 1.3em;
+    margin: 0;
+    padding: 4px 10px;
+    text-decoration: none;
+    width: 140px;
+}
+
+.before   {
+	cursor:pointer;
+}
+#mainnav ul li {
+	
+    float: left;
+    margin: 0;
+    //padding: 0;
+}
+#mainnav ul {
+    font-size: 11px;
+    list-style: none outside none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+.body{
+padding: 5px;
+margin: 0 auto;
+width: 960px;
+}
+.resultType{
+color:white;
+background-color: #992211;
+
+}
+th{
+background-color: #f9f9f9;
+}
+
+.localOnly{
+	font-style: italic;	
+}
+
+
+#container {
+    background: none repeat scroll 0 0 #FFFFFF;
+    display: block;
+    margin: 1em auto 0;
+    padding: 0.5em 0 1em;
+    width: 960px;
+}

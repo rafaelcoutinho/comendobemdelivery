@@ -1,0 +1,45 @@
+<div style="position:absolute;right:-110px;top:-8px;width:900px;">
+<!--<p>Para ter acesso total ao Comendo Bem efetue seu login.</p> -->
+<div>
+<form dojoType="dijit.form.Form" id="loginForm" action="/authenticateNoSSL.do" method="post" style="margin-bottom: 0px" onsubmit="return false;">
+	<input  type="hidden" class="usernameHidden" name="login" dojoType="dijit.form.TextBox"  />
+	<input  type="hidden" class="passwordHidden" name="password" dojoType="dijit.form.TextBox"  />	
+</form>
+<span
+	style="height: 00px; width: 70px;margin-left: 1px;margin-bottom:1px;" >E-mail:
+	<input type="text" class="username mandatory"  id="username" name="login" dojoType="dijit.form.ValidationTextBox" required="true" style="width: 95px;margin-bottom: 0px;" /><span class="loading"></span>
+	</span>
+<span
+	style="margin-top:3px;:height: 00px; width: 70px;" >Senha:
+<input  type="password" class="password mandatory" id="passwordFake" name="passwordfake" dojoType="dijit.form.ValidationTextBox"  required="true" 
+style="width: 90px;margin-bottom: 5px;" /> </span>
+<button baseClass="orangeButton" dojoType="dijit.form.Button" dojoAttachEvent="onclick:executeLogin" id="loginbtn"  >Enviar</button>&nbsp;<span dojoType="dijit.form.DropDownButton" baseClass="orangeButton" >
+    <span>
+        Lembrar senha
+    </span>
+    <div dojoType="dijit.TooltipDialog" id="lembrete" dojoAttachEvent="onExecute:executeReminder,onexecute:executeReminder">
+    	<p>Insira seu e-mail cadastrado e lhe enviaremos sua senha.</p>
+        <label for="name2">
+            E-mail cadastrado:
+        </label>
+        <form action="/lembreteSenha.do" method="post" id="lembreteForm" dojoType="dijit.form.Form" onsubmit="return false;">        
+        <input dojoType="dijit.form.TextBox" id="email" name="email" type="text"/>
+        </form>
+        <br>        
+        <button dojoType="dijit.form.Button" type="submit" baseClass="orangeButton">
+            Enviar senha
+        </button>
+    </div>
+</span>
+<span class="loginMsgs" style="color: red;"></span>
+</div>
+<table border="0" cellpadding="0" cellspacing="0" style="top:-5px;">
+<tr><td style="padding-left: 0px;padding-right: 0px;text-align: left;">
+
+</td>
+<td style="text-align: left;"> </td></tr></table>
+
+
+
+<div class="loginMsgs" style="color: red;"></div>
+</div>

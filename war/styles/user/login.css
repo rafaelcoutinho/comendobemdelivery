@@ -1,0 +1,79 @@
+@CHARSET "UTF-8";
+
+/* ------------ IDs --------------------- */
+#barraEmbaixo {
+	height: 20px;
+	margin-top: -15px;
+	margin-bottom: 100px;
+	clear: both;
+	text-align: center;
+}
+
+#barraEmbaixo img {
+	margin-top: -20px;
+	margin-left: -52px;
+}
+
+#btLoginWrap {
+	margin-left: -10px;
+}
+
+#camposEndereco {
+	height: 220px;
+}
+
+#camposUsuario {
+	padding: 5px 5px 25px 5px;
+	margin: 10px;
+	float: left;
+	width: 350px;
+	border-right: 1px solid rgb(96, 93, 93);
+}
+
+#login {
+	height: 100px;
+	padding: 5px 10px;
+	margin-bottom: 10px;
+} 
+
+#login h2 {
+	margin-top: 0px;
+}
+
+#passwordWrap {
+	z-index: 999;
+}
+
+#receiveNewsLetter {
+	margin: 0;
+}
+
+#titulo {
+	padding: 10px;
+}
+
+#titulo h2 {
+	margin: 0px;
+}
+
+/* ------------ Classes --------------------- */
+.campos {
+	padding: 10px;
+}
+
+.campos span {
+	padding: 2px;
+}
+
+.campos input {
+	margin: 10px;
+}
+
+.roundedInput  {
+	top: 6px;
+}
+
+.text input, .password input {
+	margin-left: 3px;
+	margin-top: 0px;
+}

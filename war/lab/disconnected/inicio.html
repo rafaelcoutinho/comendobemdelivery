@@ -1,0 +1,213 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<script type="text/javascript" src="/scripts/gears_init.js"></script>
+<script type="text/javascript" src="/scripts/gears_init.js"></script>
+
+<script>
+	if (!window.google || !google.gears) {
+		location.href = "http://gears.google.com/?action=install&message=Instalar GEARS"
+				+ "&return=http://localhost:8888/lab/disconnected/inicio.html";
+	}
+	
+	
+	// Change this to set the name of the managed resource store to create.
+	// You use the name with the createManagedStore, and removeManagedStore,
+	// and openManagedStore APIs. It isn't visible to the user.
+	var STORE_NAME = "my_offline_docset";
+
+	// Change this to set the URL of tha manifest file, which describe which
+	// URLs to capture. It can be relative to the current page, or an
+	// absolute URL.
+	var MANIFEST_FILENAME = "tutorial_manifest.json";
+
+	var localServer;
+	var store;
+	var db;
+	// Called onload to initialize local server and store variables
+	function init() {
+	  if (!window.google || !google.gears) {
+	    textOut("NOTE:  You must install Gears first.");
+	  } else {
+		  createLocalDb();
+	  }
+	  trytoloadServerClients();
+	  displayAllClients();
+
+	}
+	
+	var trytoloadServerClients=function(){
+		var request = google.gears.factory.create('beta.httprequest');
+		request.open('GET', '/lab/listClients.jsp');
+		request.onreadystatechange = function() {
+		  if (request.readyState == 4) {
+		    console.log(request.responseText);
+		    console.log(jQuery.parseJSON(request.responseText,));
+		    
+		  }
+		};
+		request.send();
+
+	}
+	
+	var createLocalDb=function(){
+
+	    localServer = google.gears.factory.create("beta.localserver");
+	    store = localServer.createManagedStore(STORE_NAME);
+	    db = google.gears.factory.create('beta.database');
+	    if (db) {
+	    	db.open('database-demo');
+	    	db.execute('create table if not exists Client' +
+	                   ' (Name varchar(255), Phone varchar(255),Email varchar(255), Timestamp int)');
+	 
+	        success = true;
+
+	      }
+	    textOut("Base já instalada!"+success);
+	}
+	function textOut(s) {
+		 var elm = document.getElementById("textOut");
+		  while (elm.firstChild) {
+		    elm.removeChild(elm.firstChild);
+		  } 
+		  elm.appendChild(document.createTextNode(s));
+		}
+	
+	
+	function removeStore() {
+		  if (!window.google || !google.gears) {
+		    alert("You must install Gears first.");
+		    return;
+		  }
+
+		  localServer.removeManagedStore(STORE_NAME);
+		  db.remove();
+		  textOut("Done. The local store has been removed." +
+		          "You will now see online versions of the documents.");
+		}
+	function handleSubmit() {
+		try{
+		  if (!google.gears.factory || !db) {
+		    return;
+		  }
+		 
+		  var email = byId('email').value;
+		  var name = byId('name').value;
+		  var phone = byId('phone').value;	  
+		  var currTime = new Date().getTime();
+		 
+		  // Insert the new item.
+		  // The Gears database automatically escapes/unescapes inserted values.
+		  db.execute('insert into Client values (?,?,?,?)', [name,phone,email, currTime]);
+		 
+		console.log("aaaa");
+		  displayAllClients();
+		  return false;
+		}catch(e){
+			console.error(e)
+		}
+	}
+	
+	function byId(id){
+		return document.getElementById(id);
+	}
+	function removeClient(id){
+		console.log(id);
+		db.execute('delete from Client where Timestamp=?', [id]);
+		displayAllClients()
+	}
+	function displayAllClients() {
+		  var recentPhrases = [];
+		 
+		  // Get the 3 most recent entries. Delete any others.
+		  var rs = db.execute('select * from Client order by Timestamp desc');
+		  var index = 0;
+		  while (rs.isValidRow()) {
+		    
+		      recentPhrases[index] = 
+		    	{
+		    		  name:rs.field(0),
+		    		  email:rs.field(2),
+		    		  fone:rs.field(1),
+		    		  ts:rs.field(3)
+		    	}
+		    
+		    ++index;
+		    rs.next();
+		  }
+		  rs.close();
+		 
+		  var status = byId('clientsSection');
+		  status.innerHTML = '';
+		  for (var i = 0; i < recentPhrases.length; ++i) {
+			  
+		    var id = 'phrase' + i;
+		    var client = recentPhrases[i];
+		    var button =document.createElement("button");
+		    button.appendChild(document.createTextNode("apagar.."));
+		    button.setAttribute('onclick',"removeClient('"+client.ts+"')");
+		    
+		    status.appendChild(button);
+		    
+		    status.innerHTML += '<span id="' + id + '"></span><br>';
+		    var bullet = '(' + (i + 1) + ') ';
+		    var txt = bullet +client.name+" "+client.email;
+		    
+		    //txt+= "";
+		    
+		    setTextContent(byId(id), txt);
+		  }
+		}
+	function setTextContent(elem, content) {
+		
+		  if (isDefined(typeof elem.innerText)) {
+		    elem.innerText = content; 
+		  } else if (isDefined(typeof elem.textContent)) {
+		    elem.textContent = content;
+		  }
+		}
+	function isDefined(type) {
+		  return (type != 'undefined' && type != 'unknown');
+		}
+</script>
+</head>
+<body onload="init()">
+<span id="textOut" class="style3"></span>
+<br>
+<button onclick="createLocalDb()">Criar base desconectada</button>
+<button onclick="removeStore()" > Erase </button>
+<br>
+<hr>
+<button onclick="displayAllClients()" > Lista Clientes </button>
+<form onsubmit="handleSubmit(); return false;"><b>Criar
+cliente:</b>&nbsp;<br>
+<table>
+	<tr>
+		<td>Nome</td>
+		<td valign="middle"><input type="text" id="name"
+			style="width: 20em;"></td>
+	</tr>
+	<tr>
+		<td>Telefone</td>
+		<td valign="middle"><input type="text" id="phone"
+			style="width: 20em;"></td>
+	</tr>
+	<tr>
+		<td>Email</td>
+		<td valign="middle"><input type="text" id="email"
+			style="width: 20em;"></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td valign="middle"><input type="submit" value="OK"></td>
+	</tr>
+</table>
+</form><hr>
+Lista Clientes<br>
+<div id="clientsSection">
+</div>
+
+
+
+</body>
+</html>

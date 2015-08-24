@@ -1,0 +1,33 @@
+<div >
+<div class="panel" dojoAttachEvent="onclick:onClick" >	
+	<h2>${plate.title} <span class="statusPlate">${statusMsg}</span></h2>
+	<span class="preco">${priceFormated}</span>	
+	<p class="pcardapiodesc">${plate.description}</p>	
+</div>
+<div class="acompanhamentos">
+<div dojoAttachPoint="showExtensionsBtn" ></div> <div dojoAttachPoint="btn0" ></div> 
+<div dojoAttachPoint="extensionsSection" class="optionsSection">
+Adicione opções para '${plate.title}'. <br>
+<span style="font-style: italic;font-size: small;">Por exemplo tamanhos (Pequeno/Médio/Grande) ou variações como "Com batata salsa". O valor deve ser o valor total com a opção.</span><br/>
+<div dojoAttachPoint="addNewExtensionsBtn" ></div>
+<div dojoAttachPoint="extensionsList" >Nenhuma opção cadastrada para '${plate.title}'</div>
+</div>
+
+</div>
+
+<iframe width="0" height="0" name="${plate.id}_frame" style="display: none;" ></iframe>	
+<br>
+
+<div dojoAttachPoint="imageForm" style="display: none; padding: 4px; margin: 3px; border: 1px solid black; background-color: rgb(255, 223, 143);">
+
+<div dojoAttachPoint="imageSection"  style="border: 1px solid gray; max-height: 300px; max-width: 300px;"></div>	
+	<form action=""
+		method="post" enctype="multipart/form-data" dojoAttachPoint="photoForm" target="${plate.id}_frame">		
+		<div><input type="file" dojoAttachPoint="filePath" name="myFile" title="Selecionar foto" class="testando">
+		<input type="hidden" name="pid" value="${plate.id}"></div>
+		<div dojoAttachPoint="sendImageBtn" ></div>
+	</form>
+</div>
+<br/>
+
+</div>

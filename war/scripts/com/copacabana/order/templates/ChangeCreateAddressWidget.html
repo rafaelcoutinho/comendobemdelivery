@@ -1,0 +1,80 @@
+<div style="margin: 5px;">
+<form action="/addAddressToUser.do" method="post"
+	dojoType="dijit.form.Form" class="updateUserForm">	
+</form>
+<div class="eraseTables">
+<div class="fundoCinza">
+<h2>Selecione um de seus endere&ccedil;os</h2>
+</div>
+<table>
+	<tr>
+		<td><select dojoType="dijit.form.FilteringSelect"
+			class="existingSelection" autoComplete="true"
+			invalidMessage="Endereco inv&aacute;lido" selectOnClick="true" 	></select></td>
+		<td>
+		<div><img src="/resources/img/btOk.png" alt="salvar"
+			dojoAttachEvent="onclick:selectAddress" /></div>
+		</td>
+	</tr>
+</table>
+<br/>
+
+<div class="fundoCinza">
+<h2>Criar novo Endere&ccedil;o</h2>
+</div>
+<form action="/addAddressToUser.do" method="post"
+	dojoType="dijit.form.Form" class="newAddressForm">
+
+<input type="hidden" name="address.id" class="addressId" dojoType="dijit.form.TextBox"/>
+<table>
+	<tr>
+		<td><label for="street">Endere&ccedil;o:<img alt="Sua localização atual" src="/resources/img/locPin.png" class="autoLocImg" style="display: none"></label></td>
+		<td><input dojoType="dijit.form.ValidationTextBox" type="text" required="true" trim="true" properCase="true"
+			name="address.street" class="addressStreet" width="260" class="required" /></td>
+		<td><span class="required">*</span></td>
+	</tr>
+	<tr>
+		<td><label for="number">N&uacute;mero:</label></td>
+		<td><input dojoType="dijit.form.ValidationTextBox" type="text" required="true" trim="true"
+			name="address.number" width="70" class="required" /></td>
+		<td width="5"><span class="required">*</span></td>
+	</tr>
+	<tr>
+		<td><label for="additionalInfo">Complemento:</label></td>
+		<td><input dojoType="dijit.form.ValidationTextBox" type="text" required="false" trim="true"
+			name="address.additionalInfo" width="70"  width="80" /></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td><label for="number">Telefone:</label></td>
+		<td><input dojoType="dijit.form.ValidationTextBox" type="text" required="true" trim="true" regExpGen="com.copacabana.util.phoneFormat" invalidMessage="Telefone inv&aacute;lido. Utilize o seguinte formato (DDD) NNNN-NNNN"
+			name="address.phone" width="70" class="required" /></td>
+		<td width="5"><span class="required">*</span></td>
+	</tr>
+	<tr>
+		<td><label for="city">Cidade:</label></td>
+		<td><select dojoType="dijit.form.FilteringSelect" selectOnClick="true"
+			 autoComplete="true"  class="citySelection" dojoAttachPoint="citySelection"
+			invalidMessage="Cidade inv&aacute;lida"></select></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td><label for="neighborhood">Bairro:</label></td>
+		<td><select dojoType="dijit.form.FilteringSelect"
+			name="address.neighborhood" autoComplete="false" dojoAttachPoint="neighbor" selectOnClick="true" class="neighSelection required" required="true" 
+			invalidMessage="Bairro inv&aacute;lido"></select></td>
+		<td><span class="required">*</span></td>
+	</tr>	
+	<tr>
+		<td></td>
+		<td></td>
+		<td>
+		<div><img src="/resources/img/btOk.png" alt="salvar"
+			dojoAttachEvent="onclick:createAddress" /></div>
+		</td>
+	</tr>
+</table>
+</form>
+
+</div>
+</div>

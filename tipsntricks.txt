@@ -1,0 +1,17 @@
+Criar build dojo:
+build version=0.3 xdDojoPath=http://www.comendobem.com.br/scripts/dj/dojo localeList=pt action=release profileFile="C:/Documents and Settings/Administrator/gapp/ComendoBem/war/scripts/dj/cb.profile.js"
+
+using dojo 1.4.3 we need to add removeDefaultNameSpaces=true otherwise it fails (due namespace issues check:
+http://trac.dojotoolkit.org/ticket/9393
+and
+http://trac.dojotoolkit.org/changeset/20402
+so the command become:
+build version=0.9.8 xdDojoPath=http://www.comendobem.com.br/scripts/dj/dojo localeList=pt action=release profileFile="C:/Documents and Settings/Administrator/gapp/ComendoBem/war/scripts/dj/cb.profile.js" removeDefaultNameSpaces=true 
+
+Atualizar indexes:
+
+C:\galileo\eclipse\plugins\com.google.appengine.eclipse.sdkbundle.1.3.5_1.3.5.v201006301254\appengine-java-sdk-1.3.5\bin>
+appcfg update_indexes "C:/Documents and Settings/Administrator/gapp/ComendoBem/war/"
+
+Backup:
+appcfg.py download_data --application=comendobemapp --url=http://comendobemapp.appspot.com/_ah/remote_api --filename=prodbackup20110420.db

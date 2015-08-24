@@ -1,0 +1,47 @@
+<div>
+<div style="-moz-border-radius: 3px 3px 3px 3px;border: 1px solid;padding: 5px;"><img src='/resources/img/measure.png'>Qual o tamanho?  <select dojoType="dijit.form.FilteringSelect" class="plateSize" dojoAttachPoint="plateSize" dojoAttachEvent="onblur:sizeChanged,onChange:sizeChanged">
+    <option value="NONE" selected>
+        Grande
+    </option>
+    <option value="MEDIUM" >
+        Média
+    </option>
+    <option value="SMALL">
+        Pequena
+    </option>
+</select>
+</div>
+<div style="-moz-border-radius: 3px 3px 3px 3px;border: 1px solid;padding: 5px;">
+Quais são os sabores?
+<br />
+Selecione cada metade:<br/>
+<table style="width: 450px;">
+	<tbody>
+		<tr>
+			<td valign="top" style="width: 70%;text-align: left;">	
+			<table>		
+			<tr>
+			<td>1/2</td><td style="text-align: left;"><select searchAttr="title" labelAttr="img" labelType="html" dojoType="dijit.form.FilteringSelect" class="plateOne" autoComplete="false" selectOnClick="true" invalidMessage="Prato n&atilde;o encontrado"></select></td><td><span dojoAttachPoint='plate1Info'></span></td>
+			</tr>
+			<tr>
+			<td>1/2</td><td style="text-align: left;"><select searchAttr="title" labelAttr="img" labelType="html" dojoType="dijit.form.FilteringSelect" class="plateTwo" autoComplete="false" selectOnClick="true" invalidMessage="Prato n&atilde;o encontrado"  ></select></td><td><span dojoAttachPoint='plate2Info'></span></td>
+			</tr>
+			<tr><td></td><td colspan="2"><div dojoAttachPoint='totalInfo' style="height: 15px; text-align: right;"></div></td></tr>
+			
+			</table>
+			</td> 
+			<td>
+			<div class="circle" style="width: 82px; height: 80px;">
+			<div class="halfOne turnOff" ></div>
+			<div class="halfTwo turnOff" ></div>
+			</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<div style="width: 100%; text-align: center; margin-top: 15px;">
+<img alt="Pedir" src="/resources/img/btPedir.png" dojoAttachEvent="onclick:onClick" style="cursor: pointer;"/>
+</div>
+</div>
+			

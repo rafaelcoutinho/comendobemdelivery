@@ -1,0 +1,71 @@
+<html lang="en" manifest="./disconnected/html5/busca.manifest">
+<head>
+<link
+	href="/styles/jquery-ui-1.8.13.custom.css"
+	rel="stylesheet" type="text/css" />
+<link href="/styles/labstyle.css" rel="stylesheet" type="text/css" />
+
+<script
+	src="/scripts/jquery-1.5.1.min.js"></script>
+<link href="/styles/online.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript"> 
+           djConfig = {
+           	baseUrl : '/scripts/dj/dojo/',  
+           	useXDomain : true,              	
+            xdWaitSeconds: 10,
+            parseOnLoad: true,
+             locale: 'pt'                  
+           };
+</script>
+<link rel="stylesheet" type="text/css"
+	href="http://ajax.googleapis.com/ajax/libs/dojo/1.4.3/dijit/themes/tundra/tundra.css">
+<SCRIPT TYPE="text/javascript"
+	SRC="http://ajax.googleapis.com/ajax/libs/dojo/1.4.3/dojo/dojo.xd.js"></SCRIPT>
+<SCRIPT TYPE="text/javascript" SRC="/scripts/dj/com/cb.js"></SCRIPT>
+</head>
+<body >
+<div style="margin-bottom:3px;padding-bottom: 5px;background-color: #D12516;">
+<div id="online-status">Conexão</div><div id="logo"><div style="float: right;margin-right: 100px;"><a href="/pedidos.do" style="color: white;font-weight: normal;font-size: small;">Voltar para tela de pedidos</a><br><a href="buscarCliente.html" style="color: white;font-weight: normal;font-size: small;">Fazer pedido</a> </div><div class="headerImage"><img src="/resources/img/logo.png" style="height: 70px">Gerenciador de pedidos</div></div>
+
+<div id="mainnav">
+	    
+</div>
+</div>
+
+<div id="status" style="font-size: xx-small;float: right;">Status...</div>
+<div class="body">
+<div id="status"></div>
+
+
+<div id="status_must_sync" style="clear: both;"></div>
+
+<br>
+<div id="resultSection"></div>
+<button id="refresh">Baixar todos os dados</button>
+<button id="updateBtn">Enviar dados para o servidor</button>
+<button id="clearDB">Apagar dados locais</button>
+<hr>
+<div id="status_db" style="font-size: small;"></div></br>
+<div id="refRest" title="Recarregar dados do restaurante"></div>Status restaurante: <span id="restaurantStatus"></span><br>
+<div id="refMenu" title="Recarregar cardápio local"></div>Status cardápio: <span id="menuStatus"></span><br>
+<div id="refClients" title="Recarregar dados de clientes"></div>Status clientes: <span id="clientStatus"></span><br>
+<div id="refAddresses" title="Recarregar dados de endereços de clientes"></div>Status endereços: <span id="addressStatus"></span><br>
+<div id="refDelRange"  title="Recarregar dados de área de entrega"></div>Status dados de área de entrega: <span id="deliveryStatus"></span><br>
+<div id="refNeigh" title="Recarregar dados de bairros"></div>Status dados de bairros: <span id="neighStatus"></span><br>
+
+
+<span style="font-size: xx-small;">* dados já existentes localmente</span>
+</div>
+</body>
+
+
+<script src="/scripts/h5utils.js"></script>
+<script
+	src="/scripts/jquery-ui-1.8.13.custom.min.js"></script>
+<script src="/scripts/offlineERP.js"></script>
+
+<script src="/scripts/controle.js"></script>
+<link rel="stylesheet" href="/styles/tableSortable.css" type="text/css" />
+
+
+</html>

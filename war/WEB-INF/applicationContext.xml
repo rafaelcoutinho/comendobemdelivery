@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<!-- -->
+	<!-- Custom Editors for the Spring Factory -->
+	<!-- -->
+
+	<!-- -->
+	<!-- Base Message Source -->
+	<!-- -->
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages" />
+	</bean>
+
+
+	<bean id="entityManager" class="br.copacabana.EntityManagerBean">
+
+	</bean>
+	<bean id="centralManager" class="br.com.copacabana.cb.entities.mgr.CentralManager">
+
+	</bean>
+
+	<bean id="pictureManager" class="br.com.copacabana.cb.entities.mgr.PictureManager">
+
+	</bean>
+
+	<bean id="restaurantManager" class="br.copacabana.spring.RestaurantManager">
+
+	</bean>
+	<bean id="neighbourManager" class="br.copacabana.spring.NeighborhoodManager">
+
+	</bean>
+	<bean id="confManager" class="br.copacabana.spring.ConfigurationManager">
+
+	</bean>
+	<bean id="plateManager" class="br.copacabana.spring.PlateManager">
+
+	</bean>
+
+	<bean id="stateManager" class="br.copacabana.spring.StateManager">
+
+	</bean>
+	<bean id="cityManager" class="br.copacabana.spring.CityManager">
+
+	</bean>
+	<bean id="userManager" class="br.copacabana.spring.UserBeanManager">
+
+	</bean>
+	<bean id="clientManager" class="br.copacabana.spring.ClientManager">
+
+	</bean>
+	<bean id="foodcategoryManager" class="br.copacabana.spring.FoodCategoryManager">
+
+	</bean>
+
+	<bean id="deliveryRangeManager" class="br.copacabana.spring.DeliveryManager">
+
+	</bean>
+	<bean id="addressManager" class="br.copacabana.spring.AddressManager">
+
+	</bean>
+	<bean id="orderManager" class="br.copacabana.spring.OrderManager">
+	</bean>
+</beans>

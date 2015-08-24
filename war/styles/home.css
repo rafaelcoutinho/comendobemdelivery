@@ -1,0 +1,317 @@
+@CHARSET "UTF-8";*{font-family:verdana, arial, sans-serif;font-size:small;color:rgb(96, 93, 93);}
+.dj_ie .dijitCheckBoxInput{filter:none;}
+a,a:visited{color:rgb(235, 125, 75);text-decoration:none;}
+a:hover{color:rgb(255, 155, 105);}
+a img{border:none;}
+body{background:url('/resources/img/Fundodegrade.jpg') repeat-x fixed 0 0;padding:0px;margin:0px;}
+h1,h2,h3{font-weight:normal;}
+h1{font-size:1.6em;}
+h2{font-size:1.4em;}
+h3{font-size:1.2em;}
+hr{height:1px;border:none;border-top:1px solid rgb(96, 93, 93);}
+input.required{color:rgb(96, 93, 93);}
+label.desabilitado{opacity:0.4;}
+span.required{margin-left:-4px;}
+#bloqueador{position:absolute;opacity:0.7;background:rgb(180, 180, 180);z-index:1500;}
+#container{margin:0px auto;width:800px;background:rgb(255, 255, 255);border-left:2px solid rgb(170, 169, 169);border-right:2px solid rgb(170, 169, 169);padding:0px;}
+#conteudo{position:relative;}
+#obrigatorios{background:rgb(235, 131, 83);color:white;padding:0px 10px;}
+#pe{background:rgb(240, 240, 240) url('/resources/img/SombraBase.jpg') no-repeat;height:50px;text-align:center;clear:both;}
+.button input,.submit input{color:white;margin-top:-1px;margin-left:2px;}
+.canto{position:absolute;width:12px;height:12px;}
+.cantoInfDir{background:url('/resources/img/opt/cantoInfDir.jpeg');bottom:0px;right:0px;}
+.cantoSupDir{background:url('/resources/img/opt/cantoSupDir.jpeg');top:0px;right:0px;}
+.cantoInfEsq{background:url('/resources/img/opt/cantoInfEsq.jpeg');bottom:0px;left:0px;}
+.cantoSupEsq{background:url('/resources/img/opt/cantoSupEsq.jpeg');top:0px;left:0px;}
+.cantoDialog{position:absolute;width:16px;height:16px;}
+.cantoInfDirBranco{background:url('/resources/img/cantoInfDirBranco.png') no-repeat;bottom:-16px;right:-16px;}
+.cantoInfEsqBranco{background:url('/resources/img/cantoInfEsqBranco.png') no-repeat;bottom:-16px;left:-16px;}
+.cantoSupDirBranco{background:url('/resources/img/cantoSupDirBranco.png') no-repeat;top:-16px;right:-16px;}
+.cantoSupEsqBranco{background:url('/resources/img/cantoSupEsqBranco.png') no-repeat;top:-16px;left:-16px;}
+.centralizado{text-align:center;}
+.dijitCalendarDateLabel{font-size:0.8em;}
+.dojoxCalendarContainer{font-family:verdana, arial, sans-serif;font-size:small;}
+.dojoxCalendarMonthLabelNode{font-size:0.8em;}
+.dojoxCalendarDayYearLabel{font-size:0.8em;}
+.fundoCinza{background:rgb(240, 238, 238);}
+.required{color:red;}
+.roundedInput{position:relative;padding:0px;display:inline-block;top:4px;}
+.roundedInputDojo{position:relative;padding:0px;display:inline-block;top:4px;}
+.roundedInput input{background:transparent;border:none;position:absolute;left:0px;}
+.roundedInputDojo input{background:transparent;border:none;position:relative;top:-5px;left:-110px;}
+.roundedInput img{margin:0px;padding:0px;left:0px;position:absolute;cursor:pointer;}
+.roundedInputDojo img{margin:0px;padding:0px;position:;cursor:text;}
+.roundedInput.desabilitado img{opacity:0.4;}
+.text input,.password input{margin-left:3px;}
+.tundra .dijitCalendarIncrementControl{width:15px;height:15px;background-image:url(images/spriteRoundedIconsSmall.png);background-repeat:no-repeat}
+.dj_ie6 .tundra .dijitCalendarIncrementControl{font-size:.1em;background-image:url(images/spriteRoundedIconsSmall.gif);}
+.tundra .dijitA11ySideArrow{display:none;}
+.tundra .dijitCalendarDecrease{background-position:top left;}
+.tundra .dijitCalendarIncrease{background-position:-30px top;}
+.tundra table.dijitCalendarContainer{font-size:100%;border-spacing:0;border-collapse:separate;border:1px solid #ccc;margin:0;}
+.tundra .dijitCalendarMonthContainer th{background:#d3d3d3 url(images/titleBar.png) repeat-x top;padding-top:.3em;padding-bottom:.2em;text-align:center;}
+.dj_ie6 .tundra .dijitCalendarMonthContainer th{padding-top:.2em;padding-bottom:.1em;}
+.tundra .dijitCalendarDayLabelTemplate{background:white url(images/calendarDayLabel.png) repeat-x bottom;font-weight:normal;padding-top:.15em;padding-bottom:0em;border-top:1px solid #eeeeee;color:#293a4b;text-align:center;}
+.tundra .dijitCalendarBodyContainer{border-bottom:1px solid #eeeeee;}
+.tundra .dijitCalendarMonthLabel{color:#293a4b;font-weight:bold;}
+.tundra .dijitCalendarDateTemplate{font-size:0.9em;font-weight:bold;text-align:center;padding:0.3em 0.3em 0.05em 0.3em;letter-spacing:1px;}
+.dj_ie .tundra .dijitCalendarDateTemplate{padding:0.1em .33em 0.02em .33em;}
+.tundra .dijitCalendarPreviousMonth,.tundra .dijitCalendarNextMonth{color:#999999;background-color:rgb(235, 235, 235) !important;}
+.tundra .dijitCalendarPreviousMonthDisabled,.tundra .dijitCalendarNextMonthDisabled{background-color:#a4a5a6 !important;}
+.tundra .dijitCalendarCurrentMonth{background-color:white !important;}
+.tundra .dijitCalendarCurrentMonthDisabled{background-color:#bbbbbc !important;}
+.tundra .dijitCalendarDisabledDate{cursor:default !important;text-decoration:line-through !important;}
+.tundra .dijitCalendarCurrentDate{text-decoration:underline;font-weight:bold;}
+.tundra .dijitCalendarHoveredDate{background-color:#e2ebf2 !important;}
+.tundra .dijitCalendarSelectedDate{background-color:#bbc4d0 !important;color:black !important;}
+.tundra .dijitCalendarYearContainer{background:white url(images/calendarYearLabel.png) repeat-x bottom;border-top:1px solid #ccc;}
+.tundra .dijitCalendarYearLabel{margin:0;padding:0.4em 0 0.25em 0;text-align:center;}
+.tundra .dijitCalendarSelectedYear{color:black;padding:0.2em;padding-bottom:0.1em;background-color:#bbc4d0 !important;}
+.tundra .dijitCalendarNextYear,.tundra .dijitCalendarPreviousYear{color:black !important;font-weight:normal;}
+.orangeButton .dijitButtonNode{background:rgb(235, 125, 75) !important;color:white !important;padding:0px !important;font-size:small !important;border:1px hidden rgb(255, 255, 255);}
+.orangeButtonHover .dijitButtonNode{background-color:rgb(89, 94, 111) !important;color:cyan !important;}
+.orangeButtonFocused .dijitButtonNode{//}
+.orangeButton .dijitButtonText{color:white !important;}
+.orangeButtonActive .dijitButtonNode{background-color:white !important;color:black !important;}
+.rememberButton .dijitButtonNode{
+	   background: none repeat scroll 0 0 transparent !important;
+    border: 0 none !important;
+    color: black !important;
+    font-size: x-small !important;
+    padding: 0 !important;
+    text-align: right !important;    
+    
+}
+
+.dica{text-align:center;font-weight:bold;font-style:italic;}
+.fundoTelaEstatica{margin:8px 8px 8px 8px;background-image:url('/resources/img/telapadrao.jpg');background-position:bottom right;width:790px;background-repeat:no-repeat;height:550px;overflow:auto;}
+@CHARSET "UTF-8";#barraTopo{margin:4px 0px 10px;height:6px;width:800px;background:rgb(238, 238, 238);}
+#formularioBusca{background:rgb(216, 215, 215);width:220px;height:250px;position:relative;margin-top:-50px;z-index:150;float:left;}
+#formularioBusca #busca{position:absolute;top:60px;left:45px;}
+#formularioBusca #busca .button{margin:-7px 6px;}
+#formularioBusca #busca .text{padding:5px 2px;}
+#formularioBusca #cantoFormularioImg{position:absolute;height:250px;right:-50px;top:0px;}
+#formularioBusca #filtrosBuscaImg{position:absolute;top:53px;left:10px;}
+#itens{width:250px;height:250px;margin-left:180px;background:black;position:relative;background:url('/resources/img/bgMenu/fundo.jpg');overflow:hidden;margin-top:-15px;}
+#itens .item{top:250px;position:absolute;width:250px;height:250px;margin:0px;}
+#itens .restaurante{background:rgb(255, 249, 245);cursor:pointer;opacity:0.9;width:115px;padding:4px 2px;position:absolute;font-size:0.8em;}
+#itens .ladoA{left:3px;}
+#itens .ladoB{right:3px;}
+#itens .restaurante .aberto{background:rgb(133, 194, 38);}
+#itens .restaurante .fechado{background:rgb(217, 38, 28);}
+#itens .restaurante .notActive{background:#EB7D4B}
+#itens .restaurante span{font-size:0.7em;color:white;position:absolute;right:4px;top:4px;padding:1px;}
+#menuRestaurantes{background:rgb(233, 230, 230);height:250px;margin-top:-50px;margin-left:220px;width:580px;position:relative;}
+#menuRestaurantes .cheio{cursor:pointer;}
+#menuRestaurantes .esquerda{position:absolute;left:52px;}
+#menuRestaurantes .direita{position:absolute;right:22px;text-align:right;}
+#menuRestaurantes .tipo{height:20px;width:120px;background:rgb(210, 208, 208);padding:2px 4px;z-index:151;}
+#menuRestaurantes .selecionado{background:rgb(240, 238, 238);cursor:default;}
+#topo{width:828px;position:relative;margin:0px;margin-left:-14px;margin-right:-14px;padding:0px;z-index:151;}
+#topo a{color:rgb(124, 119, 119);text-decoration:none;position:absolute;}
+#topo #bordaAtras{position:absolute;width:828px;top:112px;}
+#topo #cadastreSe{top:84px;left:388px;}
+#topo #comoPedir{top:85px;left:485px;}
+#topo #faleConosco{top:94px;left:700px;}
+#topo #imagemTopo{width:832px;margin-bottom:15px;margin-left:-2px;z-index:200;}
+#topo #logo{position:absolute;left:20px;top:5px;}
+#topo .statusPedido{top:87px;left:578px;}
+.closeButton{color:#EB7D4B;text-decoration:underline;cursor:pointer;text-align:right;font-size:x-small;}
+.restaurantButtons{display:none;}
+.clientButtons{display:none;}
+.centralButtons{display:none;}
+.unknownButtons{display:none;}
+.rankingDetails{display:none;}
+.expand{cursor:pointer;border:1px solid gray;padding-left:2px;padding-right:2px;}
+.collapse{cursor:pointer;border:1px solid gray;padding-left:3px;padding-right:3px;}
+.cpfPlace{font-weight:bold;}
+.helptext{cursor:help;}
+.openStatus{//float:right;margin-right:30px;margin-left:15px;width:55px;color:white;padding:3px;display:false;text-align:center;cursor:help;}
+.restaurantClosed{background:#D9261C none repeat scroll 0 0;}
+.restaurantSoon{background:#EB7D4B none repeat scroll 0 0;}
+.halfTwo{width:40px;height:80px;background-image:url('/resources/img/p2.png');float:right;margin-left:1px;}
+.halfOne{width:40px;height:80px;background-image:url("/resources/img/p1.png");float:left;margin-right:1px;}
+.turnOff{visibility:hidden;}
+.addFractionPlate{display:none;text-align:right;margin-bottom:25px;}
+.deliveryTime{background-image:url("/resources/img/xclock.png");background-position:right center;background-repeat:no-repeat;padding-right:15px;font:x-small;cursor:help;}
+#homeLeft{position:relative;}
+#homeRight{position:absolute;top:15px;right:0px;}
+#login p{margin:3px;}
+#btLoginWrap{margin-left:-10px;}
+#mensagem{margin:0px;color:rgb(235, 125, 75);}
+#homeCenter{position:absolute;top:15px;right:270px;}
+#paginacao{text-align:center;position:relative;height:2.5em;width:250px;margin-left:25%;}
+#paginacao span{font-size:0.8em;}
+#paginacao .avancar{position:absolute;bottom:0px;right:0px;}
+#paginacao .voltar{position:absolute;bottom:0px;left:0px;}
+#paginacao .selecionado{font-weight:bold;}
+#password{z-index:999;}
+.conteudo{overflow:hidden;}
+.conteudo .descricao{position:relative;background:rgb(252, 247, 243);height:20px;opacity:0.8;width:200px;padding:5px;top:-60px;}
+.conteudo .imagem{width:240px;height:205px;}
+.conteudo .loader{margin:30px;}
+.quadrado{padding:10px;width:240px;height:240px;background:rgb(238, 238, 238);margin-bottom:30px;}
+.quadrado h2{margin:5px;}
+.roundedInput{margin-top:2px;top:-2px;}
+.restItem{background:white none repeat scroll 0% 0%;-moz-background-clip:-moz-initial;-moz-background-origin:-moz-initial;-moz-background-inline-policy:-moz-initial;height:25px;opacity:0.75;filter:alpha(opacity = 75);font-weight:bold;padding-top:6px;padding-left:3px;width:200px;margin-left:25px;cursor:pointer;margin-bottom:2px;;background-color:white;}
+.restItem:hover{background:white none repeat scroll 0% 0%;-moz-background-clip:-moz-initial;-moz-background-origin:-moz-initial;-moz-background-inline-policy:-moz-initial;height:25px;opacity:0.9;filter:alpha(opacity = 90);font-weight:bold;padding-top:6px;padding-left:3px;width:200px;margin-left:25px;cursor:pointer;}
+.aberto{background:rgb(133, 194, 38);position:absolute;right:30px;padding-top:2px;padding-bottom:2px;padding-left:3px;padding-right:3px;font-size:x-small;width:45px;text-align:center;filter:alpha(opacity = 100);color:white;}
+.fechado{background:rgb(217, 38, 28);position:absolute;right:30px;padding-top:2px;padding-bottom:2px;padding-left:3px;padding-right:3px;font-size:x-small;width:45px;text-align:center;filter:alpha(opacity = 100);color:white;}
+.notActive{background:#EB7D4B;position:absolute;right:30px;padding-top:2px;padding-bottom:2px;padding-left:3px;padding-right:3px;font-size:x-small;width:45px;text-align:center;filter:alpha(opacity = 100);color:white;}
+.restSuggestions{filter:alpha(opacity = 70);}
+#hto{padding:0px;}
+#hto ul{}
+#hto ul li{cursor:help;list-style-image:url("/resources/img/sssforko.png");}
+table{padding:0px;border-collapse:collapse;}
+table th, tbody td, tbody td input{font-size:0.8em;}
+table th{font-weight:normal;}
+tbody td{padding:2px 5px;}
+tbody td, tbody td input{text-align:center;vertical-align:middle;}
+table td.descricao{width:240px;text-align:justify;}
+table td.quantidade{width:51px;}
+tbody td a, tbody td a:visited{color:rgb(96, 93, 93);text-decoration:underline;}
+tbody td .roundedInput{top:5px;}
+tbody tr.sobre{background:rgb(240, 240, 240);}
+#cardapio{margin:0px 0px 30px;width:500px;}
+#categorias{list-style:none;cursor:pointer;padding:10px 2px;margin:-10px 0px 30px 5px;width:90px;min-height:270px;overflow-x:auto;overflow-y:visible;float:left;border-right:2px solid rgb(180, 177, 177);}
+#categorias li{margin-top:10px;cursor:pointer;font-size:0.9em;}
+#categorias li.selecionado{color:rgb(235, 125, 75);cursor:auto; background-color: #F9F9F9;color: #EB7D4B;cursor: auto;font-weight: bold;padding: 3px;}
+#conteudo_restaurante{min-height:400px;}
+#conteudo_restaurante > h2{margin:5px;padding:2px 5px;}
+#tituloRestaurante{position:relative;width:650px;min-height:65px;background:rgb(222, 222, 222);}
+#tituloRestaurante h2{padding-top:10px;margin-bottom:2px;margin-top:0px;}
+#tituloRestaurante .imagemRestLogo{float:left;margin:2px 5px 2px 2px;padding-top:0px;height:60px;max-height:65px;}
+#tituloRestaurante p{padding:2px 10px 15px;margin-top:0px;margin-right:15px;text-align:justify;}
+.caixa{padding:0 0 5px 0;text-align:left;float:left;display:inline-block;border:1px solid rgb(222, 222, 222);margin-right:10px;width:200px;}
+.caixa span{color:white;display:block;padding:2px 5px;margin:0;}
+.caixa textarea{width:194px;}
+.caixa .titulo{background:url('../../resources/img/fundo_titulos.jpg');}
+.quantidade span{cursor:pointer;}
+.platetitle{font-size:small;font-weight:bold;}
+.restLogoPlace{max-height:64x;max-width:64px;}
+#acompanhamentosEObservacoes{border:1px solid rgb(150, 150, 150);color:inherit;background:rgb(200, 200, 200);margin:5px;}
+#acompanhamentosEObservacoes.desligado{border:1px solid rgb(180, 180, 180);color:rgb(200, 200, 200);background:rgb(220, 220, 220);}
+#confirmarPedido img{margin-bottom:-40px}
+#pedido{position:absolute;right:0px;width:150px;top:30px;height:500px;overflow:hidden;}
+#pedidoWrapper{position:absolute;width:125px;padding:5px;text-align:center;background:rgb(222, 222, 222);right:0px;}
+#pedido h2{margin:2px;padding:0;}
+#pedido hr{border-top:1px solid white;margin:-5px 0;}
+#pedido p{font-size:0.8em;font-weight:bold;}
+#pedido p span, #pedido p input{font-size:1em;font-weight:normal;text-align:center;}
+#pedido ul{background:white;border:1px solid rgb(180, 177, 177);list-style:none;padding:0;margin:0;text-align:left;height:100px;overflow:auto;}
+#pedido ul li{font-size:0.8em;position:relative;margin:2px 0px;cursor:pointer;}
+#pedido ul li.sobre{background:rgb(220, 220, 220);}
+#pedido ul li.selecionado{background:rgb(200, 200, 200);}
+#pedido ul li span{color:rgb(235, 125, 75);font-weight:bold;position:absolute;right:2px;}
+#pedido .valor{background:white;border:1px solid rgb(180, 177, 177);}
+.quantidade{cursor:pointer;}
+#quantidadeWrap{position:relative;top:2px;}
+#conteudo_busca{margin-bottom:25px;width:705px;}
+#itensBusca{width:660px;}
+#topoResultado{background:rgb(222, 222, 222);margin:5px 50px 5px 0px;position:relative;padding:2px;}
+#topoResultado h2, #topoResultado p{margin:0px;padding:2px;}
+.item{position:relative;height:45px;margin:10px 5px;}
+.item .quantidade{font-size:0.8em;position:absolute;bottom:0px;left:10px;}
+.item .status{position:absolute;top:10px;right:5px;width:95%;font-size:0.9em;text-align:right;background:rgb(240, 237, 237);}
+.item .titulo{color:rgb(217, 38, 28);background:white;padding:2px 10px;font-size:1.5em;font-weight:normal;position:absolute;}
+.fbiframe{ border: medium none; overflow: hidden; width: 130px; height: 21px;}
+.foodCatEntry{
+		 	color:#605D5D;
+		 	overflow: hidden; 
+		 	display: inline-block; 
+		 	width: 130px; 
+		 	height: 20px;
+}
+.foodCatEntry a, a:visited{
+	color:#605D5D;
+}
+.fb_button, .fb_button_rtl {
+    background: url("http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/FGFbc80dUKj.png") no-repeat scroll 0 0 #29447E;
+    cursor: pointer;
+    display: inline-block;
+    outline: medium none;
+    padding: 0 0 0 1px;
+    text-decoration: none;
+    background-position: left -188px;
+}
+.fb_button .fb_button_text, .fb_button_rtl .fb_button_text {background: url("http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/FGFbc80dUKj.png") repeat scroll 0 0 #5F78AB;
+    border-bottom: 1px solid #1A356E;
+    border-top: 1px solid #879AC0;
+    color: #FFFFFF;
+    display: block;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    font-weight: bold;
+    margin: 1px 1px 0 21px;
+    padding: 2px 6px 3px;
+    text-shadow: none;
+    }
+    .ratingbox{
+float: right;
+position: relative;
+z-index: 2;
+padding-left: 20px;
+width: 140px;
+}
+.restauranteinfo h1.consumer{
+
+margin: 0;
+padding-bottom: 0;
+border: 0;
+}
+.restaurantinfo h1 {
+color: #C00;
+font-size: 16px;
+font-weight: bold;
+margin: 0 0 .25em 0;
+padding-bottom: .25em;
+border-bottom: 1px dotted #CCC;
+position: relative;
+}
+.restauranteinfo p{
+display: block;
+padding: 0;
+margin: 0;
+text-align: left;
+font-size: 12px;
+
+color: #555;
+}
+.restaurantinfo .restaurantdetails {
+margin-top: .5em;
+display: block;
+}
+
+p.readytime {
+background: url('/resources/img/ico/delivery.png') 0 0 no-repeat;
+margin: 0;
+padding-left: 20px!important;
+margin-bottom: .25em!important;
+}
+p.info {
+background: url('/resources/img/ico/info.png') 0 0 no-repeat;
+padding-left: 20px!important;
+margin-bottom: .25em!important;
+margin-top:0px;
+}
+p.paymenttype {
+background: url('/resources/img/ico/money.png') 0 0 no-repeat;
+padding-left: 20px!important;
+margin-bottom: .25em!important;
+}
+.VendorName{
+font-size: large;
+}
+.alertMsg{
+height:40px;
+width:100%;
+border:1px solid brown;
+
+background: url('/resources/img/ico/alert32.png') 0 0 no-repeat;
+background-color:#FEC000;
+ font-weight: bold;
+    height: 30px;
+    padding-left: 40px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    width: 500px;
+}

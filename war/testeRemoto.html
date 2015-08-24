@@ -1,0 +1,48 @@
+<html>
+<head>
+<script type="text/javascript">
+ 
+           djConfig = {
+           	baseUrl : 'http://localhost:8888/',                
+               modulePaths: {
+                   'com.copacabana' : 'http://localhost:8888/scripts/dj/com/copacabana'
+               },
+               parseOnLoad: true,
+               isDebug: true,
+               useXDomain : true,              	
+               xdWaitSeconds: 10,
+               usePlainJson: true,
+               locale: 'pt' 
+                  
+           };
+</script>
+<link rel="stylesheet" type="text/css"
+	href="http://ajax.googleapis.com/ajax/libs/dojo/1.4.3/dijit/themes/tundra/tundra.css">
+<SCRIPT TYPE="text/javascript"
+	SRC="http://ajax.googleapis.com/ajax/libs/dojo/1.4.3/dojo/dojo.xd.js.uncompressed.js"></SCRIPT>
+<script>
+
+dojo.require("com.copacabana.search.SearchRestaurantsWidget");
+dojo.require("com.copacabana.search.SearchResultsManagerWidget");
+dojo.require("com.copacabana.HighLightWidget");
+dojo.require("com.copacabana.UserProfileWidget");
+dojo.require("com.copacabana.RestaurantTypeOptionWidget");
+dojo.require("com.copacabana.RestaurantWheelWidget");
+dojo.require("dijit.form.Form");
+dojo.require('com.copacabana.util');
+dojo.require("com.copacabana.RestaurantViewWidget");
+dojo.require("com.copacabana.RestPlateMenuWidget");
+dojo.addOnLoad(function() {
+console.log("oi")	
+}
+);
+</script>
+</head>
+<body>
+
+<iframe width="100" height="200" src="http://www.comendobem.com.br/"></iframe>
+<div id="homeRight" style="width: 100px;height: 100px"
+		dojoType="com.copacabana.HighLightWidget" title="Dica do Dia"
+		url="'/getDailyHighlight.do'" object="daily"></div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+({"noPlatesInCategory":"Nenhum prato nesta categoria.","allCategories":"Todas"})

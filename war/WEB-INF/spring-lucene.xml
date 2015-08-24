@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<import resource="spring-lucene-properties.xml" />
+	
+	<!-- The lucene common properties -->
+	<bean id="luceneProperties" class="com.vistrada.xpn.lucene.LuceneProperties">
+<!--			<property name="indexPath" value="/Users/cosimotogna/dev/luceneindexdir" />-->
+	<property name="indexPath" value="c:/temp/lucene" />
+<!--				<property name="indexPath" value="/var/www/vhosts/vistrada.net/jboss-4.0.5/lucene" />-->
+		<property name="projectIndexName" value="project" />
+		<property name="eventIndexName" value="event" />
+		<property name="expertIndexName" value="expert" />
+		<property name="analyzer">
+			<bean class="com.vistrada.xpn.lucene.analysis.CustomChineseAnalyzer" />
+		</property>
+	</bean>
+	
+	<!-- Searchers -->
+	<bean id="expertSearcher" class="com.vistrada.xpn.lucene.search.ExpertSearcher">
+		<property name="luceneProperties" ref="luceneProperties" />
+	</bean>
+	<bean id="projectSearcher" class="com.vistrada.xpn.lucene.search.ProjectSearcher">
+		<property name="luceneProperties" ref="luceneProperties" />
+	</bean>	
+
+	<!--  Indexers -->
+	<bean id="expertIndexer" class="com.vistrada.xpn.lucene.index.ExpertIndexer">
+		<property name="luceneProperties" ref="luceneProperties" />
+		<property name="manager" ref="expertManager" />
+		<property name="indexableProperties">
+			<list>
+				<ref bean="expert.person" />
+				<ref bean="expert.subIndustry" />
+				<ref bean="expert.title" />
+				<ref bean="expert.company" />
+				<ref bean="expert.department" />
+				<ref bean="expert.employedStatus" />
+				<ref bean="expert.currentQualifyingStmt" />
+				<ref bean="expert.degree" />
+				<ref bean="expert.conferences" />
+				<ref bean="expert.otherInfo" />
+				<ref bean="expert.blog1" />
+				<ref bean="expert.blog2" />
+				<ref bean="expert.payment" />
+				<ref bean="expert.worksWithCompetitors" />
+				<ref bean="expert.savedVettedComments" />
+				<ref bean="expert.createdBio" />
+				<ref bean="expert.publications" />
+				<ref bean="expert.regionalExpertise" />
+				<ref bean="expert.status" />
+				<ref bean="expert.rating" />
+				<ref bean="expert.submittedBio" />
+				<ref bean="expert.resume" />
+				<ref bean="expert.resumeName" />
+				<ref bean="expert.vettingComments" />
+				<ref bean="expert.archivedBlindBios" />
+				<ref bean="expert.archivedQualifyingStatements" />
+				
+				<ref bean="expert.expertProjects"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="projectIndexer" class="com.vistrada.xpn.lucene.index.ProjectIndexer">
+		<property name="luceneProperties" ref="luceneProperties" />
+		<property name="manager" ref="projectManager" />
+		<property name="idKeywordSearchable" value="true" />
+		<property name="indexableProperties">
+			<list>
+				<ref bean="project.name" />
+				<ref bean="project.type" />
+				<ref bean="project.industry" />
+				<ref bean="project.website" />
+				<ref bean="project.analyst" />
+				<ref bean="project.salesOwner" />
+				<ref bean="project.serviceOwner" />
+				<ref bean="project.feedback" />
+				<ref bean="project.question" />
+				<ref bean="project.notes" />
+				<ref bean="project.attachments" />
+				<ref bean="project.feedbackRating" />
+				<ref bean="project.startDate" />
+				<ref bean="project.endDate" />
+				<ref bean="project.bioSentDate" />
+				<ref bean="project.status" />
+				<ref bean="project.industry" />
+				<ref bean="project.firm" />
+				
+				<ref bean="project.expertProjects" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Scheduler  -->
+	<bean id="indexScheduler" class="com.vistrada.xpn.lucene.scheduling.IndexScheduler">
+		<property name="expertIndexer" ref="expertIndexer" />
+		<property name="projectIndexer" ref="projectIndexer" />
+	</bean>
+	<bean id="jobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="indexScheduler" />
+		<property name="targetMethod" value="run" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="triggerBean" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail" ref="jobDetail" />
+		<property name="startDelay" value="10000" />
+		<!-- 1 minute: 60000 -->
+		<!-- 1 hour: 3600000 -->
+		<property name="repeatInterval" value="300000" />
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="triggerBean" />
+			</list>
+		</property>
+	</bean>
+</beans>

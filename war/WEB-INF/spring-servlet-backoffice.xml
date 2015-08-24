@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- -->
+	<!-- Url Mapping For Clients -->
+	<!-- -->
+
+
+	<bean id="urlMapper.backoffice"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="alwaysUseFullPath" value="true" />
+		<property name="mappings">
+			<props>
+				<!-- Client mappings -->
+				<prop key="/backoffice/monitorar.do">manageAllOrders</prop>
+				<prop key="/backoffice/listCurrOrders.do">listRestaurantsOrderList</prop>
+				<prop key="/backoffice/fechamento.do">consolidateReport</prop>
+				<prop key="/backoffice/listRestaurantes.do">manageRestaurants</prop>
+				<prop key="/backoffice/gerenciarRestaurante.do">loginAsRestaurant</prop>
+				<prop key="/backoffice/listFeedbacks.do">listFeedbacks</prop>
+				<prop key="/backoffice/getMealOrderDetails.do">getMealOrderDetails</prop>
+				<prop key="/backoffice/sendFeedbacksToRestaurant.do">sendFeedbacksToRestaurant</prop>
+				<!-- END client mappings -->
+			</props>
+		</property>		
+	</bean>
+
+	<!-- -->
+	<!-- Web Controllers -->
+	<!-- -->
+	<bean id="loginAsRestaurant"  parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.backoffice.LoginAsRestaurantCommand" />
+		<property name="viewName" value="redirect:/pedidos.do" />
+		<property name="manager" ref="centralManager" />
+	
+</bean>
+	<bean id="listRestaurantsOrderList" class="br.copacabana.JsonViewController">	
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.spring.backoffice.GetCentralCurrRestaurantOrders" />
+		<property name="manager" ref="orderManager" />	
+	</bean>
+	<bean id="manageAllOrders" parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.backoffice.MonitorCommand" />
+		<property name="viewName" value="backoffice/manageOrders" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+	<bean id="consolidateReport" parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.backoffice.ConsolidateBillCommand" />
+		<property name="viewName" value="backoffice/fechamento" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+	
+	<bean id="manageRestaurants" parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.backoffice.LoadAllRestaurantsCommand" />
+		<property name="viewName" value="backoffice/manageRestaurants" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+	
+	<bean id="listFeedbacks" parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.order.ListFeedbackCommand" />
+		<property name="viewName" value="backoffice/feedbacks" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+	<bean id="sendFeedbacksToRestaurant" parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.order.SendFeedbackToRestaurantCommand" />
+		<property name="viewName" value="redirect:/backoffice/listFeedbacks.do" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+	<bean id="getMealOrderDetails" parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.order.ViewOrderStatusDetailsCommand" />
+		<property name="viewName" value="backoffice/detailedOrderData" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+	
+	
+</beans>

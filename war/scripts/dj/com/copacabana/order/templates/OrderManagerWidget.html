@@ -1,0 +1,115 @@
+<div>
+
+<div class="fundoCinza">
+<h2>Pedido: <span class="restPlace"></span></h2>
+
+</div>
+<div class="orderRequestList">
+<table id="itensPedido" >
+	<thead>
+		<tr>
+			<th class="colunaItem">Item</th>
+			<th>Pre&ccedil;o Unit&aacute;rio</th>
+			<th>Quantidade</th>
+			<th>Valor Total</th>
+		</tr>
+	</thead>
+	<tbody class="plateMenuList">
+		
+	</tbody>
+</table>
+
+</div>
+<div id="finalPedido"><div id="totalizadores">
+Subtotal: <span class="subtotal">0,00</span><br>
+Taxa de Entrega: <span class="delCost">0,00</span><br>
+<div dojoAttachEvent="onclick:showDiscountSection" dojoAttachPoint="discBtn" class="discBtn">Possui cupom de desconto?</div><div class="discBtn discSection"  dojoAttachPoint="discDesc"></div>
+</div>
+
+<div id="totalWrapper">Total: <span id="total" class="totalOrderCost">0,00</span></div>
+
+</div>
+
+
+<div class="fundoCinza">
+<h2>Forma de Pagamento</h2>
+</div>
+<div style="margin: 5px;">
+<p id="formasDePagamento"></p>
+<div class="paymentType_PAYPAL" style="display:none;">
+<input type="radio" name="payment" id="PayPal" value="PAYPAL"  class="PAYPAL paymentType" dojoType="dijit.form.RadioButton"/>
+ <label for="PAYPAL" style="font-weight: bold;">Online Via PayPal</label><img src="/scripts/com/copacabana/images/cards.gif"/><br/>
+</div><div dojoAttachPoint="clientLevelTxt" style="font-weight: bold;"></div>
+<div class="paymentType_CHEQUE" style="display:none;">
+<input type="radio" name="payment" id="Cheque" value="CHEQUE"  class="CHEQUE paymentType" dojoType="dijit.form.RadioButton"/>
+ <label for="Cheque">Cheque</label><br/>
+</div>
+<div class="paymentType_INCASH" style="display: none;">
+<input type="radio" name="payment" id="InCash"  value="INCASH"   class="INCASH paymentType"  dojoType="dijit.form.RadioButton"/>
+<label for="InCash">Dinheiro</label>
+<span class="formaPagamento" >Troco para: R$ <input style="width: 70px;" type="text"  name="totalPaidAmount"  class="totalPaidAmount" dojoType="dijit.form.CurrencyTextBox" constraints="{fractional:true,required:true}" invalidMessage="Digite o valor com centavos, por exemplo 10,90" value="0,00" selectOnClick="true" ></input><br />
+<span class="changeMoneyReturn"></span>
+</span> 
+</div>
+
+<div class="paymentType_VISAMACHINE" style="display:none;">
+<input type="radio" name="payment" id="VISAMACHINE" value="VISAMACHINE"  class="VISAMACHINE paymentType" dojoType="dijit.form.RadioButton"/>
+ <label for="VISAMACHINE">Visa Cr&eacute;dito</label><br/>
+</div>
+<div class="paymentType_VISADEBITMACHINE" style="display:none;">
+<input type="radio" name="payment" id="VISADEBITMACHINE" value="VISADEBITMACHINE"  class="VISADEBITMACHINE paymentType" dojoType="dijit.form.RadioButton"/>
+ <label for="VISADEBITMACHINE">Visa Electron</label><br/>
+</div>
+<div class="paymentType_VISAVOUCHERMACHINE" style="display:none;">
+<input type="radio" name="payment" id="VISAVOUCHERMACHINE" value="VISAVOUCHERMACHINE"  class="VISAVOUCHERMACHINE paymentType" dojoType="dijit.form.RadioButton"/>
+ <label for="VISAVOUCHERMACHINE">Visa Vale</label><br/>
+</div>
+
+<div class="paymentType_MASTERMACHINE" style="display:none;">
+<input type="radio" name="payment" id="MASTERMACHINE" value="MASTERMACHINE"  class="MASTERMACHINE paymentType" dojoType="dijit.form.RadioButton"/>
+ <label for="MASTERMACHINE">MasterCard Cr&eacute;dito</label><br/>
+</div>
+<div class="paymentType_MASTERDEBITMACHINE" style="display:none;">
+<input type="radio" name="payment" id="MASTERDEBITMACHINE" value="MASTERDEBITMACHINE"  class="MASTERDEBITMACHINE paymentType" dojoType="dijit.form.RadioButton"/>
+ <label for="MASTERDEBITMACHINE">Redeshop/Maestro</label><br/>
+</div>
+
+<div class="paymentType_AMEXMACHINE" style="display:none;">
+<input type="radio" name="payment" id="AMEXMACHINE" value="AMEXMACHINE"  class="AMEXMACHINE paymentType" dojoType="dijit.form.RadioButton"/>
+ <label for="AMEXMACHINE">M&aacute;quina American Express</label><br/>
+</div>
+<div class="paymentType_TRMACHINE" style="display:none;">
+<input type="radio" name="payment" id="TRMACHINE" value="TRMACHINE"  class="TRMACHINE paymentType" dojoType="dijit.form.RadioButton"/>
+ <label for="TRMACHINE">M&aacute;quina TR</label><br/>
+</div>
+<div class="paymentType_TRVOUCHER" style="display:none;">
+<input type="radio" name="payment" id="TRVOUCHER" value="TRVOUCHER"  class="TRVOUCHER paymentType" dojoType="dijit.form.RadioButton"/>
+ <label for="TRMACHINE">Vale TR papel</label><br/>
+</div>
+<div class="paymentType_VRSMART" style="display:none;">
+<input type="radio" name="payment" id="VRSMART" value="VRSMART"  class="VRSMART paymentType" dojoType="dijit.form.RadioButton"/>
+ <label for="VRSMART">VR Smart</label><br/>
+</div>
+<div class="paymentType_TRSODEXHO" style="display:none;">
+<input type="radio" name="payment" id="TRSODEXHO" value="TRSODEXHO"  class="TRSODEXHO paymentType" dojoType="dijit.form.RadioButton"/>
+ <label for="TRSODEXHO">Ticket Sodexo</label><br/>
+</div>
+
+
+</div>
+
+<div class="fundoCinza">
+<h2>Observa&ccedil;&otilde;es</h2>
+</div>
+<div style="margin: 5px;">
+<input id="useCpf" value="YES" dojoType="dijit.form.CheckBox" dojoAttachEvent="onchange:useCPFChanged" value="false" /><label for="useCpf">Utilizar CPF na nota fiscal?</label> <span class="cpfField" style="visibility: hidden;" > CPF: <input style="width: 100px;" type="text" name="cpf" class="cpf" id="cpf" dojoType="dijit.form.TextBox" selectOnClick="true"></input></span> 
+<br/><br/>
+Informa&ccedil;&otilde;es adicionais sobre o pedido:
+<div style="margin: 5px;"><textarea dojoType="dijit.form.SimpleTextarea" cols="30" rows="4" class="observationArea"  name="observation"></textarea></div><br/>
+</div>
+
+<div id="barraEmbaixo" class="fundoCinza barraSalvar" ><a
+		id="submitButton"> <img
+		src="/resources/img/btFinalizar.png" alt="Finalizar e enviar pedido" dojoAttachEvent="onclick:submitOrder" style="cursor: pointer;"/> </a></div>
+
+</div>

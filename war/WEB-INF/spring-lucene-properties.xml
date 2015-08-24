@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!-- This files contains the list of indexable properties -->
+<beans>
+	<!--
+		======================================================================================================
+		Expert properties
+		======================================================================================================
+	-->
+	<bean id="expert.person" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="person" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="salutation" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="firstName" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="lastName" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="midInit" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="phone1" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="phone2" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="suffix" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="email1" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="email2" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="imAddress" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="imType" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="assistantName" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="assistantPhone" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="preferContactMethod" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="timezone" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="login" />
+					<property name="indexableSubProperties">
+						<list>
+							<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+								<property name="name" value="username" />
+								<property name="keywordSearchable" value="true" />
+							</bean>
+						</list>
+					</property>
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="addressType" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="country" />
+					<property name="indexableSubProperties">
+						<list>
+							<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+								<property name="name" value="name" />
+								<property name="keywordSearchable" value="true" />
+							</bean>
+							<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+								<property name="name" value="id" />
+								<property name="analyzed" value="false" />
+							</bean>
+						</list>
+					</property>
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="stateRegion" />
+					<property name="indexableSubProperties">
+						<list>
+							<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+								<property name="name" value="name" />
+								<property name="keywordSearchable" value="true" />
+							</bean>
+						</list>
+					</property>
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="city" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="address1" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="address2" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="address3" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="zip" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="expert.subIndustry" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="subIndustry" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="name" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="id" />
+					<property name="analyzed" value="false" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="industry" />
+					<property name="indexableSubProperties">
+						<list>
+							<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+								<property name="name" value="name" />
+								<property name="keywordSearchable" value="true" />
+								<property name="store" value="true" />
+							</bean>
+							<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+								<property name="name" value="id" />
+								<property name="analyzed" value="false" />
+							</bean>
+							<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+								<property name="name" value="sector" />
+								<property name="indexableSubProperties">
+									<list>
+										<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+											<property name="name" value="name" />
+											<property name="store" value="true" />
+											<property name="keywordSearchable" value="true" />
+										</bean>
+										<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+											<property name="name" value="id" />
+											<property name="analyzed" value="false" />
+										</bean>
+									</list>
+								</property>
+							</bean>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="expert.title" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="title" />
+		<property name="store" value="true" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="expert.company" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="company" />
+		<property name="store" value="true" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="expert.department" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="department" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="expert.employedStatus" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="employedStatus" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="expert.resume" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="resume" />
+		<property name="keywordSearchable" value="true" />
+		<property name="propertyProcessor" ref="savedFilePropertyProcessor" />
+	</bean>
+	<bean id="expert.resumeName" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="resume" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="fileName" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="expert.currentQualifyingStmt" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="currentQualifyingStmt" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="expert.degree" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="degree" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="expert.conferences" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="conferences" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="expert.otherInfo" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="otherInfo" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="expert.blog1" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="blog1" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="expert.blog2" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="blog2" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="expert.worksWithCompetitors" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="worksWithCompetitors" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="name" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="expert.payment" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="payment" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="taxId" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="vendorId" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="expert.savedVettedComments" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="savedVettedComments" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="text" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="expert.createdBio" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="createdBio" />
+		<property name="store" value="true" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="expert.publications" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="publications" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="name" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="url" />
+					<property name="keywordSearchable" value="true" />
+					<property name="propertyProcessor" ref="urlPropertyProcessor" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="file" />
+					<property name="keywordSearchable" value="true" />
+					<property name="propertyProcessor" ref="savedFilePropertyProcessor" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="expert.regionalExpertise" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="regionalExpertise" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="expert.status" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="status" />
+		<property name="store" value="true" />
+	</bean>
+	<bean id="expert.rating" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="rating" />
+		<property name="store" value="true" />
+		<property name="analyzed" value="false" />
+		<property name="propertyProcessor" ref="ratingPropertyProcessor" />
+	</bean>
+	<bean id="expert.submittedBio" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="submittedBio" />
+		<property name="store" value="true" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="expert.vettingComments" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="vettingComments" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="expert.archivedBlindBios" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="archivedBlindBios" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="text" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="expert.archivedQualifyingStatements" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="archivedQualifyingStatements" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="text" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="expert.expertProjects" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="expertProjects" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="project" />
+					<property name="indexableSubProperties">
+						<list>
+							<ref bean="project.name" />
+							<ref bean="project.type" />
+							<ref bean="project.industry" />
+							<ref bean="project.website" />
+							<ref bean="project.analyst" />
+							<ref bean="project.salesOwner" />
+							<ref bean="project.serviceOwner" />
+							<ref bean="project.feedback" />
+							<ref bean="project.question" />
+							<ref bean="project.notes" />
+							<ref bean="project.attachments" />
+							<ref bean="project.feedbackRating" />
+							<ref bean="project.startDate" />
+							<ref bean="project.endDate" />
+							<ref bean="project.bioSentDate" />
+							<ref bean="project.status" />
+							<ref bean="project.industry" />
+							<ref bean="project.firm" />
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!--
+		======================================================================================================
+		Project properties
+		======================================================================================================
+	-->
+	<bean id="project.name" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="name" />
+		<property name="store" value="true" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="project.type" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="type" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="project.website" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="website" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="project.analyst" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="analyst" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="id" />
+					<property name="analyzed" value="false" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="firstName" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="lastName" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="project.salesOwner" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="salesOwner" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="firstName" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="lastName" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="id" />
+					<property name="analyzed" value="false" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="project.serviceOwner" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="serviceOwner" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="firstName" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="lastName" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="id" />
+					<property name="analyzed" value="false" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="project.feedback" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="feedback" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="project.question" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="question" />
+		<property name="store" value="true" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="project.notes" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="notes" />
+		<property name="store" value="true" />
+		<property name="keywordSearchable" value="true" />
+	</bean>
+	<bean id="project.attachments" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="attachments" />
+		<property name="keywordSearchable" value="true" />
+		<property name="propertyProcessor" ref="savedFilePropertyProcessor" />
+	</bean>
+	<bean id="project.expertProjects" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="expertProjects" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="expert" />
+					<property name="indexableSubProperties">
+						<list>
+							<ref bean="expert.person" />
+							<ref bean="expert.subIndustry" />
+							<ref bean="expert.title" />
+							<ref bean="expert.company" />
+							<ref bean="expert.department" />
+							<ref bean="expert.employedStatus" />
+							<ref bean="expert.currentQualifyingStmt" />
+							<ref bean="expert.degree" />
+							<ref bean="expert.conferences" />
+							<ref bean="expert.otherInfo" />
+							<ref bean="expert.blog1" />
+							<ref bean="expert.blog2" />
+							<ref bean="expert.payment" />
+							<ref bean="expert.worksWithCompetitors" />
+							<ref bean="expert.savedVettedComments" />
+							<ref bean="expert.createdBio" />
+							<ref bean="expert.publications" />
+							<ref bean="expert.regionalExpertise" />
+							<ref bean="expert.status" />
+							<ref bean="expert.rating" />
+							<ref bean="expert.submittedBio" />
+							<ref bean="expert.resume" />
+							<ref bean="expert.resumeName" />
+							<ref bean="expert.vettingComments" />
+							<ref bean="expert.archivedBlindBios" />
+							<ref bean="expert.archivedQualifyingStatements" />
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="project.feedbackRating" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="feedbackRating" />
+		<property name="store" value="true" />
+	</bean>
+	<bean id="project.startDate" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="startDate" />
+		<property name="analyzed" value="false" />
+		<property name="store" value="true" />
+		<property name="propertyProcessor" ref="datePropertyProcessor" />
+	</bean>
+	<bean id="project.endDate" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="endDate" />
+		<property name="analyzed" value="false" />
+		<property name="store" value="true" />
+		<property name="propertyProcessor" ref="datePropertyProcessor" />
+	</bean>
+	<bean id="project.bioSentDate" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="bioSentDate" />
+		<property name="analyzed" value="false" />
+		<property name="store" value="true" />
+		<property name="propertyProcessor" ref="datePropertyProcessor" />
+	</bean>
+	<bean id="project.status" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="status" />
+		<property name="store" value="true" />
+	</bean>
+	<bean id="project.industry" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="industry" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="name" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="id" />
+					<property name="analyzed" value="false" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="sector" />
+					<property name="indexableSubProperties">
+						<list>
+							<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+								<property name="name" value="name" />
+								<property name="keywordSearchable" value="true" />
+							</bean>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="project.firm" class="com.vistrada.xpn.lucene.index.IndexableProperty">
+		<property name="name" value="firm" />
+		<property name="indexableSubProperties">
+			<list>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="id" />
+					<property name="analyzed" value="false" />
+				</bean>
+				<bean class="com.vistrada.xpn.lucene.index.IndexableProperty">
+					<property name="name" value="name" />
+					<property name="store" value="true" />
+					<property name="keywordSearchable" value="true" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!--
+		======================================================================================================
+		Property processors
+		======================================================================================================
+	-->
+	<bean id="inputStreamPropertyProcessor"
+		class="com.vistrada.xpn.lucene.index.InputStreamPropertyProcessor" />
+	<bean id="savedFilePropertyProcessor"
+		class="com.vistrada.xpn.lucene.index.SavedFilePropertyProcessor" />
+	<bean id="datePropertyProcessor" class="com.vistrada.xpn.lucene.index.DatePropertyProcessor" />
+	<bean id="urlPropertyProcessor" class="com.vistrada.xpn.lucene.index.UrlPropertyProcessor" />
+	<bean id="ratingPropertyProcessor" class="com.vistrada.xpn.lucene.index.RatingPropertyProcessor" />
+</beans>

@@ -1,0 +1,284 @@
+<html lang="en" manifest="html5demo.manifest">
+<head>
+<meta charset=utf-8 />
+<meta name="viewport" content="width=620" />
+<link href="/styles/online.css" rel="stylesheet" type="text/css" />
+</head>
+<body onload="initDb()">
+Teste HTML 5
+<br>
+<article>
+<p>A good working example is to load this demo up, then
+disconnection your web connection - the page will still reload. In
+addition, try this on an iPhone, then set your iPhone to flight mode,
+and refresh: the page loads.</p>
+<p>Status of cache:</p>
+<p id="status">checking...</p>
+<p id="status2">checking...</p>
+<p><input type="button" id="update" value="Update cache status" /></p>
+<p><input type="button" id="swap" value="Update cache to latest" /></p>
+
+</article>
+<div id="online-status">Status:</div>
+<div id="resultSection"></div>
+<hr>
+<div id="test">test</div>
+<hr>
+<button onclick="loadServerData()">carregar</button>
+<button onclick="query()">Query</button>
+<hr>
+Criar cliente
+<form action="#" onsubmit="return criar()">
+Nome:<input type="text" id="client.name"><br>
+Email:<input type="text" id="client.email"><br>
+Telefone:<input type="text" id="client.phone"><br>
+<input type="submit"></form>
+
+
+
+
+<script src="/scripts/h5utils.js"></script>
+<script src="/scripts/jquery-1.4.4.min.js"></script>
+<script>
+
+	(function() {
+
+		var displayOnlineStatus = document.getElementById("online-status"), isOnline = function() {
+			displayOnlineStatus.innerHTML = "Online";
+			displayOnlineStatus.className = "online";
+		}, isOffline = function() {
+			displayOnlineStatus.innerHTML = "Offline";
+			displayOnlineStatus.className = "offline";
+		};
+
+		if (window.addEventListener) {
+			/*
+				Works well in Firefox and Opera with the 
+				Work Offline option in the File menu.
+				Pulling the ethernet cable doesn't seem to trigger it
+			 */
+			window.addEventListener("online", isOnline, false);
+			window.addEventListener("offline", isOffline, false);
+		} else {
+			/*
+				Works in IE with the Work Offline option in the 
+				File menu and pulling the ethernet cable
+			 */
+			document.body.ononline = isOnline;
+			document.body.onoffline = isOffline;
+		}
+		console.log("checking 2!!")
+	})();
+
+	var cacheStates = [
+			"UNCACHED (numeric value 0) -- The ApplicationCache object's cache host is not associated with an application cache at this time.",
+			"IDLE (numeric value 1) -- The ApplicationCache object's cache host is associated with an application cache whose application cache group's update status is idle, and that application cache is the newest cache in its application cache group, and the application cache group is not marked as obsolete.",
+			"CHECKING (numeric value 2) -- The ApplicationCache object's cache host is associated with an application cache whose application cache group's update status is checking.",
+			"DOWNLOADING (numeric value 3) -- The ApplicationCache object's cache host is associated with an application cache whose application cache group's update status is downloading.",
+			"UPDATEREADY (numeric value 4) -- The ApplicationCache object's cache host is associated with an application cache whose application cache group's update status is idle, and whose application cache group is not marked as obsolete, but that application cache is not the newest cache in its group.",
+			"OBSOLETE (numeric value 5) -- The ApplicationCache object's cache host is associated with an application cache whose application cache group is marked as obsolete." ];
+
+	function updateCacheStatus() {
+		document.querySelector('#status').innerHTML = cacheStates[window.applicationCache.status];
+	}
+
+	addEvent(document.querySelector('#update'), 'click', function() {
+		window.applicationCache.update();
+	});
+
+	addEvent(document.querySelector('#swap'), 'click', function() {
+		window.applicationCache.swapCache();
+	});
+
+	var events = "checking,error,noupdate,downloading,progress,updateready,cached,obsolete"
+			.split(',');
+	var i = events.length;
+
+	while (i--) {
+		addEvent(window.applicationCache, events[i], updateCacheStatus);
+	}
+
+	var status = document.getElementById("status");
+	var status2 = document.getElementById("status2");
+	var resultSection = document.getElementById("resultSection");
+	var db;
+	function initDb() {
+		if(!log){
+			log=function(txt){
+				console.log(txt);
+			}
+		}
+		log('initialising database');
+		try {
+			if (window.openDatabase) {
+				db = openDatabase("html5demos", "1.0",
+						"HTML 5 Database API example", 200000);
+				if (db) {
+					db
+							.transaction(function(tx) {
+								tx
+										.executeSql(
+												"CREATE TABLE IF NOT EXISTS CLIENT (id REAL UNIQUE, NAME TEXT, PHONE  TEXT, EMAIL TEXT)",
+												[],
+												function(tx, result) {
+													//clear();
+													log('DB was created');
+												});
+							});
+				} else {
+					log('error occurred trying to open DB');
+				}
+			} else {
+				log('Web Databases not supported');
+			}
+		} catch (e) {
+			log('error occurred during DB init, Web Database supported?');
+		}
+	}
+
+	function query() {
+		resultSection.innerHTML = '';
+		db.transaction(function(tx) {
+			tx.executeSql('SELECT * FROM CLIENT', [], function(tx,
+					results) {
+				console.log("results ", results.rows);
+				if (results.rows && results.rows.length) {
+					status.innerHTML = 'loading from DB';
+					for (i = 0; i < results.rows.length; i++) {
+						
+						resultSection.appendChild(document.createTextNode("Id: "+results.rows.item(i).id+" "));
+						
+						resultSection.appendChild(document.createTextNode("Name: "+results.rows.item(i).name+" "));
+						resultSection.appendChild(document.createElement("br"));
+						resultSection.appendChild(document.createTextNode("Email: "+results.rows.item(i).email+" "));
+						
+						resultSection.appendChild(document.createTextNode("Telefone: "+results.rows.item(i).phone+" "));
+						if(results.rows.item(i).id<0){
+							var button =document.createElement("button");
+						    button.appendChild(document.createTextNode("apagar"));
+						    button.setAttribute('onclick',"deleteClient("+results.rows.item(i).id+")");
+							resultSection.appendChild(button);	
+						}
+						resultSection.appendChild(document.createElement("hr"));
+					}
+				}
+			}, function(tx, ee) {
+				console.error("failed", ee)
+			})
+		});
+
+	}
+	
+	
+	var clearDB = function() {
+		status.innerHTML = 'resetting database';
+		db.transaction(function(tx) {
+			tx.executeSql('DROP TABLE IF EXISTS CLIENT', [], function() {
+				status.innerHTML = 'database has been cleared - please reload';
+				resultSection.innerHTML = '';
+			});
+		});
+	};
+
+	var storeData = function(data) {
+		db
+				.transaction(function(tx) {
+					var i;
+					for (i = 0; i < data.length; i++) {
+						tx.executeSql('INSERT INTO CLIENT (ID, NAME, PHONE, EMAIL) VALUES (?, ?, ?, ?)',
+										[ data[i].id, data[i].name,
+												data[i].phone, data[i].email ],
+										function(tx, rs) {
+											console.log("tx", tx);
+											console.log("rs", rs)
+										}, function(tx, error) {
+											console.log("error", error);
+										}
+
+								);
+						
+
+					}
+
+				});
+	}
+var defaultError=function(tx,err){
+	console.error("tx err",err);
+}
+	var deleteClient = function(id){
+		db.transaction(function(tx) {
+		tx.executeSql('DELETE FROM CLIENT WHERE ID=?', [id], 
+				function(tx,results) {
+			query();
+			},defaultError
+			)})
+			
+	}
+	var createOffLineClient = function(name,email,phone) {
+		
+		db.transaction(function(tx) {
+			tx.executeSql('SELECT * FROM CLIENT WHERE ID<0 ORDER BY ID', [], function(tx,
+					results) {
+				var lowest=0;
+				if (results.rows && results.rows.length>0) {
+					console.log("lowest",results.rows.item(0).id);
+					lowest = results.rows.item(0).id;					
+				}
+				lowest--;
+				console.log("lowest is "+lowest)
+				db.transaction(function(tx) {
+					tx.executeSql('INSERT INTO CLIENT (ID, NAME, PHONE, EMAIL) VALUES (?, ?, ?, ?)',
+										[ lowest, name,	phone, email ],
+												function(tx, rs) {
+													console.log("tx", tx);
+													console.log("rs", rs)
+												}, function(tx, error) {
+													console.log("error", error);
+										});
+						});
+				
+				
+			}, function(tx, ee) {
+				console.error("failed", ee)
+			})
+		});
+		
+	}
+
+	var loadServerData = function(data) {
+		var client = new XMLHttpRequest();
+		client.onreadystatechange = function() {
+			if (client.readyState == 4) {
+				var obj = jQuery.parseJSON(client.responseText);
+				console.log(obj);
+				if (obj.status == "online") {
+					storeData(obj.clients);
+				}
+				document.getElementById("resultSection").innerHTML = client.responseText;
+			}
+		};
+		//client.onerror = function(err){console.error("err",err)};
+		client.open("GET", "../../listClients.jsp", true);
+
+		client.send();
+	}
+	
+	var criar=function(){
+		try{
+			var name=document.getElementById("client.name").value;
+			var email =document.getElementById("client.email").value;
+			var phone = document.getElementById("client.phone").value;
+			createOffLineClient(name,email,phone);
+			document.querySelector('#status').innerHTML="Cliente armazenado: "+name;
+			document.getElementById("client.name").value='';
+			document.getElementById("client.email").value='';
+			document.getElementById("client.phone").value='';
+			query();
+			return false;		
+		}catch(e){}
+		return false;
+		
+	}
+</script>
+</body>
+</html>

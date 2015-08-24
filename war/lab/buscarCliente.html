@@ -1,0 +1,844 @@
+<html lang="en" manifest="./disconnected/html5/busca.manifest">
+<head>
+<link
+	href="/styles/jquery-ui-1.8.13.custom.css"
+	rel="stylesheet" type="text/css" />
+<link href="/styles/labstyle.css" rel="stylesheet" type="text/css" />
+<link href="/styles/discPlateSelection.css" rel="stylesheet" type="text/css" />
+<script
+	src="/scripts/jquery-1.5.1.min.js"></script>
+<link href="/styles/online.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript"> 
+           djConfig = {
+           	baseUrl : '/scripts/dj/dojo/',  
+           	useXDomain : true,              	
+            xdWaitSeconds: 10,
+            parseOnLoad: true,
+             locale: 'pt'                  
+           };
+</script>
+
+<style type="text/css">
+.headerSection{
+margin-bottom:3px;padding-bottom: 5px;background-color: #D12516;
+}
+@media print {
+  @page{  	
+   display: none; 
+  }  
+  #sidebar h5{
+  	
+  	color:black;
+  }
+  #sidebar div.boxed table tr.subtotal td
+  {
+  color:black;
+  }
+  #online-status{
+  	display: none;
+  }
+  #logo{
+  display: none;
+  }
+  input{
+  	border: 0px;	
+  }
+  #status{
+  	display: none;
+  }
+  .headerSection{
+  	display: none;
+  }
+  .fourcol{
+  	display: none;
+  }
+  #Orderinfobox{
+	font-family: serif;  	  	
+  	display:block;
+  }  
+  #sidebar div.boxed table tr td {
+  	font-size:medium;  	
+  }
+  #sidebar div.boxed ul li
+  {
+  	font-size:medium;
+  	color: black;
+  	
+  }
+  #orderdetailtable{
+  	padding-top: 1em;
+  }
+  #sidebar div.boxed #orderdetails ul li.itemprice{
+  	font-size:medium;
+  	color: black;
+  	
+  }
+  @page :left { 
+  	margin: 0;
+  	size: 20em 100mm;  	 	
+  }  
+  @page :right {
+    display: none; 
+  }
+}
+</style>
+<link rel="stylesheet" type="text/css"
+	href="http://ajax.googleapis.com/ajax/libs/dojo/1.4.3/dijit/themes/tundra/tundra.css">
+<SCRIPT TYPE="text/javascript"
+	SRC="http://ajax.googleapis.com/ajax/libs/dojo/1.4.3/dojo/dojo.xd.js"></SCRIPT>
+<SCRIPT TYPE="text/javascript" SRC="/scripts/dj/com/cb.js"></SCRIPT>
+
+<SCRIPT TYPE="text/javascript" SRC="/scripts/selectClient.js"></SCRIPT>
+<SCRIPT TYPE="text/javascript" SRC="/scripts/selectPlates.js"></SCRIPT>
+<SCRIPT TYPE="text/javascript" SRC="/scripts/selectPayment.js"></SCRIPT>
+<SCRIPT TYPE="text/javascript" SRC="/scripts/selectAddress.js"></SCRIPT>
+
+<script>
+dojo.require("dijit.form.CurrencyTextBox");
+dojo.require("dijit.form.ValidationTextBox");
+dojo.require("com.copacabana.util");
+</script>
+</head>
+<body >
+<div class="headerSection">
+<div id="online-status">Conexão</div><div id="logo"><div style="float: right;margin-right: 100px;"><a href="/pedidos.do" style="color: white;font-weight: normal;font-size: small;">Voltar para tela de pedidos</a><br><a href="controle.html" style="color: white;font-weight: normal;font-size: small;">Controle Local</a> </div><div class="headerImage"><img src="/resources/img/logo.png" style="height: 70px">Gerenciador de pedidos</div></div>
+
+<div id="mainnav">
+	    <ul id="orderprogress">
+		<li id="lookup" class="current before" onclick="showSearchClientForm()">
+		    1. Busque o cliente</li>
+		<li id="address">
+		    2. Endereço entrega</li>
+		<li id="menuSelection" >
+		    3. Fazer pedido</li>
+		<li id="checkout" >4. Pagamento</li>
+		<li class="last" id="summary">5. Finalização</li>
+	    </ul>
+</div>
+</div>
+<div id="status_db" style="font-size: small;float: left;"></div>
+<div id="status" style="font-size: xx-small;float: right;">Status...</div>
+
+<div class="body">
+<div id="container">
+<div class="fourcol">
+<div id="searchClient" class="panel">
+<div class="header">Busque cliente</div>
+<br/>
+Digite telefone: <input
+	id="autocomplete" type="text" name="search" value="" style="border: 1px solid gray;"> <a href="#" onclick="showNewClient()">Cadastrar novo cliente</a><br> 
+<div style="margin-top: 5px;"></div>
+
+<table >
+<thead><tr><th>Nome</th><th>Telefone</th><th>E-mail</th></thead>
+<tbody id="restClientsTBody">
+</tbody>
+</table>
+</div>
+
+
+<div id="selectAddress" class="panel" style="display: none;">
+<div class="header">Endereço de entrega</div>
+<div style="float:right;"><button id="openNewAddressDialog">Novo endereço</button><br/><button id="openNewAddressDialog">Novo endereço</button></div>
+<br>
+<div id="addressList"></div>
+<hr>
+<div id="addressListNotInRange"></div>
+
+<form id="selectedForm" method="post" action="startOrder.jsp">
+<input type="hidden" name="client" value="${param.client }">
+</form>
+</div>
+<div id="finishOrder" class="panel" style="display: none">
+<div class="header">Pedido registrado</div>
+Código para acompanhamento: <span id="xlatedCode"></span><br>
+<a href="javascript:window.print()" id="printLink" ><span class="ui-icon ui-icon-print" style="float:left;"></span> Imprimir</a>
+<a href="/pedidos.do">Ir para monitoramento de pedidos</a><br>
+<div id="printInServer"> --- </div>
+</div>
+
+<div id="paymentSection" class="panel" style="display: none">
+<div class="header">Pagamento</div>
+Forma de pagamento:<br>
+<input type="radio"" checked="checked" name="paymentType" value="INCASH"> <label for="paymentType">Dinheiro</label> Troco para 
+R$ <input id="amountInCash" name="amountInCash" type="text" style="width:100px;height:18px;"  dojoType="dijit.form.CurrencyTextBox" lang="pt-BR" value="0,00" fractional="true" required="true" selectOnClick="true" currency="" invalidMessage="Digite o valor com centavos, por exemplo 10,90."/><br>
+<div id="acceptedPaymentTypes"></div>
+<hr><br>
+<div>CPF: <input style="width: 150px;" validator="isCPFValid" type="text" name="cpf" class="cpf" id="cpf" dojoType="dijit.form.ValidationTextBox" selectOnClick="true"></input><br></div>
+<Br>
+<div>Observações: <br><textarea name="observation" cols="60" rows="4"></textarea></div><br>
+<div style="width: 100%;text-align: center;"><button id="submitOrder">Enviar pedidos</button></div>
+</div>
+<div id="selectPlates" class="panel" style="display: none">
+
+<div class="header">Fazer pedido</div><div style="width: 100%;text-align: center;">
+    <button id="setPaymentDataBtn">Ir para pagamento</button>
+    </div>
+<a href="#" id="criaPrato">Cria prato especial</a>
+
+
+<div id="accordion">
+</div>
+</div>
+</div>
+</div>
+<div id="sidebar" class="twocol">
+<div id="Orderinfobox" class="boxed">
+<div class="orderInfo"></div>
+<h5 class="order">Pedido <span id="orderIdXlated"></span></h5>
+
+<table cellspacing="0" cellpadding="0" border="0">
+
+<colgroup>
+    <col class="maincol">
+    <col class="sidecol">
+</colgroup>
+
+<tbody>
+    <tr id="clientDisplay">
+	    <td class="main">Cliente<br>
+	    <strong id="clientName"></strong></td>	        
+		<td><!-- <a id="clientEditLink" href="searchUserByPhone.jsp" class="discreteAnchor">Editar</a> --></td>	    
+	</tr> 
+	<tr id="addressDisplay">
+	    <td class="main">Endereço<br>
+	    <strong id="addressPlace"></strong></td>	        
+		<td><!-- <a id="addressEditLink" href="selectDeliveryAddress.jsp?client=${param.client}" class="discreteAnchor">Editar</a>--></td>	    
+	</tr>    
+    <tr style="display:none;" id="addressSelect">						
+	<td>&nbsp;</td>
+	 </tr>
+       <tr style="" id="deliveryTimeDisplay">
+	<td class="main">Prazo de entrega<br><input type="text" name="delayForecast" id="delayForecast" class="inputView" value="30 minutos"/></td>
+	<td><!-- <a id="editDeliveryTimeLink" style="cursor: pointer;">Editar</a>--></td>
+    </tr>						
+</tbody>
+</table>
+
+<table cellspacing="0" cellpadding="0" border="0" class="DataTable">
+	<colgroup>
+	    <col class="maincol">
+	    <col class="sidecol">
+	</colgroup>
+	<tbody>
+	    <tr>
+		<td class="main">
+		    Total pratos:
+		</td>
+		<td id="platesTotal">
+		    $ 0.00
+		</td>
+	    </tr>
+	    
+	    <tr class="noline">
+		<td class="main">
+		    Taxa entrega:
+		</td>
+		<td id="delCostSection">
+		    $ 0.00
+		</td>
+	    </tr>
+	    <tr class="subtotal">
+		<td class="main">	    
+			Subtotal:		    
+		</td>
+		<td id="subTotalSection">
+		    $ 0.00
+		</td>
+	    </tr>
+	    <tr id="paymentTypeSection"></tr>	    
+	    <tr id="extraData"></tr>
+	</tbody>
+    </table>
+    
+    
+
+<div id="OrderDetailTable">
+    <h5>Produtos</h5>
+    
+    <input type="hidden" name="client" value="${param.client}"> 
+    <div id="OrderDetails">
+	    
+	
+    </div>
+    
+    
+</div></form>
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+</body>
+
+
+<script src="/scripts/h5utils.js"></script>
+<script
+	src="/scripts/jquery-ui-1.8.13.custom.min.js"></script>
+	<script src="/scripts/offlineERP.js"></script>
+<link rel="stylesheet" href="/styles/tableSortable.css" type="text/css" />
+
+<script>
+	
+	var cache = {},
+	lastXhr;
+	var order = {
+			plateList : []
+	}
+
+	var showClients=function(data){
+		var rows='';
+		clientData=data[0];
+		currentClient=clientData;
+		if(clientData.email==null || clientData.email.length==0 || clientData.email=="null"){
+			
+	 		$( "#addClientEmail" ).dialog("open");	
+	 	}else{
+		
+		for(var i =0;i<data.length;i++){
+			var className="";
+			
+			
+			rows+='<tr><td class="clickable" ><a onclick="selectClient4Order(\''+data[i].id+'\');return false;">'+data[i].name+'</td><td '+className+'>'+data[i].phone+'</td><td '+className+'>'+data[i].email+'</td>';
+			if(data[i].id<0){
+				rows+='<td><a href="javascript:deleteClient('+data[i].id+',query)">apagar</a></td>';
+			}
+			rows+='</tr>';			
+		}
+		
+		$('#restClientsTBody').html(rows);
+	 	}
+	}
+	
+	var showSearchClientForm=function(){
+		resetOrder();
+		if($("#searchClient").css("display","none")){
+			$(".panel").slideUp();
+			$("#searchClient").show();
+		}
+		$(".current").removeClass("current");
+		$("#lookup").addClass("current");		
+		
+		
+	}
+	var startAddressSelection=function(addresses){
+		$(".panel").slideUp();
+		$("[name='address.phone']").attr("value",currentClient.phone);
+		$("[name='client']").attr("value",currentClient.id);
+		$("#selectAddress").show();
+		$(".current").removeClass("current");		
+		$("#address").addClass("current");
+		showClientAddresses(addresses);
+	}
+	
+	var startPlateSelection=function(){
+		$("#selectAddress").slideUp();
+		$("#selectPlates").show();
+		$(".deleteLink").css("display","block");
+		$(".current").removeClass("current");
+		$("#menuSelection").addClass("current");
+		showPlateSelection();
+	}
+	var startPaymentSelection=function(){
+		$("#selectPlates").slideUp();
+		$("#paymentSection").show(500);
+		$(".current").removeClass("current");		
+		$("#checkout").addClass("current");		
+		showPaymentForm();
+	}
+	var showPaymentForm=function(){
+		initPaymentSection();
+	}
+	var showPlateSelection=function(){
+		initSelectPlates();		
+	}
+	
+	
+	
+	//flow
+	var resetOrder = function(){
+		currentOrder.client=null;
+		currentOrder.deliveryRange=null;
+		currentOrder.address=null;
+		currentOrder.observation=null;
+		currentOrder.paymentType=null;
+		currentOrder.amountInCash=null;
+		currentOrder.cpf=null;
+		$("input#autocomplete").attr("value",'');
+		$("#orderIdXlated").empty();
+		updateOrderSection();
+	}
+	var startOrder = function(client){
+		currentOrder.client=currentClient;
+		currentOrder.deliveryRange=null;
+		currentOrder.address=null;
+		updateOrderSection();
+	}
+	var updateOrderSection=function(){		
+		if(currentOrder.client && currentOrder.client.name){
+			$("#clientName").html(currentOrder.client.name);
+		}else{
+			$("#clientName").html("");
+			clearPlateList();
+		}
+		
+		if(currentOrder.address && currentOrder.address.street){
+			$("#addressPlace").html(currentOrder.address.addressStr());
+			$("#addressPlace").append("<br>Tel: "+currentOrder.address.phone);
+		}else{
+			$("#addressPlace").empty();
+			clearPlateList();
+			
+		}
+		if(currentOrder.deliveryRange && (currentOrder.deliveryRange.costInCents!=null)){
+			$("#delCostSection").html(com.copacabana.util.moneyFormatter(currentOrder.deliveryRange.costInCents/100.0));
+		}else{
+			$("#delCostSection").html("");
+			clearPlateList();
+		}
+		
+		if(currentOrder.paymentType){	
+			$("#paymentTypeSection").empty();
+			if(currentOrder.paymentType=="INCASH"){
+				$("#paymentTypeSection").append("<td class='main'>Dinheiro: <Br>Troco: </td><td> "+com.copacabana.util.moneyFormatter(currentOrder.amountInCash)+" <br>"+com.copacabana.util.moneyFormatter((currentOrder.amountInCash-currentOrder.total))+"</td></tr>");
+				
+			}else{
+				$("#paymentTypeSection").html("<td class='main'>Pgto: </td><td> "+i18nPayments[currentOrder.paymentType]+"</td></tr>");	
+			}
+		}else{
+			$("#paymentTypeSection").empty();			
+		}
+		
+		if(currentOrder.observation || currentOrder.cpf){	
+			$("#extraData").empty();
+			var first="";
+			var second="";
+			if(currentOrder.observation && currentOrder.observation.length>0){
+				first="Observação:";
+				second="<i>"+currentOrder.observation+"</i>";
+				if(currentOrder.cpf && currentOrder.cpf.length>0){
+					first+="<br>";
+					second+="<br>";
+				}
+			}
+			
+			if(currentOrder.cpf && currentOrder.cpf.length>0){
+				first+="CPF: ";
+				second+=currentOrder.cpf;				
+			}
+			$("#extraData").append("<td class='main'>"+first+"</td><td> "+second+"</td>");
+			
+		}else{
+			$("#extraData").empty();			
+		}
+	}
+	var clearPlateList=function(){
+		order.plateList=[];
+		updatePlateList();		
+	}
+	
+	var selectOrderAddress=function(address,deliveryRange){
+		currentOrder.deliveryRange=deliveryRange;
+		currentOrder.address=address;
+		updateOrderSection();
+	}
+	
+	var setOrderPlates=function(plateList,totalCostWithDelivery){
+		currentOrder.plateList=plateList;				
+		currentOrder.delayForecast=$("#delayForecast").attr("value");
+		currentOrder.total=totalCostWithDelivery;
+		startPaymentSelection();
+	}
+	
+	var setOrderPayment=function(paymentType,amountInCash){
+		currentOrder.paymentType=paymentType;
+		currentOrder.amountInCash=amountInCash;
+		updateOrderSection();
+	}
+	var setOrderExtra=function(cpf,observation){
+		currentOrder.cpf=cpf;
+		currentOrder.observation=observation;
+		updateOrderSection();
+	}
+	var setPaymentComplete=function(){
+		LocalOrderManager.saveOrder(currentOrder,startSyncing);
+	}
+	var startSyncing=function(rs){		
+		$("#paymentSection").slideUp();
+		$("#finishOrder").show();
+		$(".current").removeClass("current");		
+		$("#summary").addClass("current");	
+		
+		$(".deleteLink").css("display","none");
+		
+		showFinishOrderForm(rs.insertId);
+	}
+	//endflow
+	var showFinishOrderForm=function(idLocalOrder){
+		$("#xlatedCode").empty();
+		$("#xlatedCode").append("<img src='/resources/img/loading.gif'/> obtendo protocolo... ")
+		
+		//$("#printLink").attr("href","javascript:window.print()");
+		//$("#printLink").attr("onclick","window.print()");
+		var showOrderResults= function(serverOrder,error){			
+			if(error){				
+				$("#xlatedCode").empty();
+				$("#xlatedCode").html("<b>Não foi possível enviar dados do pedido para o servidor. Você está conectado?<br>Este pedido deverá ser enviado mais tarde via Controle Local</b>");
+				//$("#printLink").attr("href","javascript:window.print()");
+			}else{
+				$("#xlatedCode").empty();
+				$("#xlatedCode").html(serverOrder.idXlated);
+				$("#printInServer").html("<a target='_blank' href='/printOrder?orderId="+serverOrder.id+"'>Imprimir no servidor</a>");	
+				finalOrder.idXlated=serverOrder.idXlated;
+				finalOrder.id=serverOrder.id;
+				try{
+					$("#orderIdXlated").html(finalOrder.idXlated);
+				}catch(e){
+					
+				}
+			}
+		}
+		var completeOrder = function(order){
+			finalOrder=order;			
+			$("#printInServer").empty();
+			if(order.clientId<0){				
+				$("#xlatedCode").append("1 - cadastrando cliente... ")
+				console.log("cliente ainda não sincronizado.");
+				var gotClient = function(client){
+					var lastStep = function(data){
+						$("#xlatedCode").append("2 - enviando pedido.. ")
+						console.log("cliente data",data);
+						console.log("order data",order);
+						order.clientId=data.id;
+						finalOrder.clientId=order.clientId;
+						LocalOrderManager.syncOrder(order,showOrderResults);
+					}
+					clientManager.syncClient(client,lastStep);				
+				}
+				clientManager.queryClient(order.clientId,gotClient);
+				
+			}else{
+				LocalOrderManager.syncOrder(order,showOrderResults);
+			}			
+		}		
+		LocalOrderManager.byId(idLocalOrder,completeOrder);
+	}
+	var finalOrder = {}; 
+	var selectClient4Order= function(clientId){
+		if(clientId==currentClient.id){
+			
+			startOrder(currentClient);
+			
+			AddressManager.queryByClient(currentClient.id,startAddressSelection);
+		}
+	}
+	
+	
+	
+	var showNewClient = function(){ 
+		$("[name='phone']").attr('value',$("[name='search']").attr('value'));
+		$("[name='name']").attr('value',"");
+		$("[name='email']").attr('value',"");		
+		$("#newClientForm").dialog('open')
+	}
+	$(document).ready(
+			
+			function() {
+				$("button").button();
+				$( "#addClientEmail" ).dialog({autoOpen:false,minWidth:400,modal:true});
+				
+	            $( "#continueAndSaveEmail" ).button({
+	                icons: {
+	                    primary: "ui-icon-check"
+	                },
+	                text: true
+	                
+	            });
+	            
+	            $( "#continueOnly" ).button({
+	                icons: {
+	                    primary: "ui-icon-close"
+	                },
+	                text: true
+	            });
+	            $( "#continueAndSaveEmail" ).click(continueAndSave);
+	            $( "#continueOnly" ).click(continueNoSave);
+				
+				initOffLineControls();
+				initDb();
+				checkIsLogged();
+				//$( "#criaClient").click(createClient)
+				$( "#newClientForm" ).dialog({autoOpen:false,minWidth:400});
+								
+				
+				queryAllPhones(prepareAutocomplete);
+				initDelRanges();	
+				
+				
+				
+				RestaurantManager.get(localRestDataReturn);
+				
+				var checkIfMustReloadPlates=function(date){
+					var now = new Date().getTime();
+					now-=(24*60*60*1000)//one day;					
+					if(date.getTime()<now){
+						console.log("reloading menu data");
+						plateAlreadyLocal=0;
+						PlateManager.loadServerData(null);
+					}else{
+						console.log("Menu is supposed to be up to date",date);
+					}
+				}
+				PlateManager.whenPlatesWereUpdated(checkIfMustReloadPlates);
+				
+				
+			});
+		
+	
+	var localRestDataReturn = function(localRest){
+		console.info("local restaurant data loaded",localRest.currentDelay);
+		restaurant=localRest;
+		$("#delayForecast").attr("value",localRest.currentDelay);
+		
+		RestaurantManager.updateWithServerData(
+				function(data){								
+					RestaurantManager.get(loadRestaurantDependentData);
+				}
+		);	
+	}
+	var restaurant;
+	var loadRestaurantDependentData=function(rest){
+		console.log("server data for restaurant",rest);
+		restaurant=rest;
+		$("#delayForecast").attr("value",rest.currentDelay);
+	}
+	
+	var createClient=function(){
+		console.log($("[name='client.name']").attr("value"))
+		try{
+			var name=$("[name='client.name']").attr("value")
+			var email =$("[name='client.email']").attr("value")
+			var phone = $("[name='client.phone']").attr("value")
+			createOffLineClient(name,email,phone,completeCreation);
+			$("[name='client.phone']").attr("value").attr("value","");
+			$("[name='client.email']").attr("value").attr("value","");
+			$("[name='client.name']").attr("value").attr("value","");
+			return false;		
+		}catch(e){console.error(e)}
+		return false;
+		
+	
+	}
+	var completeCreation=function(id,obj){
+		document.querySelector('#status').innerHTML="Cliente armazenado: "+obj.name;		
+		$( "#newClientForm" ).dialog("close");
+		queryAllPhones(prepareAutocomplete);
+				
+		showClients([obj]);
+		console.log('syncing');
+		setTimeout("syncLocalAndServer",1000);
+	}
+	
+	
+	var query=function(){
+		queryAllClients(showClients);
+	}
+	
+	var validateAndSave=function(){
+		
+		if(dijit.byId("name").attr("value").length==0 || dijit.byId("name").validate()==false){
+			dijit.byId('name').displayMessage(dijit.byId('name').invalidMessage);
+			return false;
+		};
+		if(dijit.byId("phone").validate()==false){
+			dijit.byId('phone').displayMessage(dijit.byId('phone').invalidMessage);
+			return false;
+		}
+		if(dijit.byId("email").attr('value').length>0 && dijit.byId("email").validate()==false){
+			dijit.byId('email').displayMessage(dijit.byId('email').invalidMessage);
+			return false;
+		}
+		var name = dijit.byId("name").attr("value");
+		var email = dijit.byId("email").attr("value");
+		var phone = dijit.byId("phone").attr("value");
+		try{	
+		createOffLineClient(name,email,phone,completeCreation);
+		}catch(e){
+			console.error(e);
+		}
+		return false;
+	}
+	var currentClient;
+	var continueNoSave=function(){
+		$( "#addClientEmail" ).dialog("close");
+		selectClient4Order(currentClient.id);
+		return false;
+	}
+	var continueAndSave=function(){
+		var dEmail=dijit.byId("tempEmail");
+		if(dEmail.validate()==false || dEmail.attr("value").length==0){
+			dEmail.displayMessage(dEmail.invalidMessage);
+			return false;
+		}else{
+			$( "#addClientEmail" ).dialog("close");
+			currentClient.email=dEmail.attr("value");
+			clientManager.updateClientLocally(currentClient);
+			selectClient4Order(currentClient.id);
+			return false;
+		}
+	}
+	
+	
+	function makepage()
+	{
+	  // We break the closing script tag in half to prevent
+	  // the HTML parser from seeing it as a part of
+	  // the *main* page.
+
+	  var html= '<html><head><link href="/styles/jquery-ui-1.8.13.custom.css" rel="stylesheet" type="text/css" /><link href="/styles/labstyle.css" rel="stylesheet" type="text/css" /><link href="/styles/discPlateSelection.css" rel="stylesheet" type="text/css" />';
+	  html+='<style>@page { size: 400px 500px; };input{boder:0px;}</style></head><body><div id="sidebar" class="twocol"><div class="boxed">';
+	  
+	  
+	  html+= $("#Orderinfobox").html()+"</div>";
+	  html+="</div></body></html>"
+	  return html;
+	  /*"<html>\n" +
+	    "<head>\n" +
+	    "<title>Imprimir Pedido ComendoBem</title>\n" +
+	    "<script>\n" +
+	    "function step1() {\n" +
+	    "  setTimeout('step2()', 10);\n" +
+	    "}\n" +
+	    "function step2() {\n" +
+	    "  window.print();\n" +
+	    "  window.close();\n" +
+	    "}\n" +
+	    "</scr" + "ipt>\n" +
+	    "</head>\n" +
+	    
+	    "<body onLoad='step1()'>\n" +
+	    
+	    "</body>\n" +
+	    "</html>\n";*/
+	}
+
+	function printme(finalorder)
+	{	 
+	  link = "about:blank";
+	  var pw = window.open(link, "_new","Pedido ComendoBem");
+	  pw.document.open();
+	  pw.document.write(makepage());
+	  pw.document.close();
+	}
+</script>
+<div title="Cadastro de novo cliente" id="newClientForm"
+	style="display: none; padding: 20px; font-size: medium;">
+<form onsubmit="return validateAndSave();">nome<br>
+<input type="text" name="name" id="name"
+	invalidMessage="Nome é obrigatório"
+	dojoType="dijit.form.ValidationTextBox" regExp=".+" properCase="true"><br>
+telefone<br>
+<input class="mandatory" required="true" id="phone"
+	dojoType="dijit.form.ValidationTextBox" width="220"
+	title='N&uacute;mero de telefone' cssClass="required" trim="true"
+	name="phone" regExpGen="com.copacabana.util.phoneFormat"
+	invalidMessage="Telefone inv&aacute;lido. Utilize o seguinte formato (DDD) NNNN-NNNN" /><bR>
+e-mail<bR>
+<input type="text" name="email" id="email" required="false"
+	regExpGen="com.copacabana.util.emailFormat" trim="true"
+	dojoType="dijit.form.ValidationTextBox"><br/>
+<input type="submit" value="Criar"></form>
+</div>
+<div title="Cliente sem e-mail, quer cadastrar?" id="addClientEmail"
+	style="display: none; padding: 20px; font-size: medium;width: 250px;">
+Adicionar e-mail para <span id="noMailName"></span>	
+<input type="text" id="tempEmail" promptMessage="Cliente sem e-mail, quer cadastrar?" required="false"
+								regExpGen="com.copacabana.util.emailFormat" trim="true"
+									dojoType="dijit.form.ValidationTextBox" ><br/>
+										<br>
+<button id="continueAndSaveEmail">Salvar e-mail</button> <button id="continueOnly">Continuar sem salvar</button>
+</div>
+<div title="Área de entrega" id="newDeliveryRange" style="display: none; padding: 20px;font-size: medium;">
+<input type="hidden" id="newDeliveryRangeId">
+Bairro '<span id="newDeliveryRangeName"></span>':<br>
+Taxa de entrega<br> 
+<input class="mandatory" required="true" id="newDeliveryRangeCost"
+			 dojoType="dijit.form.CurrencyTextBox" lang="pt-BR" value="0,00" fractional="true" required="true" selectOnClick="true" currency="" invalidMessage="Digite o valor com centavos, por exemplo 10,90."/>
+<br>Valor m&iacute;nimo:<br>
+<input class="mandatory" required="true" id="newDeliveryRangeMinimun"
+			 dojoType="dijit.form.CurrencyTextBox" lang="pt-BR" value="0,00" fractional="true" required="true" selectOnClick="true" currency="" invalidMessage="Digite o valor com centavos, por exemplo 10,90."/>			 
+<input type="button" id="createNewDeliveryRange" value="Salvar taxa">
+</div>
+<div title="Novo Endereço" id="newAddressDialog"
+	style="display: none; padding: 20px; font-size: medium;">
+
+<div style="margin: 3px; border: 1px solid;padding: 10px">Endereço de entrega:<br>
+
+<input type="hidden" name="client" value="">
+<table>
+<tr><td>Rua:</td><td><input type="text" name="address.street" value=""></td></tr><tr><td>
+Número:</td><td><input type="text" name="address.number"
+	value=""></td></tr><tr><td>
+Complemento:</td><td><input type="text" name="address.additionalInfo"
+	value=""></td></tr><tr><td>
+Telefone:</td><td><input type="text" name="address.phone"
+	value=""></td></tr><tr><td>
+Bairro:</td><td><select name="address.neighborhood" id="neighborhood">
+	<option >-- Selecione o bairro --</option>
+	
+	</td></tr>
+	<tr><td></td><td><input type="button"  disabled="disabled" value="Utilizar endereço" id="createAddress"> <span id="statusDelRange"></span> </td></tr>
+</select>
+
+</table>
+<input type="hidden" name="deliveryRangeId" value=""/>
+<input type='hidden' name='deliveryRangeCostInCents' value="">
+<input type='hidden' name='deliveryRangeMinimumCost' value="0">
+
+</div>
+</div>
+<div title="Pizza meio a meio" id="halfOrderDialog"
+	style="display: none; padding: 20px; font-size: medium;">
+
+Tamanho:<select id="halfSize" >
+    <option value="NONE" selected>
+        Grande
+    </option>
+    <option value="MEDIUM" >
+        Média
+    </option>
+    <option value="SMALL">
+        Pequena
+    </option></select><br>
+<table><tr><td>
+Metade 1
+</td><td>Metade 2</td></tr>
+<tr><td><select id="halfOne" ></select></td><td><select id="halfTwo" ></select></td></tr>
+<tr><td><span id="priceHalfOne" ></span></td><td><span id="priceHalfTwo" ></span></td></tr>
+<tr><td></td><td>Total: <span id="totalHalf" ></span></td></tr>
+</table>
+
+<input
+	type="button" id="createHalfPizza" value="Criar pizza">
+</div>
+<div title="Prato especial" id="customPlate"
+	style="display: none; padding: 20px; font-size: medium;">
+descrição<br>
+<input type="text" name="name" id="custom.name"
+	invalidMessage="Descrição é obrigatória"
+	dojoType="dijit.form.ValidationTextBox" regExp=".+"><br>
+preço<br>
+<input class="mandatory" required="true" id="custom.price"
+	dojoType="dijit.form.CurrencyTextBox" lang="pt-BR" value="0,00"
+	fractional="true" required="true" selectOnClick="true" currency=""
+	invalidMessage="Digite o valor com centavos, por exemplo 10,90." /> <input
+	type="button" id="createCustomButton" value="Inserir prato especial">
+</div>
+
+</html>

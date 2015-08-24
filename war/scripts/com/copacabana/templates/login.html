@@ -1,0 +1,51 @@
+<div id="login" class="quadrado">
+<h2>Conecte-se</h2><br>
+<div style="text-align: center;"><a class="fb_button fb_button_medium" target="_fbauth" href="/fbresponse.jsp"  ><span class="fb_button_text">Conectar com Facebook</span></a>
+<div style="margin-top: 3px;margin-bottom: 3px">ou</div></div>
+<div>
+<form dojoType="dijit.form.Form" id="loginForm" action="/authenticateNoSSL.do" method="post" style="margin-bottom: 0px" onsubmit="return false;">
+	<input  type="hidden" class="passwordHidden" name="password" dojoType="dijit.form.TextBox"  />
+	<input  type="hidden" class="usernameHidden" name="login" dojoType="dijit.form.TextBox"  />
+	<input  type="hidden" name="isMD5" value="true" />
+</form>
+<div
+	style="margin-left: 1px;margin-bottom: 5px;" >E-mail:
+	<input type="text" class="username mandatory"  id="username" name="login" selectOnClick="true" dojoType="dijit.form.ValidationTextBox" required="true" style="width: 180px;" /><span class="loading"></span>
+	</div>
+<div
+	style="margin-bottom: 10px" >Senha: 
+<input  style="width: 115px;"  type="password" class="password mandatory" selectOnClick="true" id="passwordFake" name="passwordfake" dojoType="dijit.form.ValidationTextBox"  required="true" />
+<button baseClass="orangeButton loginBtnClass"  dojoType="dijit.form.Button" dojoAttachEvent="onclick:executeLogin" id="loginbtn"  >Entrar</button>
+<br style="clear: both;" clear="both"/>
+<span dojoType="dijit.form.DropDownButton" baseClass="rememberButton ieRememberBtn" style="margin-left:80px;">
+    <span style="font-size: xx-small;">
+        *esqueci minha senha 
+    </span>
+    <div dojoType="dijit.TooltipDialog" id="lembrete" dojoAttachEvent="onExecute:executeReminder,onexecute:executeReminder">
+    	<p>Insira seu e-mail cadastrado e lhe enviaremos sua senha.</p>
+        <label for="name2">
+            E-mail cadastrado:
+        </label>
+        <form action="/lembreteSenha.do" method="post" id="lembreteForm" dojoType="dijit.form.Form" onsubmit="return false;">        
+        <input dojoType="dijit.form.TextBox" id="email" name="email" type="text"/>
+        </form>
+        <br>        
+        <button dojoType="dijit.form.Button" type="submit" baseClass="orangeButton">
+            Enviar senha
+        </button>
+    </div>
+</span> 
+</div><div class="loginMsgs" style="color: red;">&nbsp;</div>
+Ainda n&atilde;o tem cadastro?<br/> <a title="Cadastre-se no ComendoBem" href="/loginRegistro.do" style="color: rgb(235, 125, 75); font-weight: bold;">Clique aqui e cadastre-se</a>
+
+ 
+</div>
+<table border="0" cellpadding="0" cellspacing="0" style="top:-5px;">
+<tr>
+<td style="text-align: left;"> </td>
+<td style="padding-left: 0px;padding-right: 0px;text-align: left;">
+
+</td>
+</tr></table>
+
+</div>

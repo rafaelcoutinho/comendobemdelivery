@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!--                                 -->
+	<!-- Url Mapping For Clients         -->
+	<!--                                 -->
+
+
+	<bean id="urlMapper.restaurant"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="alwaysUseFullPath" value="true" />
+		<property name="mappings">
+			<props>
+				<!-- Restaurant mappings -->
+				<prop key="dados.do">viewRestaurantData</prop>
+				<prop key="cardapio.do">viewPlateMenu</prop>
+				<prop key="cardapioAlmoco.do">viewPlateMenuForLunch</prop>
+				<prop key="cardapioExecutivo.do">viewPlateExecutiveMenu</prop>
+				<prop key="listAdminRestaurantPlates.do">listAdminRestaurantPlates</prop>
+				<prop key="destaqueCardapio.do">viewHighlightPlateMenu</prop>
+				<prop key="atualizaDestaqueCardapio.do">highlightControl</prop>
+				<prop key="destaqueCardapio.do">highlightControl</prop>
+				<prop key="areaEntrega.do">viewDeliveryRange</prop>
+				<prop key="fractionPlate.do">fractionPlateMgr</prop>
+				<prop key="horarios.do">manageWorkingHours</prop>
+				<prop key="trocarSenha.do">changePwdForm</prop>
+				<prop key="pedidos.do">viewRequestsList</prop>
+				<prop key="formasPgto.do">managePaymentTypes</prop>
+				
+				<prop key="updatePaymentTypes.do">updatePaymentTypes</prop>
+				<prop key="historicoPedidos.do">viewOldRequestsList</prop>
+				<prop key="updateHorarios.do">updateHorarios</prop>
+
+				<prop key="listRestaurantPendingOrderList.do">listRestaurantPendingOrderList</prop>
+				<prop key="getWOTimes.do">getWorkingTimesForRestaurant</prop>
+				<prop key="persistDeliveries.do">createDeliveries</prop>
+
+				<prop key="createPlateJson.do">createPlateJson</prop>
+				
+				<prop key="createDelivery.do">createDelivery</prop>
+				<prop key="deleteDelivery.do">deleteDelivery</prop>
+				<prop key="deletePlate.do">deletePlate</prop>
+				<prop key="pictureManager.do">managePicture</prop>
+				<prop key="platePicManager.do">managePlatePicture</prop>
+				<prop key="monthOrders.do">monthOrders</prop>
+				<prop key="faturas.do">faturas</prop>
+				
+				<prop key="fechamento.do">fechamento</prop>
+				<prop key="printFechamento.do">printfechamento</prop>
+				<prop key="acessoDireto.do">singleUrlManager</prop>
+				<prop key="updateUniqueUrl.do">updateUniqueUrl</prop>
+				
+				<prop key="aceitarTermos.do">acceptRestTerms</prop>
+				
+				<prop key="listRestaurantOrderListByStatus.do">listRestaurantOrderListByStatus</prop>
+				
+				<prop key="mudarPrazo.do">changeDelayTime</prop>
+				
+				<prop key="restOrdersByDate.do">ordersByDate</prop>
+				
+				<!-- END  mappings -->
+			</props>
+		</property>
+		<property name="interceptors">
+			<list>
+				<bean class="br.copacabana.spring.security.FacebookAuth">
+				</bean>
+				<bean class="br.copacabana.spring.security.RestaurantProtected">				
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!--                 -->
+	<!-- Web Controllers -->
+	<!--                 -->
+	<bean id="createPlateJson" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.menu.AddPlateCommand" />
+		<property name="manager" ref="plateManager" />
+	</bean>
+	<bean id="changePwdForm" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/changePwd" />
+	</bean>
+	<bean id="viewRequestsList" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/manageOrders" />
+	</bean>
+	<bean id="viewOldRequestsList" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/manageOldOrders" />
+	</bean>
+	<bean id="managePaymentTypes" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/managePaymentTypes" />
+	</bean>
+	<bean id="faturas" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/manageFacturation" />
+	</bean>
+	
+	
+
+	<bean id="fechamento" parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.restaurant.ConsolidateBillCommand" />
+		<property name="viewName" value="restaurant/fechamento" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+	
+	<bean id="printfechamento" parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.restaurant.ConsolidateBillCommand" />
+		<property name="viewName" value="print/printfechamento" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+
+	
+	<bean id="manageWorkingHours" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/profileHorarios" />
+	</bean>
+
+	<bean id="managePicture" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/picture" />
+	</bean>
+	
+	<bean id="managePlatePicture" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/plateImage" />
+	</bean>
+	
+	<bean id="singleUrlManager" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/singleUrl" />
+	</bean>
+	
+	<bean id="listAdminRestaurantPlates" class="br.copacabana.JsonViewItemFileReadStoreController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.menu.ListAdminRestaurantPlates" />		
+		<property name="manager" ref="plateManager" />
+	</bean>
+	
+	
+	<bean id="fractionPlateMgr" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/manageFractionPrice" />
+	</bean>
+	<bean id="viewDeliveryRange" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/profileFuncionalidades" />
+	</bean>
+	<bean id="viewPlateMenu" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/profileCardapio" />
+	</bean>
+	<bean id="viewPlateMenuForLunch" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/profileCardapioPeriod" />
+	</bean>
+	<bean id="viewPlateExecutiveMenu" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/profileCardapioExecutive" />
+	</bean>
+	
+	<bean id="viewHighlightPlateMenu" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/profileDestaqueCardapio" />
+	</bean>
+	<bean id="listRestaurantPendingOrderList" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass"
+			value="br.copacabana.usecase.beans.GetPendingRestaurantOrders" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	<bean id="getWorkingTimesForRestaurant" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.GetWorkingHoursCommand" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	<bean id="createDeliveries" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.CreateListDeliveryRange" />
+		<property name="manager" ref="deliveryRangeManager" />
+	</bean>
+
+	
+
+	<bean id="createDelivery" class="br.copacabana.JsonPersistController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.com.copacabana.cb.entities.DeliveryRange" />
+		<property name="manager" ref="deliveryRangeManager" />
+	</bean>
+	<bean id="deleteDelivery" class="br.copacabana.JsonDeleteController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.com.copacabana.cb.entities.DeliveryRange" />
+		<property name="manager" ref="deliveryRangeManager" />
+	</bean>
+	<bean id="updateHorarios2" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.UpdateHorarios" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	<bean id="updateHorarios" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.UpdateHorariosWithTurns" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	<bean id="updatePaymentTypes" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.UpdatePaymentTypes" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	
+	<bean id="deletePlate" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.menu.DeletePlate" />
+		<property name="manager" ref="plateManager" />
+	</bean>
+	<bean id="updateUniqueUrl" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.UpdateRestaurantUniqueUrlCommand" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	<bean id="highlightControl" class="br.copacabana.highlight.HighlightsCommandController">
+		<property name="successView" value="redirect:atualizaDestaqueCardapio.do" />
+		<property name="formView" value="restaurant/profileDestaqueCardapio" />
+		<property name="commandClass" value="br.copacabana.highlight.HighlightBean" />
+		<property name="manager" ref="plateManager" />
+	</bean>
+	
+	<bean id="monthOrders" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.MonthOrdersReport" />
+		<property name="manager" ref="plateManager" />
+	</bean>
+	<bean id="changeDelayTime" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.ChangeRestDelayCommand" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	
+	
+	<bean id="listRestaurantOrderListByStatus" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.beans.GetRestaurantOrdersByStatus" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	
+	
+	<bean id="viewRestaurantData"  parent="baseViewController">		
+		<property name="commandClass" value="br.copacabana.spring.rest.LoadRestaurantData" />
+		<property name="viewName" value="restaurant/profile" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+	
+	<bean id="ordersByDate" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.OrdersByDateRange" />
+		<property name="manager" ref="plateManager" />
+	</bean>
+	
+	
+	
+
+</beans>

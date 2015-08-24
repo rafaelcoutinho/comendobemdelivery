@@ -1,0 +1,167 @@
+@CHARSET "UTF-8";
+
+/* ------------ TAGs --------------------- */
+
+h2 {
+	padding: 5px;
+	margin: 10px;
+}
+
+ul.menu {
+	list-style: none;
+	padding: 10px 5px;
+	margin-right: 20px;
+}
+
+ul.menu li {
+	padding: 5px;
+}
+
+ul.menu li a {
+	color: rgb(150, 148, 148);
+}
+
+ul.menu li.selecionado a, ul.menu li a:hover {
+	color: rgb(85, 83, 81);
+	text-decoration: underline;
+}
+
+/* ------------ IDs --------------------- */
+
+#abas {
+	height: 25px;
+}
+
+#abas a {
+	height: 17px;
+	display: inline-block;
+	padding: 4px 10px;
+	margin: 0px;
+}
+
+#abas a.active {
+	color: white;
+	background: rgb(217, 38, 28);
+}
+
+#abas a.inactive {
+	color: rgb(108, 104, 104);
+	background: rgb(194, 194, 194);
+}
+
+#barraEmbaixo {
+	clear: both;
+	text-align: center;
+}
+
+#barraEmbaixo img {
+	margin-left: 26px;
+}
+
+#camposEndereco {
+	/*height: 440px;*/
+}
+
+#camposRestaurante {
+	float: left;
+	border-right: 1px solid rgb(96, 93, 93);
+	margin: 10px;
+	/*height: 450px;*/
+}
+
+#funcionalidade {
+	float: right;
+	width: 550px;
+	padding: 10px;
+	border-left: 1px solid rgb(96, 93, 93);
+}
+
+#funcionalidade .barraSalvar {
+	text-align: center;
+	margin-top: 45px;
+}
+
+#funcionalidade h2 {
+	color: rgb(235, 125, 75);
+}
+
+#funcionalidade .highlight {
+	color: rgb(235, 125, 75);
+}
+
+#funcionalidade p {
+	line-height: 2em;
+}
+
+/* ------------ Classes --------------------- */
+.barraSalvar {
+	height: 20px;
+	margin-bottom: 100px;
+}
+
+.barraSalvar img {
+	margin-top: -20px;
+}
+
+.campos {
+	padding: 10px;
+}
+
+.campos h2 {
+	color: rgb(217, 38, 28);
+	padding: 2px 0px;
+	margin: 0px;
+}
+
+.campos hr {
+	margin: 20px 0px 10px;
+}
+
+.campos input {
+	margin: 10px;
+}
+
+.campos span {
+	padding: 2px;
+}
+/*
+.dijitDialogPaneContent form {
+	margin-bottom: 10px;
+}
+
+.dijitDialogPaneContent .botao {
+	width: 50px;
+	cursor: pointer;
+	margin: 5px 15px;
+}*/
+
+.option {
+	display: inline-block;
+	width: 150px;
+	height: 15px;
+	padding: 2px;
+	margin: 0px;
+}
+
+.roundedInput  {
+	top: 6px;
+}
+
+.roundedInputDojo {
+	top: 6px;
+	
+	text-align: left;
+}
+.salvar {
+	position: absolute;
+	right: -10px;
+	top: 70px;
+	width: 56px;
+	height: 56px;
+	cursor: pointer;
+}
+
+.text input, .password input {
+	margin-left: 3px;
+	margin-top: 0px;
+}

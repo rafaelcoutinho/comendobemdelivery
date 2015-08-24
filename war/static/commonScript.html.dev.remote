@@ -1,0 +1,18 @@
+<script type="text/javascript">
+ 
+           djConfig = {
+           	baseUrl : './',                
+               modulePaths: {
+                   'com.copacabana' : '/scripts/com/copacabana'
+               },
+               parseOnLoad: true,
+               isDebug: true,
+               usePlainJson: true,
+               locale: 'pt' 
+                  
+           };
+</script>
+<link rel="stylesheet" type="text/css"
+	href="http://ajax.googleapis.com/ajax/libs/dojo/1.4.3/dijit/themes/tundra/tundra.css">
+<SCRIPT TYPE="text/javascript"
+	SRC="http://ajax.googleapis.com/ajax/libs/dojo/1.4.3/dojo/dojo.xd.js.uncompressed.js"></SCRIPT>

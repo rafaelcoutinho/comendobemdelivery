@@ -1,0 +1,200 @@
+@CHARSET "UTF-8";
+
+/* ------------ IDs --------------------- */
+.barraTopo {
+	margin: 4px 0px 10px;
+	height: 6px;
+	width: 800px;
+	background: rgb(238, 238, 238);
+}
+
+.formularioBusca {
+	background: rgb(217, 214, 214);
+	width: 250px;
+	height: 250px;
+	position: relative;
+	margin-top: -40px;
+	z-index: 150;
+	float: left;
+}
+.formularioBusca {
+	background: rgb(217, 214, 214);
+	width: 250px;
+	height: 250px;
+	position: relative;
+	margin-top: -40px;
+	z-index: 150;
+	float: left;
+}
+
+.formularioBusca .busca {
+	position: absolute;
+	top: 60px;
+	left: 45px;
+}
+
+.formularioBusca .busca .button {
+	margin: -7px 6px;
+}
+ 
+.formularioBusca .busca .text {
+	padding: 5px 2px;
+}
+
+.formularioBusca .cantoFormularioImg {
+	position: absolute;
+	height: 250px;
+	right: 0px;
+	top: 0px;
+}
+
+.formularioBusca .filtrosBuscaImg {
+	position: absolute;
+	top: 53px;
+	left: 10px;
+}
+
+.itens {
+	width: 250px;
+	height: 250px;
+	margin-left: auto;
+	margin-right: auto;
+	background: black;
+	position: relative;
+	background: url('../resources/img/bgMenu/fundo.jpg');
+	overflow: hidden;
+}
+
+.itens .item {
+	top: 250px;
+	position: absolute;
+	width: 250px;
+	height: 250px;
+	margin: 0px;
+}
+
+.itens .restaurante {
+	background: rgb(255, 249, 245);
+	cursor: pointer;
+	opacity: 0.9;
+	width: 115px;
+	padding: 4px 2px;
+	position: absolute;
+	font-size: 0.8em;
+}
+
+.itens .ladoA {
+	left: 3px;
+}
+
+.itens .ladoB {
+	right: 3px;
+}
+
+.itens .restaurante .aberto {
+	background: rgb(133, 194, 38);
+}
+
+.itens .restaurante .fechado {
+	background: rgb(217, 38, 28);
+}
+
+.itens .restaurante span {
+	font-size: 0.7em;
+	color: white;
+	position: absolute;
+	right: 4px;
+	top: 4px;
+	padding: 1px;
+}
+
+.menuRestaurantes {
+	background: rgb(227, 224, 224);
+	height: 250px;
+	margin-top: -40px;
+	margin-left: 250px;
+	width: 550px;
+	position: relative;
+}
+
+.menuRestaurantes .cheio {
+	cursor: pointer;
+}
+
+.menuRestaurantes .esquerda {
+	position: absolute;
+	left: 22px;
+}
+
+.menuRestaurantes .direita {
+	position: absolute;
+	right: 22px;
+	text-align: right;
+}
+
+.menuRestaurantes .tipo {
+	height: 20px;
+	width: 120px;
+	background: rgb(210, 208, 208);
+	padding: 2px 4px;
+	z-index: 151;
+}
+
+.menuRestaurantes .selecionado {
+	background: rgb(240, 238, 238);
+	cursor: default;
+}
+
+.topo {
+	width: 828px;
+	position: relative;
+	margin: 0px;
+	margin-left: -14px;
+	margin-right: -14px;
+	padding: 0px;
+	z-index: 151;
+}
+
+.topo a {
+	color: rgb(124, 119, 119);
+	text-decoration: none;
+	position: absolute;
+}
+
+.topo .bordaAtras {
+	position: absolute;
+	width: 828px;
+	top: 112px;
+}
+
+.topo .cadastreSe {
+	top: 84px;
+	left: 388px;
+}
+
+.topo .comoPedir {
+	top: 85px;
+	left: 485px;
+}
+
+.topo .faleConosco {
+	top: 94px;
+	left: 700px;
+}
+
+.topo .imagemTopo {
+	width: 828px;
+	margin-bottom: 15px;
+	z-index: 200;
+}
+
+.topo .logo {
+	position: absolute;
+	left: 20px;
+	top: 5px;
+}
+
+.topo .statusPedido {
+	top: 87px;
+	left: 578px;
+}

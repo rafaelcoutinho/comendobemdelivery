@@ -1,0 +1,913 @@
+@CHARSET "UTF-8";
+
+/* ------------ TAGs --------------------- */
+* {
+	font-family: verdana, arial, sans-serif;
+	font-size: small;
+	color: rgb(96, 93, 93);
+}
+
+.dj_ie .dijitCheckBoxInput {
+	filter: none;
+}
+
+a,a:visited {
+	color: rgb(235, 125, 75);
+	text-decoration: none;
+}
+
+a:hover {
+	color: rgb(255, 155, 105);
+}
+
+a img {
+	border: none;
+}
+
+body {
+	background: url('/resources/img/Fundodegrade.jpg') repeat-x fixed 0 0;
+	padding: 0px;
+	margin: 0px;
+}
+
+h1,h2,h3 {
+	font-weight: normal;
+}
+
+h1 {
+	font-size: 1.6em;
+}
+
+h2 {
+	font-size: 1.4em;
+}
+
+h3 {
+	font-size: 1.2em;
+}
+
+hr {
+	height: 1px;
+	border: none;
+	border-top: 1px solid rgb(96, 93, 93);
+}
+
+input.required {
+	color: rgb(96, 93, 93);
+}
+
+label.desabilitado {
+	opacity: 0.4;
+}
+
+span.required {
+	margin-left: -4px;
+}
+
+/* ------------ IDs --------------------- */
+#bloqueador {
+	position: absolute;
+	opacity: 0.7;
+	background: rgb(180, 180, 180);
+	z-index: 1500;
+}
+
+#container {
+	margin: 0px auto;
+	width: 800px;
+	background: rgb(255, 255, 255);
+	border-left: 2px solid rgb(170, 169, 169);
+	border-right: 2px solid rgb(170, 169, 169);
+	padding: 0px;
+}
+
+#conteudo {
+	position: relative;
+}
+
+#obrigatorios {
+	background: rgb(235, 131, 83);
+	color: white;
+	padding: 0px 10px;
+}
+
+#pe {
+	background: rgb(240, 240, 240) url('/resources/img/SombraBase.jpg')
+		no-repeat;
+	height: 50px;
+	text-align: center;
+	clear: both;
+}
+
+/* ------------ Classes --------------------- */
+.button input,.submit input {
+	color: white;
+	margin-top: -1px;
+	margin-left: 2px;
+}
+
+.canto {
+	position: absolute;
+	width: 12px;
+	height: 12px;
+}
+
+.cantoInfDir {
+	background: url('/resources/img/opt/cantoInfDir.jpeg');
+	bottom: 0px;
+	right: 0px;
+}
+
+.cantoSupDir {
+	background: url('/resources/img/opt/cantoSupDir.jpeg');
+	top: 0px;
+	right: 0px;
+}
+
+.cantoInfEsq {
+	background: url('/resources/img/opt/cantoInfEsq.jpeg');
+	bottom: 0px;
+	left: 0px;
+}
+
+.cantoSupEsq {
+	background: url('/resources/img/opt/cantoSupEsq.jpeg');
+	top: 0px;
+	left: 0px;
+}
+
+.cantoDialog {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+}
+
+.cantoInfDirBranco {
+	background: url('/resources/img/cantoInfDirBranco.png') no-repeat;
+	bottom: -16px;
+	right: -16px;
+}
+
+.cantoInfEsqBranco {
+	background: url('/resources/img/cantoInfEsqBranco.png') no-repeat;
+	bottom: -16px;
+	left: -16px;
+}
+
+.cantoSupDirBranco {
+	background: url('/resources/img/cantoSupDirBranco.png') no-repeat;
+	top: -16px;
+	right: -16px;
+}
+
+.cantoSupEsqBranco {
+	background: url('/resources/img/cantoSupEsqBranco.png') no-repeat;
+	top: -16px;
+	left: -16px;
+}
+
+.centralizado {
+	text-align: center;
+}
+
+.dijitCalendarDateLabel {
+	font-size: 0.8em;
+}
+
+/*
+.dijitDialog {
+	border : none;
+	z-index: 10001;
+	background: white;
+}
+
+.dijitDialog .dijitDialogPaneContent  {
+	border: none;
+}
+
+.dijitDialog .dijitDialogTitle {
+	font-size:1.8em;
+}
+
+.dijitDialog .dijitDialogTitleBar {
+	background: transparent;
+	padding: 5px 5px 10px;
+	cursor: move;
+}
+
+.dijitDialogCloseIcon {
+	display: none;
+}
+
+.dijitDialogUnderlay {
+	background: black;
+	opacity: 0.7;
+}
+
+.dijitDialogUnderlayWrapper {
+	position: absolute;
+	z-index: 10000;
+}
+
+.dijitDialog .bordaDir {
+	position: absolute;
+	background: white;
+	height: 100%;
+	width: 16px;
+	right: -16px;
+	top: 0px;
+}
+
+.dijitDialog .bordaEsq {
+	position: absolute;
+	background: white;
+	height: 100%;
+	width: 16px;
+	left: -16px;
+	top: 0px;
+}
+
+.dijitDialog .bordaInf {
+	position: absolute;
+	background: white;
+	height: 16px;
+	width: 100%;
+	left: 0px;
+	bottom: -16px;
+}
+
+.dijitDialog .bordaSup {
+	position: absolute;
+	background: white;
+	height: 16px;
+	top: -16px;
+	width: 100%;
+	left: 0px;
+}
+*/
+.dojoxCalendarContainer {
+	font-family: verdana, arial, sans-serif;
+	font-size: small;
+}
+
+.dojoxCalendarMonthLabelNode {
+	font-size: 0.8em;
+}
+
+.dojoxCalendarDayYearLabel {
+	font-size: 0.8em;
+}
+
+.fundoCinza {
+	background: rgb(240, 238, 238);
+}
+
+.required {
+	color: red;
+}
+
+.roundedInput {
+	position: relative;
+	padding: 0px;
+	display: inline-block;
+	top: 4px;
+}
+
+.roundedInputDojo {
+	position: relative;
+	padding: 0px;
+	display: inline-block;
+	top: 4px;
+}
+
+.roundedInput input {
+	background: transparent;
+	border: none;
+	position: absolute;
+	left: 0px;
+}
+
+.roundedInputDojo input {
+	background: transparent;
+	border: none;
+	position: relative;
+	top: -5px;
+	left: -110px;
+}
+
+.roundedInput img {
+	margin: 0px;
+	padding: 0px;
+	left: 0px;
+	position: absolute;
+	cursor: pointer;
+}
+
+.roundedInputDojo img {
+	margin: 0px;
+	padding: 0px;
+	position: ;
+	cursor: text;
+}
+
+.roundedInput.desabilitado img {
+	opacity: 0.4;
+}
+
+.text input,.password input {
+	margin-left: 3px;
+}
+
+/**** Para o calendário ******/
+.tundra .dijitCalendarIncrementControl {
+	width: 15px;
+	height: 15px;
+	background-image: url(images/spriteRoundedIconsSmall.png);
+	background-repeat: no-repeat
+}
+
+.dj_ie6 .tundra .dijitCalendarIncrementControl {
+	font-size: .1em;
+	background-image: url(images/spriteRoundedIconsSmall.gif);
+}
+
+.tundra .dijitA11ySideArrow {
+	display: none;
+}
+
+.tundra .dijitCalendarDecrease {
+	background-position: top left;
+}
+
+.tundra .dijitCalendarIncrease {
+	background-position: -30px top;
+}
+
+.tundra table.dijitCalendarContainer {
+	font-size: 100%;
+	border-spacing: 0;
+	border-collapse: separate;
+	border: 1px solid #ccc;
+	margin: 0;
+}
+
+.tundra .dijitCalendarMonthContainer th {
+	background: #d3d3d3 url(images/titleBar.png) repeat-x top;
+	padding-top: .3em;
+	padding-bottom: .2em;
+	text-align: center;
+}
+
+.dj_ie6 .tundra .dijitCalendarMonthContainer th {
+	padding-top: .2em;
+	padding-bottom: .1em;
+}
+
+/**TODO must remote this!*/
+.tundra .dijitCalendarDayLabelTemplate {
+	background: white url(images/calendarDayLabel.png) repeat-x bottom;
+	font-weight: normal;
+	padding-top: .15em;
+	padding-bottom: 0em;
+	border-top: 1px solid #eeeeee;
+	color: #293a4b;
+	text-align: center;
+}
+
+.tundra .dijitCalendarBodyContainer {
+	border-bottom: 1px solid #eeeeee;
+}
+
+.tundra .dijitCalendarMonthLabel {
+	color: #293a4b;
+	font-weight: bold;
+}
+
+.tundra .dijitCalendarDateTemplate {
+	font-size: 0.9em;
+	font-weight: bold;
+	text-align: center;
+	padding: 0.3em 0.3em 0.05em 0.3em;
+	letter-spacing: 1px;
+}
+
+.dj_ie .tundra .dijitCalendarDateTemplate {
+	padding: 0.1em .33em 0.02em .33em;
+}
+
+.tundra .dijitCalendarPreviousMonth,.tundra .dijitCalendarNextMonth {
+	color: #999999;
+	background-color: rgb(235, 235, 235) !important;
+}
+
+.tundra .dijitCalendarPreviousMonthDisabled,.tundra .dijitCalendarNextMonthDisabled
+	{
+	background-color: #a4a5a6 !important;
+}
+
+.tundra .dijitCalendarCurrentMonth {
+	background-color: white !important;
+}
+
+.tundra .dijitCalendarCurrentMonthDisabled {
+	background-color: #bbbbbc !important;
+}
+
+.tundra .dijitCalendarDisabledDate {
+	cursor: default !important;
+	text-decoration: line-through !important;
+}
+
+.tundra .dijitCalendarCurrentDate {
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.tundra .dijitCalendarHoveredDate {
+	background-color: #e2ebf2 !important;
+}
+
+.tundra .dijitCalendarSelectedDate {
+	background-color: #bbc4d0 !important;
+	color: black !important;
+}
+
+.tundra .dijitCalendarYearContainer {
+	background: white url(images/calendarYearLabel.png) repeat-x bottom;
+	border-top: 1px solid #ccc;
+}
+
+.tundra .dijitCalendarYearLabel {
+	margin: 0;
+	padding: 0.4em 0 0.25em 0;
+	text-align: center;
+}
+
+.tundra .dijitCalendarSelectedYear {
+	color: black;
+	padding: 0.2em;
+	padding-bottom: 0.1em;
+	background-color: #bbc4d0 !important;
+}
+
+.tundra .dijitCalendarNextYear,.tundra .dijitCalendarPreviousYear {
+	color: black !important;
+	font-weight: normal;
+}
+
+.rememberButton .dijitButtonNode {
+	padding: 0px !important;
+	border: 1px hidden rgb(255, 255, 255);
+}
+
+.rememberButton .dijitButtonNode {
+	padding: 0px !important;
+	border: 0px;
+	background: transparent;
+	color: black;
+	font-size: xx-small !important;
+	
+}
+
+.orangeButton .dijitButtonNode {
+	background: rgb(235, 125, 75) !important;
+	color: white !important;
+	padding: 0px !important;
+	font-size: small !important;
+	border: 1px hidden rgb(255, 255, 255);
+}
+
+.orangeButtonHover .dijitButtonNode {
+	background-color: rgb(89, 94, 111) !important;
+	color: cyan !important;
+}
+
+.orangeButtonFocused .dijitButtonNode { //
+	
+}
+
+.orangeButton .dijitButtonText {
+	color: white !important;
+}
+
+.orangeButtonActive .dijitButtonNode {
+	background-color: white !important;
+	color: black !important;
+}
+
+.dica {
+	text-align: center;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.fundoTelaEstatica {
+	margin: 8px 8px 8px 8px;
+	background-image: url('/resources/img/telapadrao.jpg');
+	background-position: bottom right;
+	width: 790px;
+	background-repeat: no-repeat;
+	height: 550px;
+	overflow: auto;
+}
+.fundoTelaEstaticaSmall {
+	margin: 8px 8px 8px 8px;
+	background-image: url('/resources/img/telapadrao.jpg');
+	background-position: bottom right;
+	width: 390px;
+	background-repeat: no-repeat;
+	height: 450px;
+	overflow: auto;
+}
+
+@CHARSET "UTF-8";
+
+/* ------------ IDs --------------------- */
+#barraTopo {
+	margin: 4px 0px 10px;
+	height: 6px;
+	width: 800px;
+	background: rgb(238, 238, 238);
+}
+
+#formularioBusca {
+	background: rgb(216, 215, 215);
+	width: 220px;
+	height: 250px;
+	position: relative;
+	margin-top: -50px;
+	z-index: 150;
+	float: left;
+}
+
+#formularioBusca #busca {
+	position: absolute;
+	top: 60px;
+	left: 45px;
+}
+
+#formularioBusca #busca .button {
+	margin: -7px 6px;
+}
+
+#formularioBusca #busca .text {
+	padding: 5px 2px;
+}
+
+#formularioBusca #cantoFormularioImg {
+	position: absolute;
+	height: 250px;
+	right: -50px;
+	top: 0px;
+}
+
+#formularioBusca #filtrosBuscaImg {
+	position: absolute;
+	top: 53px;
+	left: 10px;
+}
+
+#itens {
+	width: 250px;
+	height: 250px;
+	margin-left: 180px;
+	background: black;
+	position: relative;
+	background: url('/resources/img/bgMenu/fundo.jpg');
+	overflow: hidden;
+	margin-top: -15px;
+}
+
+#itens .item {
+	top: 250px;
+	position: absolute;
+	width: 250px;
+	height: 250px;
+	margin: 0px;
+}
+
+#itens .restaurante {
+	background: rgb(255, 249, 245);
+	cursor: pointer;
+	opacity: 0.9;
+	width: 115px;
+	padding: 4px 2px;
+	position: absolute;
+	font-size: 0.8em;
+}
+
+#itens .ladoA {
+	left: 3px;
+}
+
+#itens .ladoB {
+	right: 3px;
+}
+
+#itens .restaurante .aberto {
+	background: rgb(133, 194, 38);
+}
+
+#itens .restaurante .fechado {
+	background: rgb(217, 38, 28);
+}
+
+#itens .restaurante .notActive {
+	background: #EB7D4B
+}
+
+#itens .restaurante span {
+	font-size: 0.7em;
+	color: white;
+	position: absolute;
+	right: 4px;
+	top: 4px;
+	padding: 1px;
+}
+
+#menuRestaurantes {
+	background: rgb(233, 230, 230);
+	height: 250px;
+	margin-top: -50px;
+	margin-left: 220px;
+	width: 580px;
+	position: relative;
+}
+
+#menuRestaurantes .cheio {
+	cursor: pointer;
+}
+
+#menuRestaurantes .esquerda {
+	position: absolute;
+	left: 52px;
+}
+
+#menuRestaurantes .direita {
+	position: absolute;
+	right: 22px;
+	text-align: right;
+}
+
+#menuRestaurantes .tipo {
+	height: 20px;
+	width: 120px;
+	background: rgb(210, 208, 208);
+	padding: 2px 4px;
+	z-index: 151;
+}
+
+#menuRestaurantes .selecionado {
+	background: rgb(240, 238, 238);
+	cursor: default;
+}
+
+#topo {
+	width: 828px;
+	position: relative;
+	margin: 0px;
+	margin-left: -14px;
+	margin-right: -14px;
+	padding: 0px;
+	z-index: 151;
+}
+
+#topo a {
+	color: rgb(124, 119, 119);
+	text-decoration: none;
+	position: absolute;
+}
+
+#topo #bordaAtras {
+	position: absolute;
+	width: 828px;
+	top: 112px;
+}
+
+#topo #cadastreSe {
+	top: 84px;
+	left: 388px;
+}
+
+#topo #comoPedir {
+	top: 85px;
+	left: 485px;
+}
+
+#topo #faleConosco {
+	top: 94px;
+	left: 700px;
+}
+
+#topo #imagemTopo {
+	width: 832px;
+	margin-bottom: 15px;
+	margin-left: -2px;
+	z-index: 200;
+}
+
+#topo #logo {
+	position: absolute;
+	left: 20px;
+	top: 5px;
+}
+
+#topo .statusPedido {
+	top: 87px;
+	left: 578px;
+}
+
+.closeButton {
+	color: #EB7D4B;
+	text-decoration: underline;
+	cursor: pointer;
+	text-align: right;
+	font-size: x-small;
+}
+
+.restaurantButtons {
+	display: none;
+}
+
+.clientButtons {
+	display: none;
+}
+.centralButtons{display:none;}
+.unknownButtons {
+	display: none;
+}
+
+.rankingDetails {
+	display: none;
+}
+
+.expand {
+	cursor: pointer;
+	border: 1px solid gray;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.collapse {
+	cursor: pointer;
+	border: 1px solid gray;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.cpfPlace {
+	font-weight: bold;
+}
+
+.helptext {
+	cursor: help;
+}
+
+.openStatus {
+	//float: right;
+	//margin-right: 30px;
+	//margin-left:15px;
+	width: 130px;
+	color: white;
+	//padding: 3px;
+	display: false;
+	//text-align: center;
+	cursor: help;
+}
+
+.restaurantClosed {
+	background: #D9261C none repeat scroll 0 0;
+}
+
+.restaurantSoon {
+	background: #EB7D4B none repeat scroll 0 0;
+}
+
+.halfTwo {
+	width: 40px;
+	height: 80px;
+	background-image: url('/resources/img/p2.png');
+	float: right;
+	margin-left: 1px;
+}
+
+.halfOne {
+	width: 40px;
+	height: 80px;
+	background-image: url("/resources/img/p1.png");
+	float: left;
+	margin-right: 1px;
+}
+
+.turnOff {
+visibility: hidden;
+}
+
+.addFractionPlate{
+	display:none;
+	text-align:right;
+	margin-bottom: 25px;
+}
+
+.deliveryTime{
+	background-image:url("/resources/img/xclock.png");
+	background-position:right center;
+	background-repeat:no-repeat;
+	padding-right:15px;
+	font: x-small;	
+	cursor: help;	
+}
+.totalCost{
+font-size: medium;
+font-weight: bold;
+}
+.fb_button, .fb_button_rtl {
+    background: url("http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/FGFbc80dUKj.png") no-repeat scroll 0 0 #29447E;
+    cursor: pointer;
+    display: inline-block;
+    outline: medium none;
+    padding: 0 0 0 1px;
+    text-decoration: none;
+    background-position: left -188px;
+}
+.fb_button .fb_button_text, .fb_button_rtl .fb_button_text {background: url("http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/FGFbc80dUKj.png") repeat scroll 0 0 #5F78AB;
+    border-bottom: 1px solid #1A356E;
+    border-top: 1px solid #879AC0;
+    color: #FFFFFF;
+    display: block;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    font-weight: bold;
+    margin: 1px 1px 0 21px;
+    padding: 2px 6px 3px;
+    text-shadow: none;
+}
+.ratingbox{
+float: right;
+position: relative;
+z-index: 2;
+padding-left: 20px;
+width: 140px;
+}
+.restauranteinfo h1.consumer{
+
+margin: 0;
+padding-bottom: 0;
+border: 0;
+}
+.restaurantinfo h1 {
+color: #C00;
+font-size: 16px;
+font-weight: bold;
+margin: 0 0 .25em 0;
+padding-bottom: .25em;
+border-bottom: 1px dotted #CCC;
+position: relative;
+}
+.restauranteinfo p{
+display: block;
+padding: 0;
+margin: 0;
+text-align: left;
+font-size: 12px;
+
+color: #555;
+}
+.restaurantinfo .restaurantdetails {
+margin-top: .5em;
+display: block;
+}
+
+p.readytime {
+background: url('/resources/img/ico/delivery.png') 0 0 no-repeat;
+margin: 0;
+padding-left: 20px!important;
+margin-bottom: .25em!important;
+}
+p.info {
+background: url('/resources/img/ico/info.png') 0 0 no-repeat;
+padding-left: 20px!important;
+margin-bottom: .25em!important;
+margin-top:0px;
+}
+p.paymenttype {
+background: url('/resources/img/ico/money.png') 0 0 no-repeat;
+padding-left: 20px!important;
+margin-bottom: .25em!important;
+}
+.VendorName{
+font-size: large;
+}
+.alertMsg{
+height:40px;
+width:100%;
+border:1px solid brown;
+
+background: url('/resources/img/ico/alert32.png') 0 0 no-repeat;
+background-color:#FEC000;
+ font-weight: bold;
+    height: 30px;
+    padding-left: 40px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    width: 500px;
+}

@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+#barraEmbaixo {
+	margin-top: -29px; 
+}
+
+#barraEmbaixo img {
+	margin-top: -20px;
+	margin-left: -60px;
+}

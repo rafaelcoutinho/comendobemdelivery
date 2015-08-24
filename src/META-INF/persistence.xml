@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+	<persistence-unit name="ComendoBemPersist">
+		<provider>org.datanucleus.jpa.PersistenceProviderImpl</provider>
+		<!-- org.datanucleus.store.appengine.jpa.DatastorePersistenceProvider -->
+
+		<class>
+		br.com.copacabana.cb.entities.XMPPUser</class>
+		<class>
+		br.com.copacabana.cb.app.Configuration</class>
+		<class>
+		br.com.copacabana.cb.entities.ConfigurationExtended</class>
+		<class>
+		br.com.copacabana.cb.entities.WorkingHours</class>
+		<class>
+		br.com.copacabana.cb.entities.UserBean</class>
+		<class>
+		br.com.copacabana.cb.entities.OrdinarySell</class>
+		<class>
+		br.com.copacabana.cb.entities.ItemSold</class>
+		<class>
+		br.com.copacabana.cb.entities.State</class>
+		<class>
+		br.com.copacabana.cb.entities.SideDishesGroup</class>
+		<class>
+		br.com.copacabana.cb.entities.SideDish</class>
+
+		<class>
+		br.com.copacabana.cb.entities.Restaurant</class>
+		<class>
+		br.com.copacabana.cb.entities.Recommendation</class>
+		<class>
+		br.com.copacabana.cb.entities.Plate</class>
+		<class>
+		br.com.copacabana.cb.entities.Person</class>
+		<class>
+		br.com.copacabana.cb.entities.Payment</class>
+		<class>
+		br.com.copacabana.cb.entities.PaymentInCash</class>
+		<class>
+		br.com.copacabana.cb.entities.OrderedSideDish</class>
+		<class>
+		br.com.copacabana.cb.entities.OrderedPlate</class>
+		<class>
+		br.com.copacabana.cb.entities.MealOrder</class>
+		<class>
+		br.com.copacabana.cb.entities.FoodCategory</class>
+
+
+		<class>
+		br.com.copacabana.cb.entities.ContactInfo</class>
+		<class>
+		br.com.copacabana.cb.entities.Client</class>
+		<class>
+		br.com.copacabana.cb.entities.City</class>
+		<class>
+		br.com.copacabana.cb.entities.Address</class>
+		<class>
+		br.com.copacabana.cb.entities.Neighborhood</class>
+		<class>br.com.copacabana.cb.KeyWrapper</class>
+		<class>
+		br.com.copacabana.cb.entities.WorkingHours</class>
+		<class>
+		br.com.copacabana.cb.entities.ExceptionWorkingHours</class>
+		<class>
+		br.com.copacabana.cb.entities.LoginSession</class>
+		<properties>
+			<property name="datanucleus.cache.level1.type" value="weak" />
+			<property name="datanucleus.NontransactionalRead" value="true" />
+			<property name="datanucleus.NontransactionalWrite" value="true" />
+			<property name="datanucleus.ConnectionURL" value="appengine" />
+			<property name="datanucleus.appengine.autoCreateDatastoreTxns"
+				value="false" />
+			<property name="datanucleus.cache.collections" value="true" />
+			<property name="datanucleus.cache.collections.lazy" value="true" />
+			<property name="datanucleus.query.cached" value="true" />
+			<property name="datanucleus.identifier.case" value="UpperCase" />
+			<!-- <property name="datanucleus.appengine.ignorableMetaDataBehavior" 
+				value="NONE"/> -->
+		</properties>
+	</persistence-unit>
+
+</persistence>

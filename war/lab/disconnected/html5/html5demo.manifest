@@ -1,0 +1,13 @@
+CACHE MANIFEST
+
+# Build 2011-04-07Adsfdadaaaaaaaa
+
+CACHE:
+/scripts/h5utils.js
+/scripts/jquery-1.4.4.min.js
+
+
+
+FALLBACK:
+/styles/online.css /styles/offline.css
+../../listClients.jsp emptyList.html

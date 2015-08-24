@@ -1,0 +1,22 @@
+<script type="text/javascript">
+ 
+           djConfig = {
+           	baseUrl : '/scripts/dj/',                
+               modulePaths: {
+                   'com.copacabana' : '/scripts/com/copacabana',
+                   'dijit':'/scripts/dj/dijit',
+                   'dojo':'/scripts/dj/dojo',
+                   'dojox':'/scripts/dj/dojox'
+                   
+               },
+               parseOnLoad: true,
+               isDebug: true,
+               usePlainJson: true,
+               locale: 'pt' 
+                  
+           };
+</script>
+<link rel="stylesheet" type="text/css"
+	href="/scripts/dj/dijit/themes/tundra/tundra.css">
+<SCRIPT TYPE="text/javascript"
+	SRC="/scripts/dj/dojo/dojo.js"></SCRIPT>

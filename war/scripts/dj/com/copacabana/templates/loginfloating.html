@@ -1,0 +1,37 @@
+<div >
+<div>
+<form dojoType="dijit.form.Form" class="loginForm" action="/authenticateNoSSL.do" method="post" style="margin-bottom: 0px" onsubmit="return false;">
+	<input  type="hidden" class="passwordHidden" name="password" dojoType="dijit.form.TextBox"  />
+	<input  type="hidden" class="usernameHidden" name="login" dojoType="dijit.form.TextBox"  />
+	<input  type="hidden" name="isMD5" value="true" />
+</form>
+<div
+	style="margin-left: 1px;margin-bottom: 5px;" >E-mail:
+	<input type="text" class="username mandatory" name="login" selectOnClick="true" dojoType="dijit.form.ValidationTextBox" required="true" style="width: 180px;" /><span class="loading"></span>
+	</div>
+<div
+	style="margin-bottom: 10px" >Senha: 
+<input  style="width: 115px;"  type="password" class="password passwordFake mandatory" selectOnClick="true" name="passwordfake" dojoType="dijit.form.ValidationTextBox"  required="true" />
+<button baseClass="orangeButton loginBtnClass"  dojoType="dijit.form.Button" dojoAttachEvent="onclick:executeLogin"  >Entrar</button>
+<br style="clear: both;" clear="both"/>
+<span dojoType="dijit.form.DropDownButton" baseClass="rememberButton ieRememberBtn" style="margin-left:80px;">
+    <span style="font-size: xx-small;">
+        *esqueci minha senha 
+    </span>
+    <div dojoType="dijit.TooltipDialog" baseClass="lembrete" dojoAttachEvent="onExecute:executeReminder,onexecute:executeReminder">
+    	<p>Insira seu e-mail cadastrado e lhe enviaremos sua senha.</p>
+        <label for="name2">
+            E-mail cadastrado:
+        </label>
+        <form action="/lembreteSenha.do" method="post" dojoAttachPoint="lembreteForm" dojoType="dijit.form.Form" onsubmit="return false;">        
+        <input dojoType="dijit.form.TextBox" class="emailReminder" name="email" type="text"/>
+        </form>
+        <br>        
+        <button dojoType="dijit.form.Button" type="submit" baseClass="orangeButton">
+            Enviar senha
+        </button>
+    </div>
+</span> 
+</div><div class="loginMsgs" style="color: red;">&nbsp;</div>
+</div>
+</div>

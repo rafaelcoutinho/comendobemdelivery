@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!--                                 -->
+	<!-- Url Mapping For Clients         -->
+	<!--                                 -->
+
+
+	<bean id="urlMapper.client"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="alwaysUseFullPath" value="true" />
+		<property name="mappings">
+			<props>
+				<!-- Client mappings -->
+				
+				<prop key="/meusDados.do">viewClientData</prop>
+				<prop key="/enderecos2.do">viewClientAddresses</prop>
+				<prop key="/apagaEndereco2.do">deleteClientAddress</prop>
+				<prop key="/editaEndereco2.do">updateClientAddress</prop>
+				<prop key="/criaEndereco.do">createClientAddress</prop>
+				<prop key="/meusPedidos.do">viewMyOrders</prop>
+				<prop key="/historico.do">viewMyOrderHistory</prop>
+				<prop key="/listClientOrders.do">listClientOrders</prop>
+				<prop key="/getMyPendingOrderList.do">listCurrentClientOrders</prop>
+				<prop key="/listClientAddresses.do">listClientAddresses</prop>
+				<prop key="/addAddressToUser.do">addAddressToUser</prop>
+				<prop key="fazPedido.do">startOrder</prop>
+				<prop key="submitOrder.do">submitOrder</prop>
+				<prop key="payPalPaymentAuth.do">paypalAuthorizationReturn</prop>
+				<prop key="payPalPaymentCancel.do">paypalCancelReturn</prop>
+				<prop key="payPalFailure.do">payPalFailure</prop>
+				<prop key="replaceOrder.do">replaceOrder</prop>
+				<prop key="updateMyLogin.do">updateMyLogin</prop>
+				
+				<!-- END client mappings -->
+			</props>
+		</property>
+		<property name="interceptors">
+			<list>
+				<bean class="br.copacabana.spring.security.ClientProtected">
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!--                 -->
+	<!-- Web Controllers -->
+	<!--                 -->
+
+
+	<bean id="startOrder" class="br.copacabana.ForwardController">
+		<property name="viewName" value="user/order" />
+	</bean>
+	<bean id="viewClientData" class="br.copacabana.ForwardController">
+		<property name="viewName" value="user/profile" />
+	</bean>
+	
+	<bean id="viewMyOrders" class="br.copacabana.ForwardController">
+		<property name="viewName" value="user/manageOrders" />
+	</bean>
+	<bean id="viewMyOrderHistory" class="br.copacabana.ForwardController">
+		<property name="viewName" value="user/manageOldOrders" />
+	</bean>
+
+	<bean id="listCurrentClientOrders" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.beans.GetClientOrders" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	<bean id="updateMyLogin" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.beans.UpdateMyLogin" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+
+	<bean id="listClientOrders" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.beans.GetClientOrders" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+
+	<bean id="listClientAddresses" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListClientAddressesCommand" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	<bean id="addAddressToUser" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.AddAddressToUserCommand" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	
+	<bean id="submitOrder" class="br.copacabana.SubmitOrderController">
+		<property name="viewName" value="redirect:/meusPedidos.do" />		
+		<property name="alternateViewName" value="redirect:/fazPedido.do" />
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	
+	<bean id="replaceOrder" class="br.copacabana.ReplaceOrderController">
+		<property name="successView" value="redirect:/placeOrder.do" />		
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	
+	<bean id="payPalFailure"  class="br.copacabana.ForwardController">				
+		
+		<property name="viewName" value="user/paypalFailure" />
+		
+	</bean>
+	<bean id="paypalAuthorizationReturn" class="br.copacabana.PayPalAuthorizationController">
+		<property name="viewName" value="redirect:/meusPedidos.do" />
+		<property name="alternateViewName" value="redirect:/payPalFailure.do" />
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	<bean id="paypalCancelReturn" class="br.copacabana.PayPalCancelController">
+		<property name="viewName" value="redirect:/placeOrder.do" />
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	
+	
+	<bean id="viewClientAddresses"  parent="baseViewController">				
+		<property name="commandClass" value="br.copacabana.spring.client.LoadClientAddresses" />
+		<property name="viewName" value="user/manageAddress" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	
+	<bean id="deleteClientAddress"  parent="baseViewController">				
+		<property name="commandClass" value="br.copacabana.spring.client.RemoveClientAddress" />
+		<property name="viewName" value="redirect:/enderecos.do" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	<bean id="createClientAddress"  parent="baseViewController">				
+		<property name="commandClass" value="br.copacabana.spring.client.UpdateClientAddress" />
+		<property name="viewName" value="redirect:/enderecos.do" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	<bean id="updateClientAddress"  parent="baseViewController">				
+		<property name="commandClass" value="br.copacabana.spring.client.UpdateClientAddress" />
+		<property name="viewName" value="redirect:/enderecos.do" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	
+
+</beans>

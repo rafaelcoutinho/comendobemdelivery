@@ -1,0 +1,126 @@
+@CHARSET "UTF-8";
+
+/* ------------ TAGs --------------------- */
+div.fundoCinza {
+	padding: 3px 7px;
+}
+
+table {
+	width: 98%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 10px;
+	padding: 0px;
+	border-collapse: collapse;
+}
+
+table th {
+	border-bottom: 1px solid rgb(168, 168, 168);
+	font-weight: normal;
+	font-size: 0.8em;
+	padding: 4px 5px;
+}
+
+tbody td {
+	text-align: center;
+	border-bottom: 1px solid rgb(168, 168, 168);
+	padding: 4px 5px;
+}
+.addressFields{
+ margin: 1px;	
+}
+.addressFields tbody td {
+	text-align: left;
+	border-bottom:0px;
+	padding: 0px 0px 0px 0px;	
+}
+.addressFields tbody tr {
+	margin-bottom: 2px; 	
+}
+
+tbody tr.sobre {
+	background: rgb(240, 240, 240);
+}
+
+tbody td a, tbody td a:visited {
+	color: rgb(96, 93, 93);
+	text-decoration: underline;
+}
+
+/* ------------ IDs --------------------- */
+#barraWelcome h2, #barraWelcome p {
+	margin: 0px;
+	padding: 2px;
+}
+
+#filtro {
+	background: rgb(222, 222, 222);
+	padding: 5px;
+	height: 28px;
+}
+
+#historicoPaginas {
+	text-align: center;
+}
+
+#historicoPaginas a {
+	margin: 2px 5px;
+	padding: 2px 5px;
+	border: 1px solid rgb(220, 220, 220);
+	background: rgb(240, 240, 240);
+	cursor: pointer;
+}
+
+#historicoPaginas a.atual {
+	background: rgb(255, 255, 240);
+}
+
+#mensagem span {
+	font-size: 1.2em;
+	color: rgb(235, 125, 75);
+}
+
+/* ------------ Classes --------------------- */
+
+.orderstatus_NEW {
+	color: rgb(235, 125, 75);
+}
+.orderstatus_PREPARING {
+	color: #20aa20;
+	font-weight: bold;
+}
+
+
+.caminho {
+	color: rgb(235, 125, 75);
+}
+
+.cancelado {
+	color: rgb(235, 75, 75); 
+}
+
+.finalizado {
+	color: rgb(12, 150, 72);
+}
+
+.highlight {
+	color: black;
+	background: yellow;
+}
+
+.odd {
+	background: rgb(240, 238, 238);
+}
+
+.totais {
+	border: 0px solid gray;
+}
+
+.totais TR TD {
+	
+	border: 0px;
+	text-align:  right;
+}
+.totalFinal TD {
+border-top:1px solid black;
+}

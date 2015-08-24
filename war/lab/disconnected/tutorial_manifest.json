@@ -1,0 +1,11 @@
+{
+  "betaManifestVersion": 2,
+  "version": "1.1",
+  "entries": [
+      { "url": "go_offline.html"},
+      { "url": "inicio.html"},
+      { "url": "go_offline.js"},
+      { "url": "/scripts/gears_init.js"},
+      { "url": "/scripts/jquery-1.4.4.min.js"}
+    ]
+}

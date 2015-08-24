@@ -1,0 +1,134 @@
+@CHARSET "UTF-8";
+
+/* ------------ TAGs --------------------- */
+div.fundoCinza {
+	padding: 3px 5px;
+	margin-bottom: 10px
+}
+
+div.fundoCinza h2 {
+	margin: 5px;
+}
+
+.orderRequestList table {
+	width: 98%;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 0px;
+	border-collapse: collapse;
+}
+
+.orderRequestList table th {
+	border-bottom: 1px solid rgb(168, 168, 168);
+	font-weight: normal;
+	font-size: 0.8em;
+	padding: 4px 5px;
+}
+
+.orderRequestList tbody td {
+	text-align: center;
+	border-bottom: 1px solid rgb(168, 168, 168);
+	padding: 4px 5px;
+	font-size: 0.8em;
+}
+
+.orderRequestList tbody td a,tbody td a:visited {
+	color: rgb(96, 93, 93);
+	text-decoration: underline;
+}
+
+.orderRequestList tbody td input {
+	text-align: center;
+}
+
+.orderRequestList td.colunaItem {
+	padding-left: 2px;
+}
+
+.orderRequestList td.colunaItem span {
+	font-size: 1.6em
+}
+
+/* ------------ IDs --------------------- */
+#alterarPedido {
+	position: absolute;
+	bottom: 0px;
+	left: 10px;
+}
+
+#dadosCliente {
+	padding-bottom: 10px;
+	position: relative;
+}
+
+#dadosCliente p {
+	
+}
+
+#dadosCliente p span {
+	color: rgb(232, 121, 25);
+}
+
+#finalPedido {
+	position: relative;
+	height: 120px;
+	margin-bottom: 10px;
+}
+
+#formasDePagamento {
+	margin: 5px 10px;
+}
+
+#informacoes {
+	width: 550px;
+}
+
+#mudarEndereco {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	border-left: 2px solid rgb(182, 179, 179);
+	padding: 25px 20px 23px;
+}
+
+#orSection {
+	margin: 10px 0;
+}
+
+#total {
+	color: white;
+}
+
+#totalWrapper {
+	position: absolute;
+	bottom: 0px;
+	right: 10px;
+	background: rgb(130, 130, 130);
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	width: 200px;
+	height: 18px;
+	padding-top: 2px;
+}
+
+#totalizadores {
+	position: absolute;
+	width: 300px;
+	text-align: right;
+	bottom: 20px;
+	right: 20px;
+	margin-bottom: 10px;
+}
+
+.colunaItem {
+	width: 350px;
+	text-align: left;
+	padding-left: 100px;
+}
+
+.formaPagamento {
+	margin: 0 0 10px 25px;
+	visibility: hidden;
+	display: inline
+}

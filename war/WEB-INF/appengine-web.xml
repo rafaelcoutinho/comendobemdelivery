@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+	<application>comendobembeta</application>
+	<version>prod7</version>
+
+	<!-- Configure java.util.logging -->
+	<system-properties>
+		<property name="java.util.logging.config.file" value="WEB-INF/logging.properties" />
+	</system-properties>
+	<sessions-enabled>true</sessions-enabled>
+	<static-files>
+		<include path="/styles/main/**.css" expiration="10d" />
+		<include path="/styles/images/*" expiration="10d" />
+		<include path="/lab/disconnected/**.js" expiration="1d" />
+		<include path="/lab/disconnected/**.html" expiration="1d" />
+		<include path="/lab/disconnected/**.manifest" expiration="1d" />
+		<include path="/lab/disconnected/**.json" expiration="1d" />		
+		<include path="/lab/**.html" expiration="1d" />
+		<include path="/lab/ext/**.js" expiration="1d" />
+		
+		
+		<include path="/resources/**.*" expiration="30d" />
+		<include path="/styles/**.css" expiration="1d" />
+		<include path="/static/**.html" expiration="10d" />
+		<include path="/favicon.png" expiration="3000d" />
+		<include path="/favicon.ico" expiration="3000d" />
+		<include path="/testeRemoto.html" expiration="3000d" />
+		<include path="/resources/img/**.png" expiration="30d" />
+		<include path="/pecaonline/**" expiration="30d" />		
+		<include path="/resources/img/opt/**.*" expiration="30d" />		
+		<include path="/scripts/**.*" expiration="1d" />
+		<include path="/scripts/dj/**.*" expiration="1d" />
+		<include path="/scripts/dj/dojo/**.*" expiration="30d" />
+		<include path="/scripts/dj/dojox/**.*" expiration="30d" />
+		<include path="/scripts/dj/dijit/**.*" expiration="30d" />		
+		<include path="/robots.txt" expiration="30d" />
+		<include path="/notfound.html" expiration="30d" />
+		<include path="/regulamento.html" expiration="30d" />
+		<include path="/premios.html" expiration="30d" />
+		<include path="/reputacaoConta.html" expiration="0d" />
+		<include path="/resources/version.json" expiration="1d" />
+		<include path="/resources/updaterversion.json" expiration="1d" />
+		<include path="/news/**.*" expiration="30d" />
+		<include path="/news/img/**.*" expiration="30d" />
+		<include path="N_18bBcV-VwoE20bIOK5bI6uRnM.txt" expiration="30d" />
+		<include path="/C1nmcoyGfB5Zz7OChQ6RN0zyOc0.txt" expiration="100d" />
+		
+	</static-files>
+	<!-- <precompilation-enabled>true</precompilation-enabled>-->
+	<precompilation-enabled>false</precompilation-enabled>
+	<ssl-enabled>true</ssl-enabled>
+	
+	<static-error-handlers>
+		<handler file="/static/default_error.html" />		
+	</static-error-handlers> 
+		
+
+	<admin-console>
+		<page name="CB Admin" url="/admin/index.jsp" />
+		<page name="Appstats" url="/appstats/stats" />
+	</admin-console>
+	<inbound-services>
+		<service>xmpp_message</service>
+		<service>mail</service>
+	</inbound-services>
+
+</appengine-web-app>

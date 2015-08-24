@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+#barraEmbaixo {
+	margin-top: 4px;
+}
+
+#barraEmbaixo img {
+	margin-left: -56px;
+}
+
+#camposUsuario input[type=radio], #preferencias input[type=checkbox] {
+	margin: 0;
+}
+
+#preferencias span {
+	padding: 5px;
+}
+
+.endereco {
+	padding-bottom: 10px;
+}

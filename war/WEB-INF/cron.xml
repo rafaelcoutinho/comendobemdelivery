@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+ <cron>
+    <url>/cron/pingXmppClient</url>
+    <description>refresh xmpp table</description>
+    <schedule>every day 03:00</schedule>
+	<timezone>America/Sao_Paulo</timezone>
+ </cron>
+ <cron>
+    <url>/cron/runCategoriesSwitcher</url>
+    <description>muda pratos de categorias</description>
+    <schedule>every day 02:00</schedule>
+	<timezone>America/Sao_Paulo</timezone>
+ </cron>
+ <!-- <cron>
+    <url>/autoMonitor.do</url>
+    <description>Checks if there are any pending requests</description>
+    <schedule>every 10 minutes</schedule>
+  </cron>-->
+  <!-- <cron>
+    <url>/criticalPendingOrdersMonitor.do</url>
+    <description>Checks if there are any alert for pending requests</description>
+    <schedule>every 10 minutes</schedule>
+  </cron>-->
+  <cron>
+    <url>/serverMonitors?updateSeed=true</url>
+    <description>Updates the seed</description>
+    <schedule>every 12 hours</schedule>
+  </cron>     
+  <cron>
+    <url>/expiredOrdersMonitor.do</url>
+    <description>Checks if there are orders to expire</description>
+    <schedule>every 60 minutes</schedule>
+  </cron>
+</cronentries>

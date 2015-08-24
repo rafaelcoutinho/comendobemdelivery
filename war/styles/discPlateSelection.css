@@ -1,0 +1,183 @@
+
+.fourcol {
+    float: left;
+    padding: 0 10px 20px 0;
+    width: 630px;
+}
+#sidebar {
+    color: #555555;
+    line-height: 1.4em;
+}
+
+.twocol {
+    float: left;
+    padding: 0 10px 20px 0;
+    width: 310px;
+}
+#sidebar div.boxed {
+    background: none repeat scroll 0 0 #F7F7F7;
+    border: 1px solid #DDDDDD;
+    margin: 0 0 1em;
+    padding: 10px 10px 15px;
+    position: relative;
+    z-index: 2;
+}
+.orderInfo {
+    background: url("/resources/img/step2.png") no-repeat scroll 0 -1687px transparent;
+    height: 16px;
+    position: absolute;
+    width: 16px;
+}
+
+#sidebar div.boxed h5.order {
+    padding-left: 22px;
+}
+
+#sidebar h5 {
+    color: #CC0000;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: normal;
+    margin: 0;
+    padding: 0 0 0.5em;
+    text-transform: capitalize;
+}
+
+h5 {
+    color: #555555;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.4em;
+    margin-bottom: 0.5em;
+}
+#sidebar div.boxed table {
+    width: 100%;
+}
+#sidebar div.boxed table tr td.main, #sidebar div.boxed table tr th.main {
+    padding-right: 0.5em;
+    text-align: left;
+}
+
+#sidebar div.boxed table tr td {
+    border-top: 1px dotted #CCCCCC;
+    font-size: 11px;
+    padding: 0.5em 0;
+    text-align: right;
+}
+#OrderDetailTable {
+    padding-top: 2em;
+}
+#sidebar div.boxed p.ordermore {
+    border-bottom: 1px dotted #CCCCCC;
+    border-top: 1px dotted #CCCCCC;
+    color: #777777;
+    font-size: 14px !important;
+    font-style: italic;
+    line-height: 140%;
+    margin: 0 0 0.5em;
+    padding: 1em;
+    text-align: center;
+}
+#sidebar div.boxed #OrderDetails ul li {
+    font-weight: bold;
+    line-height: 1.4em;
+}
+
+#sidebar div.boxed ul li {
+    border-top: 1px dotted #CCCCCC;
+    font-size: 11px;
+    padding: 0.5em 0;
+}
+#sidebar div.boxed #OrderDetails ul {
+    list-style: none outside none;
+    margin-bottom: 1.5em;
+}
+
+body{
+font-family: Arial,sans-serif;
+}
+#sidebar div.boxed ul {
+    list-style: none outside none;
+}
+* {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+}
+#sidebar div.boxed #OrderDetails ul li.itemprice {
+    float: right;
+    font-size: 11px;
+    font-weight: normal;
+    padding-left: 1em;
+}
+#sidebar div.boxed #OrderDetails ul li ul {
+    margin-bottom: 0;
+    margin-left: 0.8em;
+}
+
+#sidebar div.boxed #OrderDetails ul {
+    list-style: none outside none;
+    margin-bottom: 0.15em;
+    
+}
+
+#sidebar div.boxed ul {
+    list-style: none outside none;
+}
+
+.deleteLink{
+   background-image: url("/resources/img/delete-button.jpg");
+    border: 0 none;
+    display: block;
+    float: right;
+    height: 15px;
+    margin-left: 3px;
+    width: 15px;
+    }
+    #sidebar div.boxed table tr td.main, #sidebar div.boxed table tr th.main {
+    padding-right: 0.5em;
+    text-align: left;
+}
+
+#sidebar div.boxed table tr.subtotal td {
+    color: #CC0000;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+#sidebar div.boxed table tr td {
+    border-top: 1px dotted #CCCCCC;
+    font-size: 11px;
+    padding: 0.5em 0;
+    text-align: right;
+}
+select{
+border: 1px solid;
+}
+input {
+border: 1px solid gray;	
+}
+textarea{
+border: 1px solid gray;	
+}
+.inputView{
+	background: none repeat scroll 0 0 #F7F7F7;
+    color: #555555;
+    font-family: Arial,sans-serif;
+    font-size: 11px;
+    font-weight: bolder;
+}
+.discreteAnchor{
+text-decoration: none;
+color: #555555;
+}
+.clickable{
+	cursor: pointer;
+	text-decoration: underline;
+	
+}
+.clickable:HOVER {
+	text-decoration: none;
+}

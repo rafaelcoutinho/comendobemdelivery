@@ -1,0 +1,71 @@
+
+<div class="endereco">
+<h2 class="addressTitle">${address.name}</h2>
+
+<form  action="/addAddressToUser.do" method="post"
+	dojoType="dijit.form.Form"  class="addressForm"> 
+<input type="hidden" name="address.id" class="addressId" dojoType="dijit.form.TextBox"/>
+
+<table border="0" class="addressFields">
+<tr><td>
+<label for="street">Endere&ccedil;o:</label>
+</td><td>
+<input
+	type="text" class="required" name="address.street" dojoType="dijit.form.ValidationTextBox" required="true" class="required" trim="true" properCase="true"
+	style="height: 20px; width: 255px;" value="${address.street}" /> <span	class="required">*</span> 
+</td></tr>
+
+<tr><td>
+<label for="number">N&uacute;mero:</label> </td> <td><input dojoType="dijit.form.ValidationTextBox" required="true" class="required" trim="true"
+	type="text"  name="address.number" value="${address.number}"
+	style="height: 20px; width: 65px;" /> <span class="required">*</span></td>
+	</tr>
+	<tr><td>
+	<label for="additionalInfo">Complemento:</label></td><td>  <input dojoType="dijit.form.ValidationTextBox" required="false" trim="true" class="required"
+	type="text" value="${address.additionalInfo}" name="address.additionalInfo" style="height: 20px; width: 75px;" />
+</td></tr>
+
+<tr><td>
+<label for="city">Cidade:</label> 
+</td><td>
+<select dojoType="dijit.form.FilteringSelect"
+			class="citySelection required" autoComplete="true" required="true"
+			invalidMessage="Cidade inv&aacute;lida"  name="address.city.k" ></select><span class="required">*</span> 
+</td></tr>
+
+<tr><td>
+<label for="neighborhood">Bairro:</label> 
+</td><td>
+<select dojoType="dijit.form.FilteringSelect"
+			class="neighSelection required" name="address.neighborhood" autoComplete="true" required="true" 
+			invalidMessage="Bairro inv&aacute;lido"></select><span class="required">*</span> 
+</td></tr>
+
+<tr><td>
+<label for="phone">Telefone:</label> 
+</td><td>
+<input dojoType="dijit.form.ValidationTextBox" required="true" class="required" 
+trim="true"	type="text" class="required" name="address.phone" value="${address.phone}" regExpGen="com.copacabana.util.phoneFormat" invalidMessage="Telefone inv&aacute;lido. Utilize o seguinte formato (DDD) NNNN-NNNN"
+	style="height: 20px; width: 212px;" /> <span class="required">*</span> 
+</td></tr>
+
+<tr><td>
+<label for="zip">CEP:</label>
+</td><td>
+<input dojoType="dijit.form.ValidationTextBox" required="false"  class="required"
+	type="text" name="address.zipCode" value="${address.zipCode}"
+	style="height: 20px; width: 165px;" />  
+</td></tr>
+
+</table>
+
+</form>
+<button baseClass="orangeButton" dojoType="dijit.form.Button" dojoAttachEvent="onclick:createAddress" class="persist">Salvar</button>&nbsp;
+<button baseClass="orangeButton" dojoType="dijit.form.Button" dojoAttachEvent="onclick:deleteAddress" class="apagar" >Apagar</button>
+ 
+<form action="/addAddressToUser.do" method="post" dojoType="dijit.form.Form" class="updateUserForm">	
+</form>
+<form action="/deleteAddress.do" method="post" dojoType="dijit.form.Form" class="deleteAddresForm">	
+</form>
+
+</div>

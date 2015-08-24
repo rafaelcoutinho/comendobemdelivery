@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<import resource="spring-servlet-client.xml" />
+	<import resource="spring-servlet-restaurant.xml" />
+	<import resource="spring-servlet-central.xml" />
+	<import resource="spring-servlet-backoffice.xml" />
+	
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionAttribute" value="exception" />
+		<property name="exceptionMappings">
+			<props>
+				<prop key="br.copacabana.spring.JsonException">ajaxExceptionJsonCommandResponse</prop>
+				<prop key="java.lang.Exception">exception_info</prop>
+				<prop key="br.copacabana.exception.DirectRestaurantNotFoundException">restaurantNotFound</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="urlMapper.main"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="alwaysUseFullPath" value="true" />
+		<property name="mappings">
+			<props>
+			<prop key="erroJson.do">jsonExceptionPath</prop>
+			<prop key="pesquisaSatisfacao.do">evaluateOrder</prop>
+			<prop key="pesquisaCompleta.do">detailedEvaluateOrder</prop>
+			
+			<prop key="removerEmail.do">removeEmailForm</prop>
+				<prop key="listNeighbors.do">listNeighborsUseCaseBean</prop>
+				<prop key="listNeighborsItemFileReadStore.do">listNeighborsItemFileReadStore</prop>
+				<prop key="listNeighborsByCity.do">listNeighborsByCityItemFileReadStore</prop>
+				<prop key="listFoodCategoriesItemFileReadStore.do">listFoodCategoriesItemFileReadStore</prop>
+				<prop key="listFoodCategories.do">listFoodCategories</prop>
+				
+				<prop key="getDailyHighlight.do">getDailyHighlightUseCaseBean</prop>
+				<prop key="getWeeklyHighlight.do">getWeeklyHighlightUseCaseBean</prop>
+				<prop key="getRestaurant.do">getRestaurantUseCaseBean</prop>
+				<prop key="/admin/listRestaurants.do">listRestaurants</prop>
+				<prop key="searchRestaurants.do">searchRestaurants</prop>
+				<prop key="getNeighbor.do">getNeighbor</prop>
+				<prop key="getPlate.do">getPlateUseCaseBean</prop>
+				<prop key="getUser.do">getLoggedUser</prop>
+				<prop key="listUsers.do">listUsers</prop>
+				<prop key="createUser.do">createUser</prop>				
+				<prop key="createUserJson.do">createUserJson</prop>
+				
+				<prop key="registerNewUser.do">registerClient</prop>
+				<prop key="createAddress.do">createAddress</prop>
+				<prop key="loadAddress.do">loadAddress</prop>
+				<prop key="listStates.do">listStates</prop>				
+				<prop key="listCities.do">listCities</prop>
+				<prop key="listCitiesItemFileReadStore.do">listCitiesItemFileReadStore</prop>				
+				<prop key="listStatesItemFileReadStore.do">listStatesItemFileReadStore</prop>
+				<prop key="listRestaurantPlates.do">listRestaurantPlates</prop>
+				<prop key="restPlateList.do">listRestaurantPlatesFast</prop>
+				<prop key="destaquesRestaurante.do">listRestaurantHighlightPlatesFast</prop>
+				<!-- TODO make it only work for the currently logged restaurant--> 				
+				<prop key="createRestJson.do">createRestJson</prop>				
+				<prop key="updateRest.do">updateRest</prop>				
+				<prop key="viewConf.do">viewConf</prop>
+				<prop key="listRestaurantsItemFileReadStore.do">listRestaurantsItemFileRead</prop>
+				
+				<prop key="listDeliveryRangeForRestaurant.do">listDeliveryRangeForRestaurant</prop>
+				<prop key="listDeliveryRangeForNeighborItemFileRead.do">listDeliveryRangeForNeighborItemFileRead</prop>
+				<prop key="login.do">login</prop>
+				<prop key="saveWorkingHour.do">saveWorkingHours</prop>
+				
+				<prop key="/changePwd.do">changePwd</prop>
+				<prop key="authenticate.do">authenticate</prop>
+				<prop key="authenticateNoSSL.do">authenticateNoSSL</prop>
+				<prop key="getClient.do">getClient</prop>
+				
+				<prop key="maisinfopaypal.do">moreInfoPayPal</prop>
+				
+				<prop key="getSessionValue.do">getSessionValue</prop>
+				
+				<prop key="expiredOrdersMonitor.do">expiredOrdersMonitor</prop>
+				
+				<prop key="/monitor/monitorOrders.do">monitorOrders</prop>
+				
+				<prop key="deleteAddress.do">deleteAddress</prop>
+				<prop key="loadOrderDetails.do">loadOrderDetails</prop>
+				<prop key="updateOrder.do">updateOrder</prop>
+				<prop key="changeOrderStatus.do">changeOrderStatus</prop>
+				<prop key="getRestaurantByFoodCategory.do">getRestaurantByFoodCategory</prop>
+				
+				<prop key="listMainFoodCategories.do">listMainFoodCategories</prop>
+				
+				<prop key="loginRegistro.do">loginRegister</prop>
+				
+				<prop key="contatoRestaurante.do">restaurantContact</prop>
+				<prop key="enviaContatoRestaurante.do">sendRestaurantContact</prop>
+				
+				<prop key="contato.do">contact</prop>
+			    <prop key="sendContact.do">sendContact</prop>
+				<prop key="retrieveUserNews.do">retrieveUserNews</prop>
+				<!-- Admin mappings -->
+				<prop key="/admin/createNeighbor.do">createNeighborsUseCaseBean</prop>
+				<prop key="/admin/createFoodCategory.do">createFoodcategory</prop>
+				<prop key="/admin/createState.do">createState</prop>
+				<prop key="/admin/createConf.do">createConf</prop>
+				<prop key="/admin/createCity.do">createCity</prop>
+				<prop key="/admin/createCityJson.do">createCityJson</prop>
+				<prop key="/admin/createStateJson.do">createStateJson</prop>
+				<prop key="/admin/updateRestSiteStatus.do">updateRestSiteStatus</prop>
+				<prop key="/noiteitaliana.do">novoVenda</prop>
+				<prop key="/listaNoite.do">vendasNoite</prop>
+				<prop key="/tasks/expireMealOrder.do">mealOrderExpirer</prop>
+				<prop key="/tasks/newRegisteredClient.do">onNewClientRegistered</prop>
+				<prop key="/tasks/onNewOrderPlaced.do">onNewOrderPlaced</prop>
+				<prop key="/tasks/onOrderCancelled.do">onOrderCancelled</prop>
+				<prop key="/tasks/onOrderDelivered.do">onOrderDelivered</prop>
+				<prop key="/tasks/handleAddressDeletion.do">handleAddressDeletion</prop>
+				<prop key="lembreteSenha.do">passwordReminder</prop>
+				<prop key="dispararGeracaoSenha.do">startPwdRegen</prop>
+				<prop key="redefinir.do">redefinePwd</prop>
+				<prop key="redefinirSenha.do">redefinePwdForm</prop>
+				
+				
+				<!--<prop key="/r/*.do">oneRestaurant</prop>
+				<prop key="/r/*.restaurante">oneRestaurant</prop>
+				
+				<prop key="/*.cb">oneRestaurant</prop>-->
+				<prop key="/*.restaurante">oneRestaurant</prop>
+				<prop key="/*.delivery">oneRestaurant</prop>
+				
+				<prop key="renviarEmail.do">resendConfirmEmail</prop>
+				<prop key="confirmaEmail.do">confirmEmail</prop>
+				<prop key="/*.central">oneCentral</prop>
+				
+				<prop key="sugerirBairro.do">suggestNeighborhood</prop>
+				<prop key="/campinas/*">directSearch</prop>
+				<!-- End admin -->
+			<prop key="placeOrder.do">placeOrder</prop>
+			<prop key="quemsomos.do">aboutus</prop>
+
+
+			
+			<prop key="home.do">home</prop>
+			
+			<prop key="/criticalPendingOrdersMonitor.do">criticalPendingOrdersMonitor</prop>
+			<prop key="/autoMonitor.do">autoMonitor</prop>
+			<prop key="addXYCoords.do">addXYCoords</prop>
+			<prop key="autolocate.do">autolocate</prop>
+			<prop key="/admin/listUnassignedLocations.do">listUnassignedLocations</prop>
+			<prop key="comopedir.do">howtoorder</prop>
+			
+			<prop key="cidadescomdelivery.do">citiesRange</prop>
+			<prop key="restaurantesPorBairros.do">restaurantByNeighborhood</prop>
+			<prop key="tipoDeDeliveryPorCidade.do">delTypeByCity</prop>
+			<prop key="areaDeDeliveryDeRestaurante.do">deliveryRestArea</prop>
+			
+			<prop key="getXmppUser.do">getXmppUser</prop>
+			<prop key="acompanharPedido.do">monitorRestClientOrder</prop>
+			</props>
+			
+			
+			
+		</property>
+		<property name="interceptors">
+			<list>
+			
+			</list>
+		</property>
+</bean>
+
+
+	<!--
+		Dummy Controller that shows TO BE IMPLEMENTED message, shoud be reused
+		in all UI modules
+	-->
+	<bean id="genericToBeImplementedController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="to_be_implemented_message" />
+	</bean>
+	<!-- base view controller bean definition -->
+	<bean id="baseViewController" class="br.copacabana.ViewController"
+		abstract="true" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="commandClass" value="br.copacabana.RetrieveCommand" />
+		<property name="viewName" value="" />
+		<property name="manager" value="" />
+	</bean>
+	
+	<bean id="monitorRestClientOrder" parent="baseViewController">
+	<property name="commandClass" value="br.copacabana.spring.restClient.MonitorRequest" />		
+		<property name="manager" ref="clientManager" />
+		<property name="viewName" value="restClient/monitorOrder" />
+	</bean>
+		
+		
+	<bean id="novoVenda" class="br.copacabana.ForwardController">
+		<property name="viewName" value="novaVenda" />
+	</bean>
+	<bean id="vendasNoite" class="br.copacabana.ForwardController">
+		<property name="viewName" value="vendas" />
+	</bean>
+	
+	<bean id="handleHotSite" class="br.copacabana.HotSiteController">				
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	
+	<bean id="home" parent="baseViewController">
+	<property name="commandClass" value="br.copacabana.usecase.beans.PrepareHome" />
+		<property name="viewName" value="main/home" />
+		<property name="manager" ref="confManager" />
+	</bean>
+	<bean id="directSearch" class="br.copacabana.spring.search.DirectSearchController">
+		<property name="commandClass" value="br.copacabana.usecase.beans.PrepareHome" />		
+		<property name="viewName" value="main/home" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	
+	
+	<bean id="getNeighbor" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.RetrieveCommand" />
+		<property name="classname" value="br.com.copacabana.cb.entities.Neighborhood" />
+		<property name="manager" ref="neighbourManager" />
+	</bean>
+	
+	
+	<bean id="listNeighborsUseCaseBean" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="neighbourManager" />
+	</bean>
+	<bean id="authenticate" class="br.copacabana.AuthenticationController">
+
+		<property name="commandClass" value="br.com.copacabana.cb.entities.UserBean" />
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="manager" ref="userManager" />
+	</bean>
+	<bean id="authenticateNoSSL" class="br.copacabana.AuthenticationController">
+		<property name="base64" value="true" />
+		<property name="commandClass" value="br.com.copacabana.cb.entities.UserBean" />
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="manager" ref="userManager" />
+	</bean>
+	
+	<bean id="listNeighborsItemFileReadStore" class="br.copacabana.JsonViewItemFileReadStoreController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="neighbourManager" />
+		<property name="cacheName" value="neighborListCache" />
+	</bean>
+
+	<bean id="listNeighborsByCityItemFileReadStore" class="br.copacabana.JsonViewItemFileReadStoreController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommandFilteredBy" />
+		<property name="queryName" value="searchNeighborhoodByCity" />
+		<property name="queryItemId" value="city" />
+		<property name="queryItemClass" value="br.com.copacabana.cb.entities.City" />
+		<property name="manager" ref="neighbourManager" />
+		<property name="jsonCacheName" value="listNeighborsByCityItemFileReadStore" />
+		<property name="jsonCacheId" value="key" />
+	</bean>
+
+	<bean id="listRestaurantPlates" class="br.copacabana.JsonViewItemFileReadStoreController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommandFilteredBy" />
+		<property name="queryName" value="getPlateByRestaurantOrderedByName" />
+		<property name="queryItemId" value="restaurant" />
+		<property name="queryItemClass" value="br.com.copacabana.cb.entities.Restaurant" />
+		<property name="manager" ref="plateManager" />
+	</bean>
+	<bean id="listRestaurantHighlightPlatesFast" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.ListRestaurantHighlightsPlates" />
+		<property name="manager" ref="plateManager" />
+		<property name="jsonCacheName" value="listRestaurantHighlightPlatesFast" />
+		<property name="jsonCacheId" value="key" />
+	</bean>
+	<bean id="listRestaurantPlatesFast" class="br.copacabana.JsonViewItemFileReadStoreController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.ListRestaurantPlates" />
+		<property name="queryName" value="getPlateByRestaurantOrderedByName" />
+		<property name="queryItemId" value="restaurant" />
+		<property name="queryItemClass" value="br.com.copacabana.cb.entities.Restaurant" />
+		<property name="manager" ref="plateManager" />
+		<property name="jsonCacheName" value="listRestaurantPlatesFast" />
+		<property name="jsonCacheId" value="key" />
+	</bean>
+
+	
+
+	<bean id="listRestaurantsItemFileRead" class="br.copacabana.JsonViewItemFileReadStoreController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+
+	<bean id="listFoodCategoriesItemFileReadStore" class="br.copacabana.JsonViewItemFileReadStoreController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="foodcategoryManager" />
+	</bean>
+	<bean id="listFoodCategories" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="foodcategoryManager" />
+	</bean>
+	<bean id="listMainFoodCategories" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommandFilteredBy" />
+		<property name="cacheName" value="neighborListCache" />
+		<property name="queryName" value="getMainFoodCategories" />
+		<property name="queryItemId" value="keyPassed" />
+		<property name="manager" ref="foodcategoryManager" />
+	</bean>
+
+	<bean id="listDeliveryRangeForNeighborItemFileRead" class="br.copacabana.JsonViewItemFileReadStoreController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommandFilteredBy" />
+		<property name="queryName" value="getDeliveryRangeByNeighbor" />
+		<property name="queryItemId" value="keyPassed" />
+		<property name="manager" ref="deliveryRangeManager" />
+	</bean>
+	<bean id="listDeliveryRangeForRestaurant" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListDeliveryRangeCommand" />
+		<property name="queryName" value="getDeliveryRangeByRestaurant" />
+		<property name="queryItemId" value="restaurantKey" />
+		<property name="manager" ref="deliveryRangeManager" />
+	</bean>
+	
+	
+	
+	
+	<bean id="createFoodcategory" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.commands.CreateFoodCategory" />
+		<property name="manager" ref="foodcategoryManager" />
+	</bean>
+	
+	
+	
+	<bean id="deleteAddress" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.DeleteAddressFromUserCommand" />
+		<property name="manager" ref="addressManager" />
+	</bean>
+
+	<bean id="createNeighborsUseCaseBean" class="br.copacabana.usecase.NeighborController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.com.copacabana.cb.entities.Neighborhood" />
+		<property name="manager" ref="neighbourManager" />
+	</bean>
+	<bean id="listStates" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="stateManager" />
+	</bean>
+	<bean id="listStatesItemFileReadStore" class="br.copacabana.JsonViewItemFileReadStoreController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="stateManager" />
+	</bean>
+	<bean id="getDailyHighlightUseCaseBean" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.GetDailyTip" />
+		<property name="manager" ref="confManager" />
+	</bean>
+	<bean id="getWeeklyHighlightUseCaseBean" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.GetWeeklyTip" />
+		<property name="manager" ref="confManager" />
+	</bean>
+
+	<bean id="getRestaurantUseCaseBean" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.RetrieveCommand" />
+		<property name="classname" value="br.com.copacabana.cb.entities.Restaurant" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	
+	<bean id="getRestaurantByFoodCategory" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListRestaurantByFoodCategoryCommand" />
+		<property name="classname" value="br.com.copacabana.cb.entities.Restaurant" />
+		<property name="manager" ref="plateManager" />
+	</bean>
+
+	<bean id="getClient" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.RetrieveClientCommand" />
+		<property name="classname" value="br.com.copacabana.cb.entities.Client" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	<bean id="loadAddress" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.RetrieveCommandAddress" />
+		<property name="classname" value="br.com.copacabana.cb.entities.Address" />
+		<property name="manager" ref="addressManager" />
+	</bean>
+	
+
+	<bean id="getPlateUseCaseBean" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.RetrieveCommand" />
+		<property name="classname" value="br.com.copacabana.cb.entities.Plate" />
+		<property name="manager" ref="plateManager" />
+	</bean>
+	<bean id="getLoggedUser" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.GetLoggedUserCommand" />
+		<property name="manager" ref="userManager" />
+	</bean>
+	
+
+	
+	<bean id="getSessionValue" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.spring.GetSessionValueCommand" />
+		<property name="manager" ref="userManager" />
+	</bean>
+
+
+	<bean id="listUsers" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="userManager" />
+	</bean>
+
+
+	<bean id="createUser" class="br.copacabana.PersistController">
+		<property name="successView" value="redirect:listUsers.do" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.PersistCommand" />
+		<property name="manager" ref="userManager" />
+	</bean>
+	<bean id="createState" class="br.copacabana.PersistController">
+		<property name="successView" value="redirect:listStates.do" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.PersistCommand" />
+		<property name="manager" ref="stateManager" />
+	</bean>
+
+	<bean id="createAddress" class="br.copacabana.JsonPersistController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+
+		<property name="commandClass" value="br.com.copacabana.cb.entities.Address" />
+		<property name="manager" ref="addressManager" />
+	</bean>
+		
+	<bean id="createStateJson" class="br.copacabana.JsonPersistController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+
+		<property name="commandClass" value="br.com.copacabana.cb.entities.State" />
+		<property name="manager" ref="stateManager" />
+	</bean>
+	<bean id="createUserJson" class="br.copacabana.JsonPersistController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.com.copacabana.cb.entities.Client" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	
+	
+
+
+	<bean id="updateRest" class="br.copacabana.JsonPersistController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.com.copacabana.cb.entities.Restaurant" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+
+	<bean id="saveWorkingHours" class="br.copacabana.JsonPersistController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.com.copacabana.cb.entities.Restaurant" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	<bean id="createCityJson" class="br.copacabana.JsonPersistController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+
+		<property name="commandClass" value="br.com.copacabana.cb.entities.City" />
+		<property name="manager" ref="stateManager" />
+	</bean>
+	<bean id="createCity" class="br.copacabana.PersistController">
+		<property name="successView" value="redirect:listCities.do" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.PersistCommand" />
+		<property name="manager" ref="cityManager" />
+	</bean>
+	<bean id="listCities" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="cityManager" />
+	</bean>
+	
+
+	<bean id="listCitiesItemFileReadStore" class="br.copacabana.JsonViewItemFileReadStoreController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="idLabel" value="id" />
+ 		<property name="cacheName" value="citiesListCache" /> 
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="cityManager" />
+	</bean>
+		<bean id="listRestaurants" class="br.copacabana.JsonViewItemFileReadStoreController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	<bean id="updateOrder" class="br.copacabana.JsonPersistController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.com.copacabana.cb.entities.MealOrder" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	
+
+	
+
+	
+	<bean id="monitorOrders" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListPendingOrderes" />
+		<property name="queryName" value="listPendingMealOrders" />
+		<property name="staticField" value="status" />
+		<property name="staticParams" value="NEW,VISUALIZEDBYRESTAURANT" />		
+		<property name="manager" ref="orderManager" />
+	</bean>
+	
+	<bean id="listUnassignedLocations" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.ListUnassignedLocations" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+
+
+	<bean id="searchRestaurants" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.RestaurantSearchCommand" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	<bean id="createConf" class="br.copacabana.JsonPersistController">
+		<property name="successView" value="redirect:criaConf.jsp" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.com.copacabana.cb.app.Configuration" />
+		<property name="manager" ref="confManager" />
+	</bean>
+	
+	<bean id="loadOrderDetails" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ViewOrderByRestaurant" />
+		<property name="classname" value="br.com.copacabana.cb.entities.MealOrder" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	
+	
+	
+	<bean id="viewConf" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.RetrieveCommand" />
+		<property name="classname" value="br.com.copacabana.cb.app.Configuration" />
+		<property name="manager" ref="confManager" />
+	</bean>
+
+	<bean id="createClient" class="br.copacabana.PersistController">
+		<property name="successView" value="redirect:listClients.do" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.PersistCommand" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	<bean id="listClient" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.ListCommand" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+
+	<bean id="login" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.LoginCommand" />
+		<property name="manager" ref="userManager" />
+	</bean>
+	
+	<bean id="jsonExceptionPath" class="br.copacabana.ForwardController">
+		<property name="viewName" value="ajaxExceptionJsonCommandResponse" />
+	</bean>
+	
+	
+	
+	<bean id="loginRegister" class="br.copacabana.ForwardController">
+		<property name="viewName" value="user/registro" />
+	</bean>
+	<bean id="placeOrder" class="br.copacabana.PlaceOrderController">
+		<property name="formView" value="redirect:/loginRegistro.do" />
+		<property name="successView" value="redirect:/fazPedido.do" />
+		<property name="commandClass" value="java.lang.String" />
+		<property name="manager" ref="userManager" />
+	</bean>
+	
+	
+	<bean id="contact" class="br.copacabana.ForwardController">
+		<property name="viewName" value="faleconosco" />
+	</bean>
+	<bean id="restaurantContact" class="br.copacabana.ForwardController">
+		<property name="viewName" value="restaurant/registro" />
+	</bean>
+	
+	<bean id="sendRestaurantContact" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.SendRestaurantContact" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	
+	<bean id="createRestJson" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+
+		<property name="commandClass" value="br.copacabana.CreateRestaurantCommand" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	
+	
+	<bean id="sendContact" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.SendContact" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	<bean id="retrieveUserNews" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.beans.RetrieveUserNewsCommand" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	<bean id="autoMonitor" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />		
+		<property name="commandClass" value="br.copacabana.usecase.MonitorPendingRequestsCommand" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	<bean id="criticalPendingOrdersMonitor" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />		
+		<property name="commandClass" value="br.copacabana.usecase.MonitorCriticalPendingRequestsCommand" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	
+	<bean id="expiredOrdersMonitor" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />		
+		<property name="commandClass" value="br.copacabana.usecase.ExpiredOrdersMonitorCommand" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	
+	<bean id="changeOrderStatus" class="br.copacabana.OrderStatusController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.beans.UpdateOrderStatus" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	
+	<bean id="passwordReminder" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.PasswordReminder" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	
+	<bean id="startPwdRegen" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.StartPasswordRegen" />
+		<property name="manager" ref="clientManager" />		
+	</bean>
+	<bean id="redefinePwd" parent="baseViewController">
+		<property name="viewName" value="main/redefinePwd" />
+		<property name="commandClass" value="br.copacabana.RedefinePassword" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	<bean id="redefinePwdForm" class="br.copacabana.ForwardController">
+		<property name="viewName" value="main/redefinePwd" />
+	</bean>
+	
+	<bean id="addXYCoords" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.AddXYCoordsLocation" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	<bean id="autolocate" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.AutoLocate" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	
+	<bean id="oneRestaurant" class="br.copacabana.InterceptorController">
+	<property name="commandClass" value="br.copacabana.usecase.ShowRestaurant" />
+		<property name="viewName" value="main/showRestaurant" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	<bean id="oneCentral" class="br.copacabana.InterceptorController">
+		<property name="commandClass" value="br.copacabana.spring.central.web.ShowCentral" />
+		<property name="viewName" value="main/showCentral" />
+		<property name="manager" ref="centralManager" />
+	</bean>
+	
+	
+	<bean id="howtoorder" class="br.copacabana.ForwardController">
+		<property name="viewName" value="main/comopedir" />
+	</bean>
+		
+	<bean id="aboutus" class="br.copacabana.ForwardController">
+		<property name="viewName" value="main/aboutus" />
+	</bean>
+	
+	<bean id="citiesRange" class="br.copacabana.ForwardController">
+		<property name="viewName" value="main/citiesRange" />
+	</bean>
+	<bean id="restaurantByNeighborhood" class="br.copacabana.ForwardController">
+		<property name="viewName" value="main/restByNeigh" />
+	</bean>
+	<bean id="delTypeByCity" class="br.copacabana.ForwardController">
+		<property name="viewName" value="main/foodCatInCity" />
+	</bean>
+	<bean id="deliveryRestArea" class="br.copacabana.ForwardController">
+		<property name="viewName" value="main/restDelRangePopUp" />
+	</bean>
+	
+	<bean id="moreInfoPayPal" class="br.copacabana.ForwardController">
+		<property name="viewName" value="main/moreInfoPayPal" />
+	</bean>
+	
+	
+	
+	<bean id="acceptRestTerms" class="br.copacabana.usecase.AcceptTermsController">
+		<property name="successView" value="redirect:/pedidos.do" />
+		<property name="formView" value="restaurant/acceptTerms" />
+		<property name="commandClass" value="br.copacabana.usecase.beans.AcceptTermsBean" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	
+	<bean id="updateRestSiteStatus" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.UpdateRestSiteStatus" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+		<bean id="getXmppUser" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.XMPPUserProvider" />
+		<property name="manager" ref="restaurantManager" />
+	</bean>
+	<bean id="suggestNeighborhood" class="br.copacabana.ForwardController">
+		<property name="viewName" value="suggestNeighborhood" />
+	</bean> 
+	<bean id="mealOrderExpirer" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.MealOrderExpirer" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	<bean id="onNewClientRegistered" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.OnNewClientRegistered" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	<bean id="onOrderCancelled" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.OnOrderCancelled" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	<bean id="onOrderDelivered" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.OnOrderDelivered" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	
+	<bean id="onNewOrderPlaced" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.OnNewOrderPlaced" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	<bean id="handleAddressDeletion" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.HandleAddressDeletionCommand" />
+		<property name="manager" ref="addressManager" />
+	</bean>
+	
+	<bean id="registerClient" class="br.copacabana.JsonCommandController">
+		<property name="successView" value="ajaxJsonCommandResponse" />
+		<property name="formView" value="ajaxCommandResponse" />
+		<property name="commandClass" value="br.copacabana.usecase.register.RegisterClient" />
+		<property name="manager" ref="clientManager" />
+	</bean>
+	
+	
+	<bean id="resendConfirmEmail"  parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.client.ResendConfirmationEmail" />
+		<property name="viewName" value="user/confEmailResent" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	<bean id="confirmEmail"  parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.client.ConfirmEmail" />
+		<property name="viewName" value="user/emailConfirmationResult" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	<bean id="evaluateOrder"  parent="baseViewController">
+		<property name="commandClass" value="br.copacabana.spring.order.CreateOrderFeedbackCommand" />
+		<property name="viewName" value="user/feedback" />
+		<property name="manager" ref="orderManager" />
+	</bean>
+	<bean id="detailedEvaluateOrder" class="br.copacabana.FormController">			
+		<property name="manager" ref="orderManager" />
+		<property name="successView" value="user/feedbackthanks" />
+		<property name="formView" value="user/feedback" />
+		<property name="commandClass" value="br.copacabana.spring.order.SaveFeedbackDetails" />
+	</bean>
+	<bean id="changePwd" class="br.copacabana.JsonViewController">
+		<property name="viewName" value="ajaxJsonCommandResponse" />
+		<property name="commandClass" value="br.copacabana.spring.ChangePwdCommand" />
+		<property name="manager" ref="userManager" />
+	</bean>	
+	
+	<bean id="removeEmailForm" class="br.copacabana.ForwardController">
+		<property name="viewName" value="removeNewsLetter" />
+	</bean>
+</beans>

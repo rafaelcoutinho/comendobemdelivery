@@ -1,0 +1,11 @@
+<div>
+<span class="horarios" style="float:left; font-weight: bold;display: inline-block;width: 100px;">${dayOfWeekLabel} </span><div dojoAttachPoint="openStatusChooser"></div> 
+<div dojoAttachPoint="timeSection">
+<span  style="font-weight: bold;display: inline-block;width: 105px;"></span><span class="timeSelect"> das <span dojoAttachPoint="openTimeSection"></span> at&eacute; as <span dojoAttachPoint="closeTimeSection"></span> <button class="addSecondTurnBtn" baseClass="orangeButton" dojoType="dijit.form.Button" dojoAttachPoint="addSecondTurnBtn" dojoAttachEvent="onclick:clicked">+ turno</button></span>	  
+<div dojoAttachPoint="secondTurnSection" style="display: none">
+<span class="horarios" style="display: inline-block;width: 100px;">Segundo turno</span> <span class="timeSelect">das <span dojoAttachPoint="secondTurnStartSection"></span> at&eacute; &agrave;s <span dojoAttachPoint="secondTurnCloseSection"></span>
+<button class="removeSecondTurnBtn" baseClass="orangeButton" dojoType="dijit.form.Button" dojoAttachPoint="removeSecondTurnBtn" dojoAttachEvent="onclick:removeSecondTurn">remove turno</button>
+	  </span>
+</div>
+</div>
+</div>
